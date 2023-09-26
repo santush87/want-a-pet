@@ -1,5 +1,6 @@
 package com.martinaleksandrov.wantapet.models.entities;
 
+import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.models.enums.TypeOfUser;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -45,9 +46,14 @@ public class UserEntity extends BaseEntity{
     @Column
     private int savedPet;
 
+    @Column
+    @Enumerated(EnumType.STRING)
+    private RoleEnum role;
+
     public UserEntity() {
         this.pets = new ArrayList<>();
         this.savedPet = 0;
         this.createdOn = LocalDate.now();
+        this.role = RoleEnum.USER;
     }
 }
