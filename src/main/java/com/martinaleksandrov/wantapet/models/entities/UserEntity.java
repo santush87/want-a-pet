@@ -3,6 +3,7 @@ package com.martinaleksandrov.wantapet.models.entities;
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.models.enums.TypeOfUser;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CurrentTimestamp;
@@ -16,8 +17,12 @@ import java.util.List;
 @Getter
 public class UserEntity extends BaseEntity{
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
+    @Email
     private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column(nullable = false)
     private String firstName;
