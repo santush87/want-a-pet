@@ -40,3 +40,7 @@ settings.gradle
 gradle/wrapper/gradle-wrapper.properties
 gradle/wrapper/gradle-wrapper.jar
 gradlew.bat
+src/test/java/com/martinaleksandrov/wantapet/WantAPetApplicationTests.java
+src/main/java/com/martinaleksandrov/wantapet/WantAPetApplication.java
+src/main/frontend/tsconfig.json
+src/main/frontend/src/components/Register/UserRegisterOld.tsx
