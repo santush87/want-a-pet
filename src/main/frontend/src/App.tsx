@@ -2,35 +2,33 @@
 
 import { Routes, Route } from 'react-router-dom'
 
-import * as petServices from './services/petService'
+// import * as petServices from './services/petService'
 import Header from './components/Header/Header';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Home from './components/Home/Home';
-import { useEffect, useState } from 'react';
-import { Pet } from './lib/types';
-import UserRegister from './components/UserRegister/UserRegister';
+// import { useEffect, useState } from 'react';
+// import { Pet } from './lib/types';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 
 
 function App() {
-	const [pets, setPets] = useState<Pet | null>();
+	// const [pets, setPets] = useState<Pet | null>();
 
-	useEffect(() => {
-		petServices.getAllPets()
-			.then((result: any) => {
-				setPets(result);
-			})
-	}, []);
+	// useEffect(() => {
+	// 	petServices.getAllPets()
+	// 		.then((result: any) => {
+	// 			setPets(result);
+	// 		})
+	// }, []);
 
 	return (
 		<>
 			<Header />
 			<Routes>
 				<Route path='/' element={<Home />} />
-				{/* <Route path='/login' element={<RegisterPage />} /> */}
-				<Route path='/register' element={<UserRegister />} />
-				{/* <Route path='/add-pet' element={<RegisterPage />} />
-        <Route path='/catalog' element={<RegisterPage />} />
-        <Route path='/contact' element={<RegisterPage />} /> */}
+				<Route path='/login' element={<Login />} />
+				<Route path='/register' element={<Register />} />
 			</Routes>
 		</>
 	);
