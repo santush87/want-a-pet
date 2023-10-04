@@ -16,18 +16,13 @@ export type UserRegisterDto = {
   firstName: string;
   lastName: string;
   password: string;
+  phoneNumber: string;
   type: "PRIVATE" | "BUSINESS";
   address: Address;
 };
 
 export type Address = {
-  country:
-    | "BULGARIA"
-    | "ROMANIA"
-    | "GREECE"
-    | "GERMANY"
-    | "SPAIN"
-    | "SWITZERLAND";
+  country: "BULGARIA" | "GERMANY";
   city: string;
   street: string;
   number: number;

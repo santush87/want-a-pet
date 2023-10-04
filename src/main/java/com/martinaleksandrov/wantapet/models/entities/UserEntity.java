@@ -35,7 +35,7 @@ public class UserEntity extends BaseEntity{
     private TypeOfUser type;
 
     @Column(nullable = false)
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Column(nullable = false)
     @OneToOne

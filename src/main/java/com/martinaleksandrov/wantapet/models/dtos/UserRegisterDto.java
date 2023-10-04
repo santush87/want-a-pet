@@ -17,9 +17,6 @@ public class UserRegisterDto {
     @NotBlank
     private String email;
 
-    @NotBlank
-    @Size(min = 6, max = 15)
-    private String password;
 
     @NotBlank
     @Size(min = 2, max = 15)
@@ -28,11 +25,16 @@ public class UserRegisterDto {
     @NotBlank
     @Size(min = 2, max = 15)
     private String lastName;
+
+    @NotBlank
+    @Size(min = 6, max = 15)
+    private String password;
+
     @NotBlank
     private String type;
 
     @NotBlank
-    private int phoneNumber;
+    private String phoneNumber;
 
     private UserAddress address;
 }
