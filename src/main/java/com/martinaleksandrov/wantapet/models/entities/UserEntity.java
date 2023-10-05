@@ -1,5 +1,6 @@
 package com.martinaleksandrov.wantapet.models.entities;
 
+import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.models.enums.TypeOfUser;
 import jakarta.persistence.*;
@@ -37,18 +38,27 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String phoneNumber;
 
-    @OneToOne
-    private UserAddress address;
+//    @OneToOne
+//    private UserAddress address;
 
     @Column
     @CurrentTimestamp
     private LocalDate createdOn;
 
-    @OneToMany
+    @ManyToMany()
     private List<PetEntity> pets;
 
-//    @Column
-//    private int savedPet = 0;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private CountryEnum countryEnum;
+
+    @Column(nullable = false)
+    private String city;
+
+    @Column(nullable = false)
+    private String street;
+    @Column
+    private int number;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -56,7 +66,6 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity() {
         this.pets = new ArrayList<>();
-//        this.savedPet = 0;
         this.createdOn = LocalDate.now();
         this.role = RoleEnum.USER;
     }

@@ -29,7 +29,7 @@ public class UserService {
         }
 
         UserEntity userToSave = this.modelMapper.map(userRegisterDto, UserEntity.class);
-        this.userRepository.save(userToSave);
+        this.userRepository.saveAndFlush(userToSave);
 
         return true;
     }

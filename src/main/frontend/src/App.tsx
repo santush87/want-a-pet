@@ -10,6 +10,9 @@ import Home from './components/Home/Home';
 // import { Pet } from './lib/types';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import AddPet from './components/AddPet/AddPet';
+import Catalog from './components/Catalog/Catalog';
+import Contact from './components/Contact/Contact';
 
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
 				<Route path='/' element={<Home />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
+				<Route path='/add-pet' element={<AddPet />} />
+				<Route path='/catalog' element={<Catalog />} />
+				<Route path='/contact' element={<Contact />} />
 			</Routes>
 		</>
 	);

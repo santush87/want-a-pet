@@ -1,6 +1,10 @@
 package com.martinaleksandrov.wantapet.models.dtos;
 
 import com.martinaleksandrov.wantapet.models.entities.UserAddress;
+import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -16,7 +20,6 @@ public class UserRegisterDto {
     @Email
     @NotBlank
     private String email;
-
 
     @NotBlank
     @Size(min = 2, max = 15)
@@ -36,5 +39,14 @@ public class UserRegisterDto {
     @NotBlank
     private String phoneNumber;
 
-    private UserAddress address;
+    @NotBlank
+    private String countryEnum;
+
+    @NotBlank
+    private String city;
+
+    @NotBlank
+    private String street;
+
+    private int number;
 }
