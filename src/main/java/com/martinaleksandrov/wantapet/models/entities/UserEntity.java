@@ -37,7 +37,6 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String phoneNumber;
 
-    @Column(nullable = false)
     @OneToOne
     private UserAddress address;
 
@@ -48,8 +47,8 @@ public class UserEntity extends BaseEntity{
     @OneToMany
     private List<PetEntity> pets;
 
-    @Column
-    private int savedPet;
+//    @Column
+//    private int savedPet = 0;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -57,7 +56,7 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity() {
         this.pets = new ArrayList<>();
-        this.savedPet = 0;
+//        this.savedPet = 0;
         this.createdOn = LocalDate.now();
         this.role = RoleEnum.USER;
     }
