@@ -1,31 +1,21 @@
 import React from 'react'
 import './Register.css'
-import { GroupBase, OptionsOrGroups } from 'react-select';
-import { Address } from "../../lib/types"
-import { z } from "zod";
+// import { GroupBase, OptionsOrGroups } from 'react-select';
+// import { Address } from "../../lib/types"
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { SignUpSchema, signUpSchema } from '../../lib/types';
 
 function Register() {
-    const nameLength = "Length must be between 2 and 15 characters!"
 
-    const signUpSchema = z.object({
-        email: z.string().email(),
-        firstName: z.string().min(2, nameLength).max(15, nameLength),
-        lastName: z.string().min(2, nameLength).max(15, nameLength),
-        password: z.string().min(8, "Password must be at least 8 characters!"),
-        confirmPassword: z.string().min(8, "Password must be at least 8 characters!")
-    }).refine(data => data.password === data.confirmPassword, {
-        message: "Passwords must match!",
-        path: ["confirmPassword"],
-    });
+
 
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
         reset,
-    } = useForm({
+    } = useForm<SignUpSchema>({
         resolver: zodResolver(signUpSchema),
     });
 
@@ -44,6 +34,12 @@ function Register() {
     //         { value: 'SWITZERLAND', label: 'Switzerland' },
     //     ]
 
+    const onRegisterSubmit = async (data: SignUpSchema) => {
+
+
+        reset();
+    }
+
     return (
         <div className="page-wrapper bg-gra-03 p-t-45 p-b-50">
             <div className="wrapper wrapper--w790">
@@ -53,7 +49,8 @@ function Register() {
                     </div>
                     <div className="card-body">
 
-                        <form method="POST">
+                        <form onSubmit={handleSubmit(onRegisterSubmit)}
+                            method="POST">
                             {/* FIRST NAME AND LAST NAME */}
                             <div className="form-row m-b-55">
                                 <div className="name">Name</div>
@@ -63,27 +60,32 @@ function Register() {
                                         <div className="col-2">
                                             <div className="input-group-desc">
                                                 <input
+                                                    {...register("firstName")}
                                                     className="input--style-5"
                                                     type="text"
-                                                    placeholder='Ivan'
+                                                    placeholder='First name'
                                                     name="firstName" />
-                                                <label
-                                                    className="label--desc">first name</label>
+                                                {/* <label
+                                                    className="label--desc">first name</label> */}
+                                                {errors.firstName && (
+                                                    <p className='text-red-500'>{`${errors.firstName.message}`}</p>
+                                                )}
                                             </div>
                                         </div>
-                                        {errors.firstName && (
-                                            <p className='text-red-500'>{`${errors.firstName.message}`}</p>
-                                        )}
                                         {/* Last Name */}
                                         <div className="col-2">
                                             <div className="input-group-desc">
                                                 <input
+                                                    {...register("lastName")}
                                                     className="input--style-5"
                                                     type="text"
-                                                    placeholder='Ivanov'
+                                                    placeholder='Last name'
                                                     name="lastName" />
-                                                <label
-                                                    className="label--desc">last name</label>
+                                                {/* <label
+                                                    className="label--desc">last name</label> */}
+                                                {errors.lastName && (
+                                                    <p className='text-red-500'>{`${errors.lastName.message}`}</p>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -95,10 +97,15 @@ function Register() {
                                 <div className="name">Email</div>
                                 <div className="value">
                                     <div className="input-group">
-                                        <input className="input--style-5"
+                                        <input
+                                            {...register("email")}
+                                            className="input--style-5"
                                             type="email"
                                             placeholder='example@gmail.com'
                                             name="email" />
+                                        {errors.email && (
+                                            <p className='text-red-500'>{`${errors.email.message}`}</p>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -111,21 +118,31 @@ function Register() {
                                         <div className="col-2">
                                             <div className="input-group-desc">
                                                 <input
+                                                    {...register("password")}
                                                     className="input--style-5"
                                                     type="password"
+                                                    placeholder='Password'
                                                     name="password" />
-                                                <label
-                                                    className="label--desc">Password</label>
+                                                {/* <label
+                                                    className="label--desc">Password</label> */}
+                                                {errors.password && (
+                                                    <p className='text-red-500'>{`${errors.password.message}`}</p>
+                                                )}
                                             </div>
                                         </div>
                                         <div className="col-2">
                                             <div className="input-group-desc">
                                                 <input
+                                                    {...register("confirmPassword")}
                                                     className="input--style-5"
                                                     type="password"
+                                                    placeholder='Confirm password'
                                                     name="confirmPassword" />
-                                                <label
-                                                    className="label--desc">Confirm password</label>
+                                                {/* <label
+                                                    className="label--desc">Confirm password</label> */}
+                                                {errors.confirmPassword && (
+                                                    <p className='text-red-500'>{`${errors.confirmPassword.message}`}</p>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -140,15 +157,18 @@ function Register() {
                                         <div className="col-12">
                                             <div className="input-group-desc">
                                                 <input
+                                                    {...register("phoneNumber")}
                                                     className="input--style-5"
                                                     type="text"
                                                     placeholder='+359877123456'
                                                     name="phoneNumber" />
+                                                {errors.phoneNumber && (
+                                                    <p className='text-red-500'>{`${errors.phoneNumber.message}`}</p>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {/* PASSWORD */}
                             </div>
 
                             {/* COUNTRY AND CITY */}
@@ -178,12 +198,16 @@ function Register() {
                                         <div className="col-6">
                                             <div className="input-group-desc">
                                                 <input
+                                                    {...register("city")}
                                                     className="input--style-5"
                                                     type="text"
-                                                    placeholder='Sofia'
+                                                    placeholder='City'
                                                     name="last_name" />
-                                                <label
-                                                    className="label--desc">City</label>
+                                                {/* <label
+                                                    className="label--desc">City</label> */}
+                                                {errors.city && (
+                                                    <p className='text-red-500'>{`${errors.city.message}`}</p>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -198,23 +222,25 @@ function Register() {
                                         <div className="col-9">
                                             <div className="input-group-desc">
                                                 <input
+                                                    {...register("street")}
                                                     className="input--style-5"
                                                     type="text"
-                                                    placeholder='bul. "Hristo Botev"'
+                                                    placeholder='Street'
                                                     name="street" />
-                                                <label
-                                                    className="label--desc">Street</label>
+                                                {/* <label
+                                                    className="label--desc">Street</label> */}
                                             </div>
                                         </div>
                                         <div className="col-3">
                                             <div className="input-group-desc">
                                                 <input
+                                                    {...register("streetNumber")}
                                                     className="input--style-5"
                                                     type="text"
-                                                    placeholder='123'
+                                                    placeholder='Number'
                                                     name="number" />
-                                                <label
-                                                    className="label--desc">Number</label>
+                                                {/* <label
+                                                    className="label--desc">Number</label> */}
                                             </div>
                                         </div>
                                     </div>
