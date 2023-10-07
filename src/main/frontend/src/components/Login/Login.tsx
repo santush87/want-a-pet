@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Login.css'
+import { AuthContext } from '../../context/AuthContext'
 
 function Login() {
+
     return (
         <div className="page-wrapper bg-gra-03 p-t-45 p-b-50">
             <div className="wrapper wrapper--w790">

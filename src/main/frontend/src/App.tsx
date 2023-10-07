@@ -13,9 +13,13 @@ import Login from './components/Login/Login';
 import AddPet from './components/AddPet/AddPet';
 import Catalog from './components/Catalog/Catalog';
 import Contact from './components/Contact/Contact';
+import { AuthContext } from './context/AuthContext';
+import { LoginForm } from './lib/types';
 
 
 function App() {
+
+
 	// const [pets, setPets] = useState<Pet | null>();
 
 	// useEffect(() => {
@@ -25,8 +29,12 @@ function App() {
 	// 		})
 	// }, []);
 
+	const onLoginSunmit = async (data: LoginForm) => {
+		console.log(data)
+	}
+
 	return (
-		<>
+		<AuthContext.Provider value={{ onLoginSunmit }}>
 			<Header />
 			<Routes>
 				<Route path='/' element={<Home />} />
@@ -36,7 +44,7 @@ function App() {
 				<Route path='/catalog' element={<Catalog />} />
 				<Route path='/contact' element={<Contact />} />
 			</Routes>
-		</>
+		</AuthContext.Provider>
 	);
 }
 
