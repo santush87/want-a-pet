@@ -9,7 +9,7 @@ function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
     reset,
   } = useForm<UserRegisterDto>({
     resolver: zodResolver(signUpSchema),
@@ -20,6 +20,8 @@ function Register() {
 
     reset();
   }
+
+  console.log("Validation is " + isValid)
 
   return (
     <div className="page-wrapper bg-gra-03 p-t-45 p-b-50">
@@ -149,26 +151,28 @@ function Register() {
                 <div className="value">
                   <div className="row row-space">
                     {/* COUNTRY */}
-                    {/* <div className="col-5">
+                    <div className="col-5">
                       <div className="input-group">
                         <div className="rs-select2 js-select-simple select--no-search">
                           <select
                             className="form-select"
                             id="floatingSelect"
                             aria-label="Floating label select example"
-                            name="country">
-                            <option */}
-                    {/* // {...register("country")}
-                            >BULGARIA</option> */}
-                    {/* <option */}
-                    {/* // {...register("country")}
+                            name="country"
+                          // onChange={{ ...register("country") }}
+                          >
+                            <option
+                            // {...register("country")}
+                            >BULGARIA</option>
+                            <option
+                            // {...register("country")}
                             >GERMANY</option>
                           </select>
                           <label
                             className="label--desc">Country</label>
                         </div>
                       </div>
-                    </div> */}
+                    </div>
 
                     {/* CITY */}
                     <div className="col-6">
@@ -242,7 +246,7 @@ function Register() {
               <div>
                 <button
                   disabled={isSubmitting}
-                  onClick={() => console.log("Clicked")}
+                  onClick={() => console.log("Clicked!")}
                   className="btn btn--radius-2 btn--red"
                   type="submit">
                   Register

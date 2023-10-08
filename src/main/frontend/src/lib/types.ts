@@ -46,8 +46,10 @@ export const signUpSchema: ZodType<UserRegisterDto> = z
     email: z.string().email(),
     firstName: z.string().min(2, nameLength).max(15, nameLength),
     lastName: z.string().min(2, nameLength).max(15, nameLength),
-    phoneNumber: z.string(),
-    // .min(8, "Phone number must be at least 8 characters!"),
+    phoneNumber: z
+      .string()
+      .min(10, "Phone number must be at least 10 digits!")
+      .regex(/^[0-9]+$/, "Only numbers are allowed!"),
     // country: z.string(),
     city: z.string().min(2),
     street: z.string(),
