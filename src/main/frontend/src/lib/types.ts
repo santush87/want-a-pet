@@ -18,6 +18,16 @@ export type LoginForm = {
   password: string;
 };
 
+export enum Country {
+  BULGARIA = "Bulgaria",
+  GERMANY = "Germany",
+}
+
+export enum TypeOfCustomer {
+  PRIVATE = "Private",
+  ORGANIZATION = "Organization",
+}
+
 export type UserRegisterDto = {
   email: string;
   firstName: string;
@@ -25,8 +35,8 @@ export type UserRegisterDto = {
   password: string;
   confirmPassword: string;
   phoneNumber: string;
-  // type: "PRIVATE" | "BUSINESS";
-  // country: "BULGARIA" | "GERMANY";
+  userType: string;
+  country: string;
   city: string;
   street: string;
   streetNumber: string;
@@ -50,11 +60,12 @@ export const signUpSchema: ZodType<UserRegisterDto> = z
       .string()
       .min(10, "Phone number must be at least 10 digits!")
       .regex(/^[0-9]+$/, "Only numbers are allowed!"),
-    // country: z.string(),
+    country: z.string(),
     city: z.string().min(2),
     street: z.string(),
     streetNumber: z.string(),
-    // type: z.string(),
+    // country: z.nativeEnum(Country),
+    userType: z.string(),
     password: z.string().min(8, "Password must be at least 8 characters!"),
     confirmPassword: z.string(),
   })

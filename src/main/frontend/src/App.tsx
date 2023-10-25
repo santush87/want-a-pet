@@ -15,6 +15,7 @@ import Catalog from './components/Catalog/Catalog';
 import Contact from './components/Contact/Contact';
 import { AuthContext } from './context/AuthContext';
 import { LoginForm } from './lib/types';
+import Logout from './components/Logout/Logout';
 
 
 function App() {
@@ -29,12 +30,12 @@ function App() {
 	// 		})
 	// }, []);
 
-	const onLoginSunmit = async (data: LoginForm) => {
+	const onLoginSubmit = async (data: LoginForm) => {
 		console.log(data)
 	}
 
 	return (
-		<AuthContext.Provider value={{ onLoginSunmit }}>
+		<AuthContext.Provider value={{ onLoginSubmit }}>
 			<Header />
 			<Routes>
 				<Route path='/' element={<Home />} />
@@ -43,6 +44,7 @@ function App() {
 				<Route path='/add-pet' element={<AddPet />} />
 				<Route path='/catalog' element={<Catalog />} />
 				<Route path='/contact' element={<Contact />} />
+				<Route path='/logout' element={<Logout />} />
 			</Routes>
 		</AuthContext.Provider>
 	);

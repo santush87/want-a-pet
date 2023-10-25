@@ -2,7 +2,7 @@
 import './Register.css'
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { UserRegisterDto, signUpSchema } from '../../lib/types';
+import { Country, TypeOfCustomer, UserRegisterDto, signUpSchema } from '../../lib/types';
 
 function Register() {
 
@@ -20,6 +20,24 @@ function Register() {
 
     reset();
   }
+
+  const countryOptions = Object.entries(Country).map
+    (
+      ([value, label]) => (
+        <option value={value} key={value}>
+          {label}
+        </option>
+      )
+    )
+
+  const customerOptions = Object.entries(TypeOfCustomer).map
+    (
+      ([value, label]) => (
+        <option value={value} key={value}>
+          {label}
+        </option>
+      )
+    )
 
   console.log("Validation is " + isValid)
 
@@ -158,15 +176,11 @@ function Register() {
                             className="form-select"
                             id="floatingSelect"
                             aria-label="Floating label select example"
+                            disabled={isSubmitting}
+                            {...register("country")}
                             name="country"
-                          // onChange={{ ...register("country") }}
                           >
-                            <option
-                            // {...register("country")}
-                            >BULGARIA</option>
-                            <option
-                            // {...register("country")}
-                            >GERMANY</option>
+                            {countryOptions}
                           </select>
                           <label
                             className="label--desc">Country</label>
@@ -225,28 +239,49 @@ function Register() {
               {/* <div className="form-row p-t-20">
                 <label className="label label--block">Type of customer?</label>
                 <div className="p-t-15">
+
                   <label className="radio-container m-r-55">PRIVATE
                     <input
-                      // {...register("type")}
+                      {...register("type")}
                       type="radio"
-                      // checked="checked" 
-                      name="exist" />
+                      name="type" />
                     <span className="checkmark"></span>
                   </label>
-                  <label className="radio-container">BUSINESS
+
+                  <label className="radio-container m-r-55">ORGANIZATION
                     <input
-                      // {...register("type")} 
-                      type="radio" name="exist" />
+                      {...register("type")}
+                      type="radio" name="type" />
                     <span className="checkmark"></span>
                   </label>
                 </div>
               </div> */}
-
+              <div className="form-row m-b-55">
+                <div className="name">Type of Customer</div>
+                <div className="value">
+                  <div className="row row-space">
+                    <div className="col-5">
+                      <div className="input-group">
+                        <div className="rs-select2 js-select-simple select--no-search">
+                          <select
+                            className="form-select"
+                            disabled={isSubmitting}
+                            {...register("userType")}
+                            name="userType"
+                          >
+                            {customerOptions}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               {/* SUBMIT BUTTON */}
               <div>
                 <button
                   disabled={isSubmitting}
-                  onClick={() => console.log("Clicked!")}
+                  // onClick={() => console.log("Clicked!")}
                   className="btn btn--radius-2 btn--red"
                   type="submit">
                   Register
