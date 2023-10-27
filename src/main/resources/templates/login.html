@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
+
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+    <div class="page-wrapper bg-transparent p-t-45 p-b-50">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Login</h2>
+                </div>
+                <div class="card-body">
+                    <form th:method="post"
+                          th:action="@{/users/login}"
+                          th:object="${userLoginDto}">
+
+                        <div class="form-row m-b-55">
+                            <div class="name">Email</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input
+                                            class="input--style-5"
+                                            type="email"
+                                            th:field="*{email}"
+                                            th:errorclass="'is-invalid alert-danger'"
+                                            placeholder="john@gmail.com"
+                                    />
+                                    <small th:if="${#fields.hasErrors('email')}"
+                                           th:errors="*{email}"
+                                           class="text-danger">Username error message</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row m-b-55">
+                            <div class="name">Password</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-12">
+                                        <div class="input-group-desc">
+                                            <input
+                                                    class="input--style-5"
+                                                    type="password"
+                                                    placeholder="Password"
+                                                    th:field="*{password}"
+                                                    th:errorclass="'is-invalid alert-danger'"
+                                            />
+                                            <small th:if="${#fields.hasErrors('password')}"
+                                                   th:errors="*{password}"
+                                                   class="text-danger">Username error message</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+<!--    <script src="/vendor/jquery/jquery.min.js"></script>-->
+    <!-- Vendor JS-->
+<!--    <script src="/vendor/select2/select2.min.js"></script>-->
+<!--    <script src="/vendor/datepicker/moment.min.js"></script>-->
+<!--    <script src="/vendor/datepicker/daterangepicker.js"></script>-->
+</main>
+
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

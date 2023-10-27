@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
+
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+    <div class="page-wrapper bg-transparent p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Event Registration Form</h2>
+                </div>
+                <div class="card-body">
+                    <form th:method="post"
+                          th:action="@{/users/register}"
+                          th:object="${userRegisterDto}">
+                        <!-- NAMES -->
+                        <div class="form-row m-b-55">
+                            <div class="name">Name</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <!-- FIRST NAME -->
+                                    <div class="col-6">
+                                        <div class="input-group-desc">
+                                            <input
+                                                    class="input--style-5"
+                                                    type="text"
+                                                    th:field="*{firstName}"
+                                                    th:errorclass="'is-invalid alert-danger'"
+                                                    placeholder="First name"
+                                            />
+                                            <small th:if="${#fields.hasErrors('firstName')}"
+                                                   th:errors="*{firstName}"
+                                                   class="text-danger">Username error message</small>
+                                        </div>
+                                    </div>
+                                    <!-- LAST NAME -->
+                                    <div class="col-6">
+                                        <div class="input-group-desc">
+                                            <input
+                                                    class="input--style-5"
+                                                    type="text"
+                                                    th:field="*{lastName}"
+                                                    th:errorclass="'is-invalid alert-danger'"
+                                                    placeholder="Last name"
+                                            />
+                                            <small th:if="${#fields.hasErrors('lastName')}"
+                                                   th:errors="*{lastName}"
+                                                   class="text-danger">Username error message</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- EMAIL -->
+                        <div class="form-row m-b-55">
+                            <div class="name">Email</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input
+                                            class="input--style-5"
+                                            type="email"
+                                            th:field="*{email}"
+                                            th:errorclass="'is-invalid alert-danger'"
+                                            placeholder="john@gmail.com"
+                                    />
+                                    <small th:if="${#fields.hasErrors('email')}"
+                                           th:errors="*{email}"
+                                           class="text-danger">Username error message</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PASSWORD AND CONFIRM PASSWORD -->
+                        <div class="form-row m-b-55">
+                            <div class="name">Password</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-6">
+                                        <div class="input-group-desc">
+                                            <input
+                                                    class="input--style-5"
+                                                    type="password"
+                                                    placeholder="Password"
+                                                    th:field="*{password}"
+                                                    th:errorclass="'is-invalid alert-danger'"
+                                            />
+                                            <small th:if="${#fields.hasErrors('password')}"
+                                                   th:errors="*{password}"
+                                                   class="text-danger">Username error message</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group-desc">
+                                            <input
+                                                    class="input--style-5"
+                                                    type="password"
+                                                    placeholder="Confirm password"
+                                                    th:field="*{confirmPassword}"
+                                                    th:errorclass="'is-invalid alert-danger'"
+                                            />
+                                            <small th:if="${#fields.hasErrors('confirmPassword')}"
+                                                   th:errors="*{confirmPassword}"
+                                                   class="text-danger">Username error message</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PHONE NUMBER -->
+                        <div class="form-row m-b-55">
+                            <div class="name">Phone number</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input
+                                            class="input--style-5"
+                                            type="text"
+                                            placeholder="0877123456"
+                                            th:field="*{phoneNumber}"
+                                            th:errorclass="'is-invalid alert-danger'"
+
+                                    />
+                                    <small th:if="${#fields.hasErrors('phoneNumber')}"
+                                           th:errors="*{phoneNumber}"
+                                           class="text-danger">Username error message</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COUNTRY AND CITY -->
+                        <div class="form-row m-b-55">
+                            <div class="name">Address</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-6">
+                                        <div class="input-group">
+                                            <div
+                                                    class="rs-select2 js-select-simple select--no-search"
+                                            >
+                                                <select th:field="*{country}"
+                                                        th:errorclass="'is-invalid alert-danger'">
+                                                    <option value="" disabled="disabled" selected="selected">
+                                                        Select country
+                                                    </option>
+                                                    <option value="BULGARIA">Bulgaria</option>
+                                                    <option value="GERMANY">Germany</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                                <small th:if="${#fields.hasErrors('country')}"
+                                                       th:errors="*{country}"
+                                                       class="text-danger">Language error message</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CITY -->
+                                    <div class="col-6">
+                                        <div class="input-group-desc">
+                                            <input
+                                                    class="input--style-5"
+                                                    type="text"
+                                                    placeholder="City"
+                                                    th:field="*{city}"
+                                                    th:errorclass="'is-invalid alert-danger'"
+                                            />
+                                            <small th:if="${#fields.hasErrors('city')}"
+                                                   th:errors="*{city}"
+                                                   class="text-danger">Username error message</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STREET AND NUMBER -->
+                        <div class="form-row m-b-55">
+                            <div class="name"></div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <!-- STREET -->
+                                    <div class="col-9">
+                                        <div class="input-group-desc">
+                                            <input
+                                                    class="input--style-5"
+                                                    type="text"
+                                                    placeholder="Street"
+                                                    th:field="*{street}"
+                                                    th:errorclass="'is-invalid alert-danger'"
+                                            />
+                                            <small th:if="${#fields.hasErrors('street')}"
+                                                   th:errors="*{street}"
+                                                   class="text-danger">Username error message</small>
+                                        </div>
+                                    </div>
+                                    <!-- NUMBER -->
+                                    <div class="col-3">
+                                        <div class="input-group-desc">
+                                            <input
+                                                    class="input--style-5"
+                                                    type="text"
+                                                    placeholder="Number"
+                                                    th:field="*{streetNumber}"
+                                                    th:errorclass="'is-invalid alert-danger'"
+                                            />
+                                            <small th:if="${#fields.hasErrors('streetNumber')}"
+                                                   th:errors="*{streetNumber}"
+                                                   class="text-danger">Username error message</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TYPE OF CUSTOMER -->
+                        <div class="form-row m-b-55">
+                            <div class="name">Type of Customer</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-9">
+                                        <div class="input-group">
+                                            <div
+                                                    class="rs-select2 js-select-simple select--no-search"
+                                            >
+                                                <select th:field="*{userType}"
+                                                        th:errorclass="'is-invalid alert-danger'">
+                                                    <option value="" disabled="disabled" selected="selected">
+                                                        Select
+                                                    </option>
+                                                    <option value="PRIVATE">PRIVATE</option>
+                                                    <option value="ORGANIZATION">ORGANIZATION</option>
+                                                </select>
+                                                <div class="select-dropdown"></div>
+                                                <small th:if="${#fields.hasErrors('userType')}"
+                                                       th:errors="*{userType}"
+                                                       class="text-danger">Language error message</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">
+                                Register
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+<!--    <script src="/vendor/jquery/jquery.min.js"></script>-->
+    <!-- Vendor JS-->
+<!--    <script src="/vendor/select2/select2.min.js"></script>-->
+<!--    <script src="/vendor/datepicker/moment.min.js"></script>-->
+<!--    <script src="/vendor/datepicker/daterangepicker.js"></script>-->
+</main>
+
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

@@ -1,20 +1,17 @@
 package com.martinaleksandrov.wantapet.models.dtos;
 
-import com.martinaleksandrov.wantapet.models.entities.UserAddress;
-import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@SuperBuilder
 public class UserRegisterDto {
 
     @Email
@@ -33,14 +30,16 @@ public class UserRegisterDto {
     @Size(min = 6, max = 15)
     private String password;
 
+    private String confirmPassword;
+
     @NotBlank
-    private String type;
+    private String userType;
 
     @NotBlank
     private String phoneNumber;
 
     @NotBlank
-    private String countryEnum;
+    private String country;
 
     @NotBlank
     private String city;
@@ -48,5 +47,5 @@ public class UserRegisterDto {
     @NotBlank
     private String street;
 
-    private int number;
+    private int streetNumber;
 }

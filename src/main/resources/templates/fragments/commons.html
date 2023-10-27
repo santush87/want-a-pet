@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Want A Pet?</title>
+
+    <link th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all"/>
+    <link th:href="@{/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all"/>
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+          rel="stylesheet" />
+
+    <!-- Vendor CSS-->
+    <link rel="stylesheet" th:href="@{/vendor/select2/select2.min.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/vendor/datepicker/daterangepicker.css}" media="all" />
+
+    <!-- Main CSS-->
+    <link rel="stylesheet" th:href="@{/css/main.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/css/main.min.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/css/reset-css.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+    <!-- Jquery JS-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+<!--    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>-->
+    <!-- Vendor JS-->
+    <script src="/vendor/select2/select2.min.js"></script>
+<!--    <script th:src="@{/vendor/select2/select2.min.js}"></script>-->
+<!--    <script src="/vendor/datepicker/moment.min.js"></script>-->
+<!--    <script src="/vendor/datepicker/daterangepicker.js"></script>-->
+
+    <!-- Main JS-->
+    <script src="/js/global.js"></script>
+<!--    <script th:src="@{/js/global.js}"></script>-->
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded " >
+        <a class="nav-link my-text-color active h5 "
+           th:href="@{/}">Want A Pet?</a>
+
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+            <ul class="navbar-nav row">
+                <li class="nav-item col-md-4">
+                    <a class="nav-link active h5 my-text-color"
+                       th:href="@{/add}">Add Pet</a>
+                </li>
+
+                <li class="nav-item col-md-4">
+                    <a class="nav-link active h5 my-text-color"
+                       th:href="@{/catalog}">catalog</a>
+                </li>
+
+                <li class="nav-item col-md-4">
+                    <a class="nav-link active h5 my-text-color"
+                       th:href="@{/users/login}">Login</a>
+                </li>
+
+                <li class="nav-item col-md-4">
+                    <a class="nav-link my-text-color active h5 "
+                       th:href="@{/users/register}">Register</a>
+                </li>
+
+                    <a class="nav-link h5 my-text-color"
+                       th:text="'Welcome, ' ">Welcome, {username}</a>
+
+                <li class="nav-item col-md-4">
+                    <form th:action="@{/users/logout}"
+                          th:method="post">
+                        <button type="submit"
+                                class="nav-link my-text-color active h5 bg-transparent logout">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<footer class="footer bg-transparent  py-2">
+    <div class="container-fluid text-center">
+        <div class="footer-background h5 my-text-color">
+            &copy; Want A Pet 2023. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "addresses")
@@ -23,5 +24,5 @@ public class UserAddress extends BaseEntity{
     @Column(nullable = false)
     private String street;
     @Column
-    private int number;
+    private int streetNumber;
 }

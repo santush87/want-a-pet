@@ -13,9 +13,8 @@ import java.time.format.DateTimeFormatter;
 public class AppConfig {
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         final ModelMapper mapper = new ModelMapper();
-
         mapper.addConverter(new Converter<String, LocalDate>() {
             @Override
             public LocalDate convert(MappingContext<String, LocalDate> context) {
@@ -25,5 +24,4 @@ public class AppConfig {
         });
         return mapper;
     }
-
 }
