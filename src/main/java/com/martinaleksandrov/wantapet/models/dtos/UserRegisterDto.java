@@ -15,36 +15,38 @@ import lombok.experimental.SuperBuilder;
 public class UserRegisterDto {
 
     @Email
-    @NotBlank
+    @NotBlank(message = "Email cannot be empty!")
     private String email;
 
-    @NotBlank
-    @Size(min = 2, max = 15)
+//    @NotBlank
+    @Size(min = 2, max = 20, message = "First name must be between 2 and 20 characters!")
     private String firstName;
 
-    @NotBlank
-    @Size(min = 2, max = 15)
+//    @NotBlank
+    @Size(min = 2, max = 20, message = "Last name must be between 2 and 20 characters!")
     private String lastName;
 
-    @NotBlank
-    @Size(min = 6, max = 15)
+//    @NotBlank
+    @Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters!")
     private String password;
 
     private String confirmPassword;
 
-    @NotBlank
+    @NotBlank(message = "Select a user type!")
     private String userType;
 
-    @NotBlank
+//    @NotBlank
+    @Size(min = 8, max = 20, message = "Phone number must be between 8 and 20 characters!")
     private String phoneNumber;
 
-    @NotBlank
+    @NotBlank(message = "Select a country!")
     private String country;
 
-    @NotBlank
+//    @NotBlank
+    @Size(min = 2, message = "City length must be at least 2 characters!")
     private String city;
 
-    @NotBlank
+    @NotBlank(message = "Enter a street!")
     private String street;
 
     private int streetNumber;
