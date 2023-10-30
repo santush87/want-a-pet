@@ -12,7 +12,7 @@
 
 
 body {
-    background-image: url(/images/background.jpg);
+    /*background-image: url(/images/background.jpg);*/
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
@@ -199,7 +199,12 @@ footer {
 }
 
 .hero-header {
-    background: url(../img/hero.jpg) top right no-repeat;
+    background: url(/images/hero.jpg) top right no-repeat;
+    background-size: cover;
+}
+
+.auth-header {
+    background: url(/images/about.jpg) top right no-repeat;
     background-size: cover;
 }
 

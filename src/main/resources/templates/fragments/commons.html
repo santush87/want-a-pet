@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -57,12 +58,18 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
                 <a class="nav-item nav-link" th:href="@{/}">Home</a>
-                <a class="nav-item nav-link" th:href="@{/add}">Add Pet</a>
-                <a class="nav-item nav-link" th:href="@{/catalog}">Catalog</a>
-                <a class="nav-item nav-link" th:href="@{/users/login}">Login</a>
-                <a class="nav-item nav-link" th:href="@{/users/register}">Register</a>
-                <a class="nav-item nav-link" th:href="@{/users/login}">Login</a>
                 <a class="nav-item nav-link"
+                   sec:authorize="isAuthenticated()"
+                   th:href="@{/add}">Add Pet</a>
+                <a class="nav-item nav-link" th:href="@{/catalog}">Catalog</a>
+                <a class="nav-item nav-link"
+                   sec:authorize="!isAuthenticated()"
+                   th:href="@{/users/login}">Login</a>
+                <a class="nav-item nav-link"
+                   sec:authorize="!isAuthenticated()"
+                   th:href="@{/users/register}">Register</a>
+                <a class="nav-item nav-link"
+                   sec:authorize="isAuthenticated()"
                    th:href="@{/users/login}">
                     <form th:action="@{/users/logout}"
                           th:method="post">
