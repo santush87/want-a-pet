@@ -6,6 +6,7 @@ import com.martinaleksandrov.wantapet.services.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
@@ -20,12 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AuthController {
 
     private final UserService userService;
-
-
-//    @GetMapping("/getAll")
-//    public List<UserRegisterDto> getAllUsers() {
-//        return this.userService.getAll();
-//    }
 
     /***    LOGIN   ***/
 
@@ -54,7 +49,16 @@ public class AuthController {
 
         return new ModelAndView("redirect:/home");
     }
+    @PostMapping("/users/login-error")
+    public String onFailure(
+            @ModelAttribute("email") String email,
+            Model model) {
 
+        model.addAttribute("email", email);
+        model.addAttribute("bad_credentials", "true");
+
+        return "auth-login";
+    }
 
     /***    REGISTER   ***/
 
