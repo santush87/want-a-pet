@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,6 +38,21 @@ public class AuthController {
     @GetMapping("/users/login")
     public ModelAndView login(){
         return new ModelAndView("login");
+    }
+
+    @PostMapping("/users/login")
+    public ModelAndView onLogin(@Valid UserLoginDto userLoginDto,
+                                BindingResult bindingResult,
+                                RedirectAttributes redirectAttributes){
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userLoginDto", userLoginDto);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userLoginDto", bindingResult);
+
+            return new ModelAndView("redirect:/users/login");
+        }
+
+        return new ModelAndView("redirect:/home");
     }
 
 
@@ -73,15 +89,6 @@ public class AuthController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
-
         return new ModelAndView("register");
     }
-
-//    @PostMapping("/login")
-//    public ResponseEntity<UserLoginDto> login(@RequestBody @Valid CredentialsDto credentialsDto) {
-//        UserLoginDto userDto = userService.login(credentialsDto);
-//        userDto.setToken(userAuthProvider.createToken(userDto.getEmail()));
-//        return ResponseEntity.ok(userDto);
-//    }
 }

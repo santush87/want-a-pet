@@ -2,11 +2,13 @@ package com.martinaleksandrov.wantapet.models.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.springframework.format.annotation.NumberFormat;
 
 @Getter
 @Setter
@@ -49,5 +51,6 @@ public class UserRegisterDto {
     @NotBlank(message = "Enter a street!")
     private String street;
 
+//    @Positive(message = "Number should be a positive number")
     private int streetNumber;
 }
