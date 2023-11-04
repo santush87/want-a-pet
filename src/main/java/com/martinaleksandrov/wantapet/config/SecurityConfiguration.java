@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                         // All static resources which are situated in js, images, css are available for anyone
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         // Allow anyone to see the home page, the registration page and the login form
-                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll()
+                        .requestMatchers("/","/login", "/register", "/login-error").permitAll()
                         .requestMatchers("/catalog").permitAll()
                         .requestMatchers("/brands").hasRole(RoleEnum.ADMIN.name())
                         // all other requests are authenticated.
@@ -40,18 +40,18 @@ public class SecurityConfiguration {
                     formLogin
                             // redirect here when we access something which is not allowed.
                             // also this is the page where we perform login.
-                            .loginPage("/users/login")
+                            .loginPage("/login")
                             // The names of the input fields (in our case in auth-login.html)
                             .usernameParameter("email")
                             .passwordParameter("password")
                             .defaultSuccessUrl("/")
-                            .failureForwardUrl("/users/login-error");
+                            .failureForwardUrl("/login-error");
                 }
         ).logout(
                 logout -> {
                     logout
                             // the URL where we should POST something in order to perform the logout
-                            .logoutUrl("/users/logout")
+                            .logoutUrl("/logout")
                             // where to go when logged out?
                             .logoutSuccessUrl("/")
                             // invalidate the HTTP session

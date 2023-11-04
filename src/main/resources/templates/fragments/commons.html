@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{fragments/head}">
+<head th:replace="~{fragments/head}"></head>
 <header>
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
         <a th:href="@{/}" class="navbar-brand ms-lg-5">
@@ -13,21 +13,28 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a class="nav-item nav-link" th:href="@{/}">Home</a>
+                <a class="nav-item nav-link"
+                   th:href="@{/}">Home</a>
+
                 <a class="nav-item nav-link"
                    sec:authorize="isAuthenticated()"
                    th:href="@{/add}">Add Pet</a>
-                <a class="nav-item nav-link" th:href="@{/catalog}">Catalog</a>
+
+                <a class="nav-item nav-link"
+                   th:href="@{/catalog}">Catalog</a>
+
                 <a class="nav-item nav-link"
                    sec:authorize="!isAuthenticated()"
-                   th:href="@{/users/login}">Login</a>
+                   th:href="@{/login}">Login</a>
+
                 <a class="nav-item nav-link"
                    sec:authorize="!isAuthenticated()"
-                   th:href="@{/users/register}">Register</a>
+                   th:href="@{/register}">Register</a>
+
                 <a class="nav-item nav-link"
                    sec:authorize="isAuthenticated()"
                    th:href="@{/users/login}">
-                    <form th:action="@{/users/logout}"
+                    <form th:action="@{/logout}"
                           th:method="post">
                         <button type="submit"
                             class="nav-item">LOGOUT

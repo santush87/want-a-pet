@@ -4,7 +4,7 @@
 <head th:replace="~{fragments/commons::head}"></head>
 
 <body>
-<header th:replace="~{fragments/commons::nav}"></header>
+<nav th:replace="~{fragments/commons::nav}"></nav>
 <main>
     <div class="page-wrapper p-t-45 p-b-50" style="background: url(/images/testimonial.jpg)">
         <div class="wrapper wrapper--w680">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body">
                     <form th:method="post"
-                          th:action="@{/users/login}"
+                          th:action="@{/login}"
                           th:object="${userLoginDto}">
 
                         <div class="form-row m-b-55">
@@ -24,13 +24,12 @@
                                     <input
                                             class="input--style-5"
                                             type="email"
-                                            th:field="*{email}"
-                                            th:errorclass="'is-invalid alert-danger'"
                                             placeholder="john@gmail.com"
-                                    />
+                                            th:field="*{email}"
+                                            th:errorclass="'is-invalid alert-danger'"/>
                                     <small th:if="${#fields.hasErrors('email')}"
                                            th:errors="*{email}"
-                                           class="text-danger">Username error message</small>
+                                           class="text-danger">Email error message</small>
                                 </div>
                             </div>
                         </div>
