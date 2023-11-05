@@ -49,16 +49,16 @@ public class AuthController {
 
         return new ModelAndView("redirect:/home");
     }
-//    @PostMapping("/users/login-error")
-//    public String onFailure(
-//            @ModelAttribute("email") String email,
-//            Model model) {
-//
-//        model.addAttribute("email", email);
-//        model.addAttribute("bad_credentials", "true");
-//
-//        return "auth-login";
-//    }
+    @PostMapping("/login-error")
+    public String onFailure(
+            @ModelAttribute("email") String email,
+            Model model) {
+
+        model.addAttribute("email", email);
+        model.addAttribute("bad_credentials", "true");
+
+        return "auth-login";
+    }
 
     /***    REGISTER   ***/
 

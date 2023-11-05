@@ -24,7 +24,7 @@ public class WantAPetUserDetailsService implements UserDetailsService {
                 .orElseThrow(()->new UsernameNotFoundException("User " + email + " not found!"));
     }
 
-    private static UserDetails map(UserEntity userEntity) {
+    public static UserDetails map(UserEntity userEntity) {
         return User
                 .withUsername(userEntity.getEmail())
                 .password(userEntity.getPassword())
@@ -34,7 +34,7 @@ public class WantAPetUserDetailsService implements UserDetailsService {
                 .build();
     }
 
-    private static GrantedAuthority map(UserRoleEntity userRoleEntity) {
+    public static GrantedAuthority map(UserRoleEntity userRoleEntity) {
         return new SimpleGrantedAuthority(
                 "ROLE_" + userRoleEntity.getRole().name()
         );
