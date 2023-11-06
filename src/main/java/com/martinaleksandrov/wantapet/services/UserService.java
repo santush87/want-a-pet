@@ -44,6 +44,9 @@ public class UserService {
         UserEntity user = this.modelMapper.map(userRegisterDto, UserEntity.class);
         user.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
         user.getRoles().add(this.userRoleRepository.findByRole(RoleEnum.USER));
+        if (this.userRepository.count() == 0){
+            user.getRoles().add(this.userRoleRepository.findByRole(RoleEnum.ADMIN));
+        }
 
         addressMap(userRegisterDto, user);
 
