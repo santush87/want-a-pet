@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+
+<main class="container">
+
+  <h3 class="title"> Choose type: </h3>
+
+  <div class="products-container">
+
+    <a class="product" th:href="@{/add/dog}">
+      <img th:src="@{/images/about.jpg}" alt="">
+      <h3>Dogs</h3>
+    </a>
+
+    <a class="product" th:href="@{/add/cat}">
+      <img th:src="@{/images/cats.png}" alt="">
+      <h3>Cats</h3>
+    </a>
+  </div>
+</main>
+</body>
+</html>
