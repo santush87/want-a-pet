@@ -3,12 +3,14 @@ package com.martinaleksandrov.wantapet.models.entities;
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Table(name = "roles")
 @Entity
 @Setter
 @Getter
+@NoArgsConstructor
 public class UserRoleEntity{
 
     @Id
@@ -17,4 +19,8 @@ public class UserRoleEntity{
 
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
+
+    public UserRoleEntity(RoleEnum role) {
+        this.role = role;
+    }
 }
