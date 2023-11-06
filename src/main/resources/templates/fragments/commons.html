@@ -13,15 +13,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
+<!--                <a class="nav-item nav-link"-->
+<!--                   th:href="@{/}">Home</a>-->
+
                 <a class="nav-item nav-link"
-                   th:href="@{/}">Home</a>
+                   th:href="@{/catalog}">Catalog</a>
 
                 <a class="nav-item nav-link"
                    sec:authorize="isAuthenticated()"
                    th:href="@{/add}">Add Pet</a>
 
                 <a class="nav-item nav-link"
-                   th:href="@{/catalog}">Catalog</a>
+                   sec:authorize="isAuthenticated()"
+                   th:href="@{/add}">My Pets</a>
 
                 <a class="nav-item nav-link"
                    sec:authorize="!isAuthenticated()"
@@ -62,13 +66,13 @@
     </nav>
 
 </header>
-<footer class="footer bg-transparent  py-2">
-    <div class="container-fluid bg-dark text-white-50 py-4">
+<footer class="footer bg-transparent py-2">
+    <div class="container-fluid bg-dark text-white-50 py-0">
         <div class="container">
             <div class="row g-5">
                 <div class="col-md-6 text-center text-md-start">
                     <p class="mb-md-0">
-                        &copy; <a class="text-white" href="#">Want A Pet?</a>. All
+                        &copy; <a class="text-white" href="/">Want A Pet?</a>. All
                         Rights Reserved.
                     </p>
                 </div>

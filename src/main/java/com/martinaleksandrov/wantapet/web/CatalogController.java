@@ -18,12 +18,12 @@ public class CatalogController {
 
     @GetMapping("/dogs")
     public ModelAndView dogCatalog(){
-        return new ModelAndView("dogs");
+        return new ModelAndView("add-dog");
     }
 
     @GetMapping("/cats")
     public ModelAndView catCatalog(){
-        return new ModelAndView("cats");
+        return new ModelAndView("add-cat");
     }
 
     @GetMapping("/cats-and-dogs")

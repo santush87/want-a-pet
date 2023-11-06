@@ -24,7 +24,7 @@ public class PetEntity extends BaseEntity{
     private String breed;
 
     @Column(nullable = false)
-    private String imageUrl;
+    private String image;
 
     @Column
     @Past
