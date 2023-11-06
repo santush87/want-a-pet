@@ -31,8 +31,8 @@ public class SecurityConfiguration {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         // Allow anyone to see the home page, the registration page and the login form
                         .requestMatchers("/","/login", "/register", "/login-error").permitAll()
-                        .requestMatchers("/catalog").permitAll()
-                        .requestMatchers("/brands").hasRole(RoleEnum.ADMIN.name())
+                        .requestMatchers("/catalog", "/catalog/cats", "/catalog/dogs", "/catalog/cats-and-dogs").permitAll()
+                        .requestMatchers("/all-users").hasRole(RoleEnum.ADMIN.name())
                         // all other requests are authenticated.
                         .anyRequest().authenticated()
         ).formLogin(

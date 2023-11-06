@@ -372,7 +372,7 @@ footer {
 }
 
 .bg-offer {
-    background: url(../img/offer.jpg) top right no-repeat;
+    background: url(../images/offer.jpg) top right no-repeat;
     background-size: cover;
 }
 
@@ -477,7 +477,7 @@ footer {
 }
 
 .bg-testimonial {
-    background: url(../img/testimonial.jpg) top left no-repeat;
+    background: url(../images/testimonial.jpg) top left no-repeat;
     background-size: cover;
 }
 
