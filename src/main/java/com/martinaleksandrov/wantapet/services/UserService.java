@@ -1,14 +1,16 @@
 package com.martinaleksandrov.wantapet.services;
 
 import com.martinaleksandrov.wantapet.exceptions.AppException;
-import com.martinaleksandrov.wantapet.models.dtos.CreatedUserDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserLoginDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
 import com.martinaleksandrov.wantapet.models.entities.UserAddress;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
+import com.martinaleksandrov.wantapet.models.entities.UserRoleEntity;
 import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
+import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.reporitories.UserAddressRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRepository;
+import com.martinaleksandrov.wantapet.reporitories.UserRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
     private final UserAddressRepository addressRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
@@ -40,32 +43,16 @@ public class UserService {
 
         UserEntity user = this.modelMapper.map(userRegisterDto, UserEntity.class);
         user.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
+        user.getRoles().add(this.userRoleRepository.findByRole(RoleEnum.USER));
 
-        addredMap(userRegisterDto, user);
+        addressMap(userRegisterDto, user);
 
         userRepository.save(user);
 
         return true;
     }
 
-    public CreatedUserDto registerUser(UserRegisterDto userRegisterDto) {
-        Optional<UserEntity> userOpt = this.userRepository.findByEmail(userRegisterDto.getEmail());
-
-        if (userOpt.isPresent()) {
-            throw new AppException("User already exists", HttpStatus.BAD_REQUEST);
-        }
-
-        UserEntity userToSave = this.modelMapper.map(userRegisterDto, UserEntity.class);
-        userToSave.setPassword(this.passwordEncoder.encode(userToSave.getPassword()));
-
-        addredMap(userRegisterDto, userToSave);
-
-        this.userRepository.save(userToSave);
-
-        return this.modelMapper.map(userToSave, CreatedUserDto.class);
-    }
-
-    private void addredMap(UserRegisterDto userRegisterDto, UserEntity user) {
+    private void addressMap(UserRegisterDto userRegisterDto, UserEntity user) {
         UserAddress userAddress = new UserAddress();
         userAddress.setCountryEnum(CountryEnum.valueOf(userRegisterDto.getCountry()));
         userAddress.setCity(userRegisterDto.getCity());
