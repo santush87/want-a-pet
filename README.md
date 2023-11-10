@@ -4,8 +4,9 @@
 ## The idea behind this website is to helps dogs and cat to find a new home and to be happy! 
 
 ### Technologies used:
-* Spring Boot
+* Spring Framework
 * Java
+* Gradle
 * MySQL
 * Thymeleaf
 * Bootstrap
@@ -13,6 +14,7 @@
 * JavaScript
 * Lombok
 * Spring Security
+* JUnit5
 
 ### Functionality
 #### <u> Guests:</u>
