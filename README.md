@@ -15,16 +15,25 @@
 * Spring Security
 
 ### Functionality
-1. Guests:
+#### <u> Guests:</u>
 * can view the catalog
 * can make a registration
 * can login
 * can see the Home Page
 
-2. Registered user - regular User
+#### <u> Registered user</u> 
+<i> 1. Regular User </i>
+
 * can add a pets - dogs and cats
 * can adopt a pet
 * can view a page - My Pets (their own pets)
+
+<i> 2. Moderator </i>
+
+*
+<i> 3. ADMIN </i>
+
+*
 
 
 
