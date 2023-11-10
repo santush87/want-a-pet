@@ -25,3 +25,9 @@
 * can add a pets - dogs and cats
 * can adopt a pet
 * can view a page - My Pets (their own pets)
+
+
+
+
+### Find a bug?
+If you find an issue or would like to submit an improvement to this project, please submit an issue using the issues tab above. If you would like to submit a PR with a fix, reference the issue you created!
