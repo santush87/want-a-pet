@@ -1,4 +1,4 @@
-# In Progress...
+### In Progress... Its not complete yet! Soon will be!
 # Want A Pet
 
 ## The idea behind this website is to helps dogs and cat to find a new home and to be happy! 
