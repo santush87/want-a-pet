@@ -23,5 +23,5 @@ public class UserAddress extends BaseEntity{
     @Column(nullable = false)
     private String street;
     @Column
-    private int streetNumber;
+    private String streetNumber;
 }

@@ -23,8 +23,6 @@ public class AuthController {
     private final UserService userService;
 
     /***    LOGIN   ***/
-
-    /***    Model Attribute   ***/
     @ModelAttribute("userLoginDto")
     public UserLoginDto logInit(){
         return new UserLoginDto();
@@ -33,31 +31,6 @@ public class AuthController {
     @GetMapping("/login")
     public ModelAndView login(){
         return new ModelAndView("login");
-    }
-
-    @PostMapping("/login")
-    public ModelAndView onLogin(@Valid UserLoginDto userLoginDto,
-                                BindingResult bindingResult,
-                                RedirectAttributes redirectAttributes){
-
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("userLoginDto", userLoginDto);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userLoginDto", bindingResult);
-
-            return new ModelAndView("redirect:/login");
-        }
-
-        return new ModelAndView("redirect:/home");
-    }
-    @PostMapping("/login-error")
-    public String onFailure(
-            @ModelAttribute("email") String email,
-            Model model) {
-
-        model.addAttribute("email", email);
-        model.addAttribute("bad_credentials", "true");
-
-        return "auth-login";
     }
 
     /***    REGISTER   ***/
