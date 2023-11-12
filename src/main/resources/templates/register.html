@@ -16,6 +16,7 @@
                     <form th:method="post"
                           th:action="@{/register}"
                           th:object="${userRegisterDto}">
+
                         <!-- NAMES -->
                         <div class="form-row m-b-55">
                             <div class="name">Name</div>
@@ -243,7 +244,8 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-primary py-2 px-4" type="submit">
+                            <button class="btn btn-primary py-2 px-4"
+                                    type="submit">
                                 Register
                             </button>
                         </div>

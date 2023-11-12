@@ -4,7 +4,7 @@
 
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
-<div class="page-wrapper bg-transparent p-t-45 p-b-50" style="background: url(/images/cats.png)">
+<div class="page-wrapper bg-transparent p-t-45 p-b-50" style="background: url(/images/kitty3.jpg) right">
     <div class="wrapper wrapper--w790">
         <div class="card card-5">
             <div class="card-heading">
@@ -15,6 +15,35 @@
                       th:action="@{/add/cat}"
                       th:object="${petCreatingDto}">
 
+                    <div class="form-row m-b-55">
+                        <div class="name">Name</div>
+                        <div class="value">
+                            <div class="row row-space">
+                                <!-- NAME -->
+                                <div class="col-6">
+                                    <div class="input-group-desc">
+                                        <input
+                                                class="input--style-5"
+                                                type="text"
+                                                th:field="*{name}"
+                                                th:errorclass="'is-invalid alert-danger'"
+                                                placeholder="First name"
+                                        />
+                                        <small th:if="${#fields.hasErrors('name')}"
+                                               th:errors="*{name}"
+                                               class="text-danger">Username error message</small>
+                                    </div>
+                                </div>
+                                <!-- Image -->
+                                <div class='pets-photo'>
+                                    <button id='pets-upload'>
+                                        <i class='fa fa-camera-retro'></i>
+                                    </button>
+                                    <label for='pets-upload'>Upload a photo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- BREED -->
                     <div class="form-row m-b-55">
                         <div class="name">Breed</div>
@@ -59,12 +88,12 @@
                                 <input
                                         class="input--style-5"
                                         type="date"
-                                        th:field="*{birthOn}"
+                                        th:field="*{age}"
                                         th:errorclass="'is-invalid alert-danger'"
                                         placeholder="Husky"
                                 />
-                                <small th:if="${#fields.hasErrors('birthOn')}"
-                                       th:errors="*{birthOn}"
+                                <small th:if="${#fields.hasErrors('age')}"
+                                       th:errors="*{age}"
                                        class="text-danger">Birth error message</small>
                             </div>
                         </div>
