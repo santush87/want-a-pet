@@ -5,7 +5,6 @@ import com.martinaleksandrov.wantapet.models.dtos.UserLoginDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
 import com.martinaleksandrov.wantapet.models.entities.UserAddress;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
-import com.martinaleksandrov.wantapet.models.entities.UserRoleEntity;
 import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.reporitories.UserAddressRepository;
@@ -32,9 +31,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public boolean register(UserRegisterDto userRegisterDto) {
-        if (!userRegisterDto.getPassword().equals(userRegisterDto.getConfirmPassword())) {
-            throw new IllegalArgumentException("Password and Confirm password must match!");
-        }
+
         Optional<UserEntity> optUser = this.userRepository.findByEmail(userRegisterDto.getEmail());
 
         if (optUser.isPresent()) {
