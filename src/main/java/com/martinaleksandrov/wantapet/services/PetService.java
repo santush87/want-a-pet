@@ -16,11 +16,16 @@ public class PetService {
     private final ModelMapper modelMapper;
 
     public void addDog(PetCreatingDto petCreatingDto) {
-        PetEntity pet = this.modelMapper.map(petCreatingDto, PetEntity.class);
+        PetEntity pet = addPet(petCreatingDto);
         pet.setType(PetType.DOG);
     }
 
     public void addCat(PetCreatingDto petCreatingDto) {
+        PetEntity pet = addPet(petCreatingDto);
+        pet.setType(PetType.CAT);
+    }
 
+    private PetEntity addPet(PetCreatingDto petCreatingDto) {
+        return this.modelMapper.map(petCreatingDto, PetEntity.class);
     }
 }

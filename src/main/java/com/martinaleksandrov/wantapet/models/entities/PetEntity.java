@@ -1,8 +1,12 @@
 package com.martinaleksandrov.wantapet.models.entities;
 
+import com.martinaleksandrov.wantapet.models.enums.GenderEnum;
 import com.martinaleksandrov.wantapet.models.enums.PetType;
+import com.nimbusds.openid.connect.sdk.claims.Gender;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,15 +24,24 @@ public class PetEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private PetType type;
 
-    @Column()
+    @Column
+    private String name;
+
+    @Column
     private String breed;
+
+    @Column
+    private int weight;
+
+    @Column
+    private GenderEnum gender;
 
     @Column(nullable = false)
     private String image;
 
     @Column
-    @Past
-    private LocalDate birthOn;
+    @PositiveOrZero
+    private int age;
 
     @Column(columnDefinition = "TEXT")
     private String description;
