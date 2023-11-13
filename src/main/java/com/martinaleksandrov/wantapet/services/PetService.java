@@ -18,6 +18,7 @@ public class PetService {
     public void addDog(PetCreatingDto petCreatingDto) {
         PetEntity pet = addPet(petCreatingDto);
         pet.setType(PetType.DOG);
+
     }
 
     public void addCat(PetCreatingDto petCreatingDto) {

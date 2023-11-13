@@ -19,7 +19,7 @@ public class PetCreatingDto {
     private String breed;
 
     @NotNull
-    private int weight;
+    private String weight;
 
     @NotNull
     private String gender;
@@ -29,7 +29,7 @@ public class PetCreatingDto {
 
     @PositiveOrZero
     @Max(30)
-    private int age;
+    private String age;
 
     @Size(max = 200, message = "Description cannot be more than 200 characters!")
     private String description;
