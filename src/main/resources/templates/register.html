@@ -142,9 +142,11 @@
                                             <div
                                                     class="rs-select2 js-select-simple select--no-search"
                                             >
-                                                <select th:field="*{country}"
+                                                <select class="input--style-5"
+                                                        style="height: 50px; width: 205px"
+                                                        th:field="*{country}"
                                                         th:errorclass="'is-invalid alert-danger'">
-                                                    <option value="" disabled="disabled" selected="selected">
+                                                    <option value=""  selected="selected">
                                                         Select country
                                                     </option>
                                                     <option value="BULGARIA">Bulgaria</option>
@@ -222,12 +224,12 @@
                                 <div class="row row-space">
                                     <div class="col-9">
                                         <div class="input-group">
-                                            <div
-                                                    class="rs-select2 js-select-simple select--no-search"
-                                            >
-                                                <select th:field="*{userType}"
+                                            <div class="rs-select2 js-select-simple select--no-search" >
+                                                <select class="input--style-5"
+                                                        style="height: 50px; width: 205px"
+                                                        th:field="*{userType}"
                                                         th:errorclass="'is-invalid alert-danger'">
-                                                    <option value="" disabled="disabled" selected="selected">
+                                                    <option value="" selected="selected">
                                                         Select
                                                     </option>
                                                     <option value="PRIVATE">PRIVATE</option>
@@ -244,8 +246,9 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-primary py-2 px-4"
-                                    type="submit">
+                            <button class="btn btn-primary py-xxl-4 px-xxl-5"
+                                    type="submit"
+                                    style="font-size: 17px">
                                 Register
                             </button>
                         </div>
