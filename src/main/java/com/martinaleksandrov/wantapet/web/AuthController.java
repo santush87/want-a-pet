@@ -61,7 +61,7 @@ public class AuthController {
         try {
             boolean registered = this.userService.register(userRegisterDto);
             if (registered) {
-                return new ModelAndView("redirect:/home");
+                return new ModelAndView("redirect:/login");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

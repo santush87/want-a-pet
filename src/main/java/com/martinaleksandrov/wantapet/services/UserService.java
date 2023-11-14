@@ -75,23 +75,4 @@ public class UserService {
 
         return usersToShow;
     }
-
-    public UserLoginDto findByEmail(String email) {
-        UserEntity user = this.userRepository.findByEmail(email)
-                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
-
-        return this.modelMapper.map(user, UserLoginDto.class);
-    }
-
-//    public UserLoginDto login(CredentialsDto credentialsDto) {
-//        UserEntity user = this.userRepository.findByEmail(credentialsDto.getEmail())
-//                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
-//
-//        if (this.passwordEncoder.matches(credentialsDto.getPassword(), user.getPassword())) {
-//
-//            return this.modelMapper.map(user, UserLoginDto.class);
-//        }
-//
-//        throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
-//    }
 }
