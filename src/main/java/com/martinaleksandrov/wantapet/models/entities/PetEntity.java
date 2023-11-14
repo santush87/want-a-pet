@@ -3,6 +3,7 @@ package com.martinaleksandrov.wantapet.models.entities;
 import com.martinaleksandrov.wantapet.models.enums.WeightRange;
 import com.martinaleksandrov.wantapet.models.enums.GenderEnum;
 import com.martinaleksandrov.wantapet.models.enums.PetType;
+import com.nimbusds.openid.connect.sdk.claims.Gender;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
@@ -14,8 +15,11 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class PetEntity extends BaseEntity{
+public class PetEntity{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PetType type;
@@ -31,6 +35,7 @@ public class PetEntity extends BaseEntity{
     private WeightRange weight;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private GenderEnum gender;
 
     @Column(nullable = false)

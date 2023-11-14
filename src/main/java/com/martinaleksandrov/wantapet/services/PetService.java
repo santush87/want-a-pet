@@ -18,12 +18,13 @@ public class PetService {
     public void addDog(PetCreatingDto petCreatingDto) {
         PetEntity pet = addPet(petCreatingDto);
         pet.setType(PetType.DOG);
-
+        this.petRepository.save(pet);
     }
 
     public void addCat(PetCreatingDto petCreatingDto) {
         PetEntity pet = addPet(petCreatingDto);
         pet.setType(PetType.CAT);
+        this.petRepository.save(pet);
     }
 
     private PetEntity addPet(PetCreatingDto petCreatingDto) {
