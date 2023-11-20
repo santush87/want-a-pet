@@ -6,6 +6,7 @@ import com.martinaleksandrov.wantapet.services.WantAPetUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfiguration {
 
 //    private final String rememberMeKey;
@@ -31,7 +33,7 @@ public class SecurityConfiguration {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         // Allow anyone to see the home page, the registration page and the login form
                         .requestMatchers("/","/login", "/register", "/login-error").permitAll()
-                        .requestMatchers("/catalog", "/catalog/*").permitAll()
+                        .requestMatchers("/catalog", "/catalog/**").permitAll()
                         .requestMatchers("/add/cat", "/add/dog").authenticated()
                         .requestMatchers("/all-users").hasRole(RoleEnum.ADMIN.name())
                         // all other requests are authenticated.

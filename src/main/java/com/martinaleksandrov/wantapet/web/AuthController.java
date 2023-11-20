@@ -1,15 +1,12 @@
 package com.martinaleksandrov.wantapet.web;
 
-import com.martinaleksandrov.wantapet.models.dtos.UserLoginDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
 import com.martinaleksandrov.wantapet.services.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,10 +20,6 @@ public class AuthController {
     private final UserService userService;
 
     /***    LOGIN   ***/
-    @ModelAttribute("userLoginDto")
-    public UserLoginDto logInit(){
-        return new UserLoginDto();
-    }
 
     @GetMapping("/login")
     public ModelAndView login(){

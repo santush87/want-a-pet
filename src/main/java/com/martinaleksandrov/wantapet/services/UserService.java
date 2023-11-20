@@ -1,10 +1,9 @@
 package com.martinaleksandrov.wantapet.services;
 
-import com.martinaleksandrov.wantapet.exceptions.AppException;
-import com.martinaleksandrov.wantapet.models.dtos.UserLoginDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
 import com.martinaleksandrov.wantapet.models.entities.UserAddress;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
+import com.martinaleksandrov.wantapet.models.entities.UserRoleEntity;
 import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.reporitories.UserAddressRepository;
@@ -12,7 +11,6 @@ import com.martinaleksandrov.wantapet.reporitories.UserRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -73,5 +71,13 @@ public class UserService {
                 .collect(Collectors.toList());
 
         return usersToShow;
+    }
+
+    public boolean isAdmin(UserEntity userEntity){
+        return userEntity
+                .getRoles()
+                .stream()
+                .map(UserRoleEntity::getRole)
+                .anyMatch(role -> RoleEnum.ADMIN == role);
     }
 }
