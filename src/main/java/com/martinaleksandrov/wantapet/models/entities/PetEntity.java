@@ -1,9 +1,8 @@
 package com.martinaleksandrov.wantapet.models.entities;
 
-import com.martinaleksandrov.wantapet.models.enums.WeightRange;
 import com.martinaleksandrov.wantapet.models.enums.GenderEnum;
 import com.martinaleksandrov.wantapet.models.enums.PetType;
-import com.nimbusds.openid.connect.sdk.claims.Gender;
+import com.martinaleksandrov.wantapet.models.enums.WeightRange;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;

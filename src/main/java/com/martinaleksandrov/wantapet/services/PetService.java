@@ -1,6 +1,7 @@
 package com.martinaleksandrov.wantapet.services;
 
 import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
+import com.martinaleksandrov.wantapet.models.dtos.PetViewModelDto;
 import com.martinaleksandrov.wantapet.models.entities.PetEntity;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
 import com.martinaleksandrov.wantapet.models.enums.PetType;
@@ -11,6 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -39,5 +43,15 @@ public class PetService {
         pet.setType(petType);
         pet.setOwner(theOwner);
         this.petRepository.save(pet);
+    }
+
+    public List<PetViewModelDto> getAllPets() {
+        List<PetEntity> all = this.petRepository.findAll();
+        List<PetViewModelDto> toView = new ArrayList<>();
+        for (PetEntity pet : all) {
+            PetViewModelDto petViewModelDto = this.modelMapper.map(pet, PetViewModelDto.class);
+            toView.add(petViewModelDto);
+        }
+        return toView;
     }
 }
