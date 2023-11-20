@@ -21,25 +21,26 @@ public class PetService {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
 
-    public void addDog(PetCreatingDto petCreatingDto) {
-        addPet(petCreatingDto, PetType.DOG);
+    public void addDog(PetCreatingDto petCreatingDto, UserDetails owner) {
+        addPet(petCreatingDto, PetType.DOG, owner);
     }
 
-    public void addCat(PetCreatingDto petCreatingDto) {
-        addPet(petCreatingDto, PetType.CAT);
+    public void addCat(PetCreatingDto petCreatingDto, UserDetails owner) {
+        addPet(petCreatingDto, PetType.CAT, owner);
     }
 
-    private void addPet(PetCreatingDto petCreatingDto, PetType petType) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        UserEntity user = this.userRepository.findByEmail(userDetails.getUsername()).get();
+    private void addPet(PetCreatingDto petCreatingDto, PetType petType, UserDetails owner) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        UserEntity theOwner = this.userRepository.findByEmail(owner.getUsername()).get();
 
         PetEntity pet = this.modelMapper.map(petCreatingDto, PetEntity.class);
 
         pet.setType(petType);
+        pet.setOwner(theOwner);
         this.petRepository.save(pet);
 
-        user.getPets().add(pet);
-        this.userRepository.save(user);
+//        theOwner.getPets().add(pet);
+//        this.userRepository.save(theOwner);
     }
 }

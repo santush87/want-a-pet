@@ -48,4 +48,7 @@ public class PetEntity{
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @ManyToOne
+    private UserEntity owner;
+
 }

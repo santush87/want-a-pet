@@ -26,6 +26,10 @@ spring:
     default.admin.pass: ${DEFAULT_ADMIN_PASS:topsecret}
     remember.me.key: ${REMEMBER_ME_KEY:topsecret}
 
+#cloudinary:
+#  cloud-name: ${CLOUD_NAME}
+#  api-key: ${API_KEY}
+#  api-secret: %{API_SECRET}
 #  main:
 #    allow-circular-references: true
 #mail:

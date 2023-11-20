@@ -4,6 +4,8 @@ import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
 import com.martinaleksandrov.wantapet.services.PetService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +41,8 @@ public class AddController {
     @PostMapping("/dog")
     public ModelAndView addDog(@Valid PetCreatingDto petCreatingDto,
                                BindingResult bindingResult,
-                               RedirectAttributes redirectAttributes){
+                               RedirectAttributes redirectAttributes,
+                               @AuthenticationPrincipal UserDetails owner){
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("petCreatingDto", petCreatingDto);
@@ -48,7 +51,7 @@ public class AddController {
             return new ModelAndView("redirect:/add/dog");
         }
 
-        this.petService.addDog(petCreatingDto);
+        this.petService.addDog(petCreatingDto, owner);
         return new ModelAndView("redirect:/catalog");
     }
 
@@ -61,7 +64,8 @@ public class AddController {
     @PostMapping("/cat")
     public ModelAndView addCat(@Valid PetCreatingDto petCreatingDto,
                                BindingResult bindingResult,
-                               RedirectAttributes redirectAttributes){
+                               RedirectAttributes redirectAttributes,
+                               @AuthenticationPrincipal UserDetails owner){
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("petCreatingDto", petCreatingDto);
@@ -70,7 +74,7 @@ public class AddController {
             return new ModelAndView("redirect:/add/cat");
         }
 
-        this.petService.addCat(petCreatingDto);
+        this.petService.addCat(petCreatingDto, owner);
         return new ModelAndView("redirect:/catalog");
     }
 }

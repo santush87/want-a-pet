@@ -72,7 +72,6 @@ public class UserService {
                 .map(userEntity -> this.modelMapper.map(userEntity, UserRegisterDto.class))
                 .collect(Collectors.toList());
 
-
         return usersToShow;
     }
 }

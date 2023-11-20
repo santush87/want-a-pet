@@ -48,8 +48,8 @@ public class UserEntity extends BaseEntity {
     @CurrentTimestamp
     private LocalDate createdOn;
 
-    @OneToMany()
-    private List<PetEntity> pets;
+//    @OneToMany()
+//    private List<PetEntity> pets;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -59,7 +59,7 @@ public class UserEntity extends BaseEntity {
     private List<UserRoleEntity> roles = new ArrayList<>();
 
     public UserEntity() {
-        this.pets = new ArrayList<>();
+//        this.pets = new ArrayList<>();
         this.createdOn = LocalDate.now();
 //        this.roles = new ArrayList<>().add(UserRoleEntity.);
     }

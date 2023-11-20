@@ -34,6 +34,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+	// https://mvnrepository.com/artifact/com.cloudinary/cloudinary
+	implementation 'com.cloudinary:cloudinary:1.0.3'
+
 
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
