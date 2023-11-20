@@ -8,9 +8,8 @@ import com.martinaleksandrov.wantapet.reporitories.PetRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,17 +29,15 @@ public class PetService {
     }
 
     private void addPet(PetCreatingDto petCreatingDto, PetType petType, UserDetails owner) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        UserEntity theOwner = this.userRepository.findByEmail(owner.getUsername()).get();
+
+        UserEntity theOwner = this.userRepository.findByEmail(owner.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User with email "
+                        + owner.getUsername() + " not found!"));
 
         PetEntity pet = this.modelMapper.map(petCreatingDto, PetEntity.class);
 
         pet.setType(petType);
         pet.setOwner(theOwner);
         this.petRepository.save(pet);
-
-//        theOwner.getPets().add(pet);
-//        this.userRepository.save(theOwner);
     }
 }
