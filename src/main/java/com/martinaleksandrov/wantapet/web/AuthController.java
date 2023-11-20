@@ -19,16 +19,11 @@ public class AuthController {
 
     private final UserService userService;
 
-    /***    LOGIN   ***/
-
     @GetMapping("/login")
     public ModelAndView login(){
         return new ModelAndView("login");
     }
 
-    /***    REGISTER   ***/
-
-    /***    Model Attribute   ***/
     @ModelAttribute("userRegisterDto")
     public UserRegisterDto regInit(){
         return new UserRegisterDto();
