@@ -1,13 +1,18 @@
 package com.martinaleksandrov.wantapet.web;
 
+import com.martinaleksandrov.wantapet.models.dtos.PetDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.PetViewModelDto;
 import com.martinaleksandrov.wantapet.services.PetService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,12 +50,27 @@ public class CatalogController {
         return modelAndView;
     }
 
+// For Pagination -  @PageableDefault(size = 3) Pageable pageable
     @GetMapping("/cats-and-dogs")
     public ModelAndView catAndDogcatalog() {
         ModelAndView modelAndView = new ModelAndView("catalog-dogs-cats");
 
         List<PetViewModelDto> pets = this.petService.getAllPets();
+//        Page<PetViewModelDto> pets = this.petService.getAllPets(pageable);
+//        System.out.println(pets.getTotalPages());
         modelAndView.addObject("pets", pets);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/details/{id}")
+    public ModelAndView details(@PathVariable("id") Long id,
+                                @AuthenticationPrincipal UserDetails viewer){
+        ModelAndView modelAndView = new ModelAndView("pet-details");
+
+        PetDetailsDto petDetails = this.petService.getPetDetails(id, viewer);
+
+        modelAndView.addObject("petDetails", petDetails);
 
         return modelAndView;
     }
