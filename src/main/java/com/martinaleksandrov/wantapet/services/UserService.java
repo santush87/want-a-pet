@@ -80,4 +80,12 @@ public class UserService {
                 .map(UserRoleEntity::getRole)
                 .anyMatch(role -> RoleEnum.ADMIN == role);
     }
+
+    public Optional<UserEntity> findById(String id){
+        return this.userRepository.findById(id);
+    }
+
+    public Optional<UserEntity> findByEmail(String email){
+        return this.userRepository.findByEmail(email);
+    }
 }
