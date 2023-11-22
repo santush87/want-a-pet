@@ -21,6 +21,13 @@ body{
    justify-items: center;
 }
 
+.thebody{
+   background-image: url(/images/meadow1.jpeg);
+   width: auto;
+   height: auto;
+   object-fit: cover;
+}
+
 .container{
    max-width: 1200px;
    margin:0 auto;

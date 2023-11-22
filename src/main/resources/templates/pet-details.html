@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/commons::head}"></head>
+<body class="thebody">
+<nav th:replace="~{fragments/commons::nav}"></nav>
+
+<div class="container-fluid">
+    <h2 class="text-center text-white mt-5">Details</h2>
+    <div th:object="${petDetails}"
+         class="offers row mx-auto d-flex flex-row justify-content-center">
+        <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0" >
+
+            <div class="card-body pb-1">
+                <h5 class="card-title"
+                    th:text="*{name}"></h5>
+            </div>
+            <ul class="offer-details list-group list-group-flush">
+                <li class="list-group-item">
+
+                    <div class="card-text">
+                        <span>• Age</span>
+                        <th:block th:text="*{age}">12345</th:block>
+                    </div>
+
+                    <div class="card-text">
+                        <span>•Weight</span>
+                        <th:block th:text="*{weight}">PETROL</th:block>
+                    </div>
+
+                    <div class="card-text"><span>• Owner</span>
+                        <th:block th:text="*{ownersEmail}">Pesho Petrov</th:block>
+                    </div>
+
+                    <div class="card-text"><span>• Description</span>
+                        <th:block th:text="*{description}">Description</th:block>
+                    </div>
+                </li>
+            </ul>
+            <div class="card-body" th:if="*{viewerIsOwner}">
+                <form th:method="delete"
+                      th:action="@{/catalog/details{pet_id}(pet_id=*{id})}">
+                    <input type="submit" value="Delete" class="link card-link"/>
+                </form>
+            </div>
+        </div>
+        <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
+            <img th:src="*{image}" class="card-img-top"  alt="Pet image">
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

@@ -2,9 +2,11 @@
      class="products-container">
     <div th:each="pet : ${pets}">
         <div class="product">
-            <h3 th:text="${pet.type.toString()}"></h3>
-            <img th:src="${pet.image}" alt="">
-            <h3 th:text="${pet.name} + ' - ' + ${pet.age} + 'y.o.'"></h3>
+            <a th:href="@{/catalog/details/{pets_id}(pets_id=*{pet.id})}">
+                <h3 th:text="${pet.type.toString()}"></h3>
+                <img th:src="${pet.image}" alt="">
+                <h3 th:text="${pet.name} + ' - ' + ${pet.age} + 'y.o.'"></h3>
+            </a>
         </div>
     </div>
 </div>

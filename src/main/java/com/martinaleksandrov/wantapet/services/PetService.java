@@ -1,20 +1,19 @@
 package com.martinaleksandrov.wantapet.services;
 
 import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
+import com.martinaleksandrov.wantapet.models.dtos.PetDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.PetViewModelDto;
 import com.martinaleksandrov.wantapet.models.entities.PetEntity;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
 import com.martinaleksandrov.wantapet.models.enums.PetType;
 import com.martinaleksandrov.wantapet.reporitories.PetRepository;
-import com.martinaleksandrov.wantapet.reporitories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +21,7 @@ public class PetService {
 
     private final PetRepository petRepository;
     private final ModelMapper modelMapper;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     public void addDog(PetCreatingDto petCreatingDto, UserDetails owner) {
         addPet(petCreatingDto, PetType.DOG, owner);
@@ -34,7 +33,7 @@ public class PetService {
 
     private void addPet(PetCreatingDto petCreatingDto, PetType petType, UserDetails owner) {
 
-        UserEntity theOwner = this.userRepository.findByEmail(owner.getUsername())
+        UserEntity theOwner = this.userService.findByEmail(owner.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("User with email "
                         + owner.getUsername() + " not found!"));
 
@@ -45,6 +44,20 @@ public class PetService {
         this.petRepository.save(pet);
     }
 
+    /***    PETS IN PAGES    ***/
+//    public Page<PetViewModelDto> getAllPets(Pageable pageable) {
+//
+//        return this.petRepository.findAll(pageable)
+//                .map(pet -> this.modelMapper.map(pet, PetViewModelDto.class));
+//    }
+
+//    public Page<PetViewModelDto> getAllDogs(Pageable pageable) {
+////        List<PetEntity> allDogs = this.petRepository.findAllByType(PetType.DOG);
+//        return this.petRepository.findAllByTypeDog()
+//                .map(pet -> this.modelMapper.map(pet, PetViewModelDto.class));
+//    }
+
+    /***    PETS IN LIST    ***/
     public List<PetViewModelDto> getAllPets() {
         List<PetEntity> all = this.petRepository.findAll();
         return getPets(all);
@@ -60,12 +73,51 @@ public class PetService {
         return getPets(allCats);
     }
 
-    private List<PetViewModelDto> getPets(List<PetEntity> pets){
+    private List<PetViewModelDto> getPets(List<PetEntity> pets) {
         List<PetViewModelDto> toView = new ArrayList<>();
         for (PetEntity pet : pets) {
             PetViewModelDto petViewModelDto = this.modelMapper.map(pet, PetViewModelDto.class);
             toView.add(petViewModelDto);
         }
         return toView;
+    }
+
+    public PetDetailsDto getPetDetails(Long id, UserDetails viewer) {
+        Optional<PetEntity> optionalPet = this.petRepository.findById(id);
+
+        if (optionalPet.isEmpty()) {
+            throw new NoSuchElementException("Pet with id " + id + " not found!");
+        }
+
+        PetDetailsDto pet = this.modelMapper.map(optionalPet, PetDetailsDto.class);
+
+        Optional<UserEntity> user = this.userService.findById(optionalPet.get().getOwner().getId());
+
+        pet.setOwnersEmail(user.get().getEmail());
+
+        boolean isOwner = isOwner(optionalPet.get(), viewer.getUsername());
+        pet.setViewerIsOwner(isOwner);
+
+        return pet;
+    }
+
+    private boolean isOwner(PetEntity pet, String username) {
+        if (pet == null || username == null) {
+            // anonymous users own no pets
+            // missing pets are meaningless
+            return false;
+        }
+
+        UserEntity viewerEntity = userService.findByEmail(username)
+                .orElseThrow(() -> new IllegalArgumentException("Unknown user..."));
+
+        if (this.userService.isAdmin(viewerEntity)) {
+            // all admins own all offers
+            return true;
+        }
+
+        return Objects.equals(
+                pet.getOwner().getId(),
+                viewerEntity.getId());
     }
 }
