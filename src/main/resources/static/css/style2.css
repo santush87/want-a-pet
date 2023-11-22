@@ -58,6 +58,8 @@ body{
 
 .container .products-container .product img{
    height: 25rem;
+   width: 33rem;
+   object-fit: contain;
 }
 
 .container .products-container .product:hover img{
