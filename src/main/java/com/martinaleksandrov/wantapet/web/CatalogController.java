@@ -27,12 +27,22 @@ public class CatalogController {
 
     @GetMapping("/dogs")
     public ModelAndView dogCatalog() {
-        return new ModelAndView("catalog-dogs");
+        ModelAndView modelAndView = new ModelAndView("catalog-dogs");
+
+        List<PetViewModelDto> pets = this.petService.getAllDogs();
+        modelAndView.addObject("pets", pets);
+
+        return modelAndView;
     }
 
     @GetMapping("/cats")
     public ModelAndView catCatalog() {
-        return new ModelAndView("catalog-cats");
+        ModelAndView modelAndView = new ModelAndView("catalog-cats");
+
+        List<PetViewModelDto> pets = this.petService.getAllCats();
+        modelAndView.addObject("pets", pets);
+
+        return modelAndView;
     }
 
     @GetMapping("/cats-and-dogs")

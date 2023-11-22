@@ -47,8 +47,22 @@ public class PetService {
 
     public List<PetViewModelDto> getAllPets() {
         List<PetEntity> all = this.petRepository.findAll();
+        return getPets(all);
+    }
+
+    public List<PetViewModelDto> getAllDogs() {
+        List<PetEntity> allDogs = this.petRepository.findAllByType(PetType.DOG);
+        return getPets(allDogs);
+    }
+
+    public List<PetViewModelDto> getAllCats() {
+        List<PetEntity> allCats = this.petRepository.findAllByType(PetType.CAT);
+        return getPets(allCats);
+    }
+
+    private List<PetViewModelDto> getPets(List<PetEntity> pets){
         List<PetViewModelDto> toView = new ArrayList<>();
-        for (PetEntity pet : all) {
+        for (PetEntity pet : pets) {
             PetViewModelDto petViewModelDto = this.modelMapper.map(pet, PetViewModelDto.class);
             toView.add(petViewModelDto);
         }
