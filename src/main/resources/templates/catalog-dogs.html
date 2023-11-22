@@ -4,7 +4,10 @@
 
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
-<h1>Catalog Dogs</h1>
+<main class="container">
+    <h3 class="title"> Dogs</h3>
+    <div th:replace="/fragments/catalog-view"/>
+</main>
 <footer th:replace="~{fragments/commons::footer}"></footer>
 </body>
 </html>

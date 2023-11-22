@@ -1,0 +1,10 @@
+<div th:fragment="catalog-view"
+     class="products-container">
+    <div th:each="pet : ${pets}">
+        <div class="product">
+            <h3 th:text="${pet.type.toString()}"></h3>
+            <img th:src="${pet.image}" alt="">
+            <h3 th:text="${pet.name} + ' - ' + ${pet.age} + 'y.o.'"></h3>
+        </div>
+    </div>
+</div>

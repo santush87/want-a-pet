@@ -4,26 +4,10 @@
 
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
-<h3 class="title"> Cats </h3>
-
-<!--<div class="products-container">-->
-
-<!--    <a class="product" th:href="@{/catalog/dogs}">-->
-<!--        <img th:src="@{/images/about.jpg}" alt="">-->
-<!--        <h3>Dogs</h3>-->
-<!--    </a>-->
-
-<!--    <a class="product" th:href="@{/catalog/cats}">-->
-<!--        <img th:src="@{/images/cats.png}" alt="">-->
-<!--        <h3>Cats</h3>-->
-<!--    </a>-->
-
-<!--    <a class="product" th:href="@{/catalog/cats-and-dogs}">-->
-<!--        <img th:src="@{/images/cat_and_dog.png}" alt="">-->
-<!--        <h3>Cats and Dogs</h3>-->
-<!--    </a>-->
-
-<!--</div>-->
+<main class="container">
+    <h3 class="title"> Cats</h3>
+    <div th:replace="/fragments/catalog-view"/>
+</main>
 <footer th:replace="~{fragments/commons::footer}"></footer>
 </body>
 </html>

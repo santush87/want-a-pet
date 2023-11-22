@@ -6,15 +6,7 @@
 <header th:replace="~{fragments/commons::nav}"></header>
 <main class="container">
     <h3 class="title"> All Pets</h3>
-    <div class="products-container">
-        <div th:each="pet : ${pets}">
-            <div class="product">
-                            <h3 th:text="${pet.type.toString()}"></h3>
-                <img th:src="${pet.image}" alt="">
-                <h3 th:text="${pet.name} + ' - ' + ${pet.age} + 'y.o.'"></h3>
-            </div>
-        </div>
-    </div>
+    <div th:replace="/fragments/catalog-view"/>
 </main>
 <footer th:replace="~{fragments/commons::footer}"></footer>
 </body>
