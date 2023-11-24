@@ -90,6 +90,7 @@ public class PetService {
         }
 
         PetDetailsDto pet = this.modelMapper.map(optionalPet, PetDetailsDto.class);
+        pet.setWeight(optionalPet.get().getWeight().name.toString());
 
         Optional<UserEntity> user = this.userService.findById(optionalPet.get().getOwner().getId());
 
