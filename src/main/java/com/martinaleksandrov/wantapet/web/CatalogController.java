@@ -63,6 +63,16 @@ public class CatalogController {
         return modelAndView;
     }
 
+    @GetMapping("/my-pets")
+    public ModelAndView myPets(@AuthenticationPrincipal UserDetails viewer) {
+        ModelAndView modelAndView = new ModelAndView("catalog-my-pets");
+
+        List<PetViewModelDto> pets = this.petService.getAllMyPets(viewer);
+        modelAndView.addObject("pets", pets);
+
+        return modelAndView;
+    }
+
     @GetMapping("/details/{id}")
     public ModelAndView details(@PathVariable("id") Long id,
                                 @AuthenticationPrincipal UserDetails viewer){

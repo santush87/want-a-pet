@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -77,6 +78,7 @@ public class PetService {
         List<PetViewModelDto> toView = new ArrayList<>();
         for (PetEntity pet : pets) {
             PetViewModelDto petViewModelDto = this.modelMapper.map(pet, PetViewModelDto.class);
+            petViewModelDto.setOwner(pet.getOwner().getEmail());
             toView.add(petViewModelDto);
         }
         return toView;
@@ -120,5 +122,17 @@ public class PetService {
         return Objects.equals(
                 pet.getOwner().getId(),
                 viewerEntity.getId());
+    }
+
+    public List<PetViewModelDto> getAllMyPets(UserDetails viewer) {
+        List<PetEntity> all = this.petRepository.findAll();
+        List<PetViewModelDto> pets = getPets(all);
+        List<PetViewModelDto> myPets = new ArrayList<>();
+        for (PetViewModelDto pet : pets) {
+            if (pet.getOwner().equals(viewer.getUsername())){
+                myPets.add(pet);
+            }
+        }
+        return myPets;
     }
 }

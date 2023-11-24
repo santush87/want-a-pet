@@ -13,6 +13,7 @@ public class PetViewModelDto {
     private String name;
     private String age;
     private String image;
+    private String owner;
 
     public PetViewModelDto setId(Long id) {
         this.id = id;
@@ -39,5 +40,9 @@ public class PetViewModelDto {
         return this;
     }
 
+    public PetViewModelDto setOwner(String owner) {
+        this.owner = owner;
+        return this;
+    }
 }
 
