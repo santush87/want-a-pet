@@ -20,6 +20,7 @@ public class PetDetailsDto {
     private String image;
     private String ownersEmail;
     private boolean viewerIsOwner;
+    private boolean canAdopt;
 
     public PetDetailsDto setId(Long id) {
         this.id = id;
@@ -73,6 +74,11 @@ public class PetDetailsDto {
 
     public PetDetailsDto setViewerIsOwner(boolean viewerIsOwner) {
         this.viewerIsOwner = viewerIsOwner;
+        return this;
+    }
+
+    public PetDetailsDto setCanAdopt(boolean canAdopt) {
+        this.canAdopt = canAdopt;
         return this;
     }
 }

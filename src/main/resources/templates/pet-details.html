@@ -76,7 +76,7 @@
             </div>
 
             <div class="row text-center" style="margin-bottom: 20px">
-                <div class="col-md-4">
+                <div class="col-md-4" th:if="*{canAdopt}">
                     <form th:action="@{/catalog/details{pet_id}(pet_id=*{id})}"
                           th:method="post">
                         <button type="submit"
@@ -84,7 +84,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4"  th:if="*{viewerIsOwner}">
                     <form th:action="@{/catalog/details{pet_id}(pet_id=*{id})}"
                           th:method="post">
                         <button type="submit"
@@ -92,7 +92,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" th:if="*{viewerIsOwner}">
                     <form th:method="delete"
                           th:action="@{/catalog/details{pet_id}(pet_id=*{id})}">
                         <button class="btn btn-primary "

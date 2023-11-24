@@ -99,6 +99,7 @@ public class PetService {
         pet.setOwnersEmail(user.get().getEmail());
 
         boolean isOwner = isOwner(optionalPet.get(), viewer.getUsername());
+        pet.setCanAdopt(canAdopt(optionalPet.get(), viewer.getUsername()));
         pet.setViewerIsOwner(isOwner);
 
         return pet;
@@ -124,12 +125,24 @@ public class PetService {
                 viewerEntity.getId());
     }
 
+    private boolean canAdopt(PetEntity pet, String username) {
+        if (pet == null || username == null) {
+            // anonymous users own no pets
+            // missing pets are meaningless
+            return false;
+        }
+        if (!pet.getOwner().getEmail().equals(username)) {
+            return true;
+        }
+        return false;
+    }
+
     public List<PetViewModelDto> getAllMyPets(UserDetails viewer) {
         List<PetEntity> all = this.petRepository.findAll();
         List<PetViewModelDto> pets = getPets(all);
         List<PetViewModelDto> myPets = new ArrayList<>();
         for (PetViewModelDto pet : pets) {
-            if (pet.getOwner().equals(viewer.getUsername())){
+            if (pet.getOwner().equals(viewer.getUsername())) {
                 myPets.add(pet);
             }
         }
