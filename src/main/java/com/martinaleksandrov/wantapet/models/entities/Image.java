@@ -2,12 +2,10 @@ package com.martinaleksandrov.wantapet.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "images")
 @Getter
-@Setter
 public class Image {
 
     @Id
@@ -17,4 +15,13 @@ public class Image {
     @Lob
     private byte[] data;
 
+    public Image setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Image setData(byte[] data) {
+        this.data = data;
+        return this;
+    }
 }

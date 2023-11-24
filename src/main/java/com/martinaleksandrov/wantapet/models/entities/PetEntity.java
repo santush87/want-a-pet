@@ -7,11 +7,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "pets")
-@Setter
 @Getter
 @NoArgsConstructor
 public class PetEntity{
@@ -50,4 +48,53 @@ public class PetEntity{
     @ManyToOne
     private UserEntity owner;
 
+    public PetEntity setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public PetEntity setType(PetType type) {
+        this.type = type;
+        return this;
+    }
+
+    public PetEntity setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public PetEntity setBreed(String breed) {
+        this.breed = breed;
+        return this;
+    }
+
+    public PetEntity setWeight(WeightRange weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    public PetEntity setGender(GenderEnum gender) {
+        this.gender = gender;
+        return this;
+    }
+
+    public PetEntity setImage(String image) {
+        this.image = image;
+        return this;
+    }
+
+    public PetEntity setAge(int age) {
+        this.age = age;
+        return this;
+    }
+
+    public PetEntity setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public PetEntity setOwner(UserEntity owner) {
+        this.owner = owner;
+        return this;
+    }
 }

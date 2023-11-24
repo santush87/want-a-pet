@@ -4,11 +4,9 @@ import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "addresses")
-@Setter
 @Getter
 @NoArgsConstructor
 public class UserAddress extends BaseEntity{
@@ -24,4 +22,24 @@ public class UserAddress extends BaseEntity{
     private String street;
     @Column
     private String streetNumber;
+
+    public UserAddress setCountryEnum(CountryEnum countryEnum) {
+        this.countryEnum = countryEnum;
+        return this;
+    }
+
+    public UserAddress setCity(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public UserAddress setStreet(String street) {
+        this.street = street;
+        return this;
+    }
+
+    public UserAddress setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+        return this;
+    }
 }
