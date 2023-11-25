@@ -5,22 +5,22 @@
 <nav th:replace="~{fragments/commons::nav}"></nav>
 
 <div class="container-fluid">
-    <h2 class="text-center text-white mt-5">Details</h2>
+    <h2 class="thetitle">Details</h2>
     <div th:object="${petDetails}"
          class="offers row mx-auto d-flex flex-row justify-content-center">
         <!--    Image   -->
-        <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
+        <div class="card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
             <img th:src="*{image}" class="card-img-top" alt="Pet image">
         </div>
         <!--    EO: Image   -->
 
         <!--    TEXT   -->
-        <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
+        <div class="card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
             <h5 class="card-title text-center"
                 style="font-size: x-large; margin-top: 15px; margin-bottom: 20px"
                 th:text="*{name}"/>
 
-            <div class="row">
+            <div class="row moveright">
                 <div class="col-md-4">
                     <h4 class="card-title" style="font-size: medium">Breed: </h4>
                 </div>
@@ -29,7 +29,7 @@
                     <th:block th:text="*{breed}" class="text-center"></th:block>
                 </div>
             </div>
-            <div class="row">
+            <div class="row moveright">
                 <div class="col-md-4">
                     <h4 class="card-title" style="font-size: medium">Type: </h4>
                 </div>
@@ -38,7 +38,7 @@
                     <th:block th:text="*{type}" class="text-center"></th:block>
                 </div>
             </div>
-            <div class="row">
+            <div class="row moveright">
                 <div class="col-md-4">
                     <h4 class="card-title" style="font-size: medium">Gender: </h4>
                 </div>
@@ -47,7 +47,7 @@
                     <th:block th:text="*{gender}" class="text-center"></th:block>
                 </div>
             </div>
-            <div class="row">
+            <div class="row moveright">
                 <div class="col-md-4">
                     <h4 class="card-title" style="font-size: medium">Age: </h4>
                 </div>
@@ -56,48 +56,50 @@
                     <th:block th:text="*{age}" class="text-center"></th:block>
                 </div>
             </div>
-            <div class="row">
+            <div class="row moveright">
                 <div class="col-md-4">
                     <h4 class="card-title" style="font-size: medium">Weight: </h4>
                 </div>
 
-                <div class="col-md-4" style="font-size: medium">
+                <div class="col-md-8" style="font-size: medium">
                     <th:block th:text="*{weight}" class="text-center"></th:block>
                 </div>
             </div>
-            <div class="row" style="margin-bottom: auto">
+            <div class="row moveright" style="margin-bottom: auto">
                 <div class="col-md-4">
                     <h4 class="card-title" style="font-size: medium">Description: </h4>
                 </div>
 
-                <div class="col-md-4" style="font-size: medium">
+                <div class="col-md-8" style="font-size: medium">
                     <th:block th:text="*{description}" class="text-center"></th:block>
                 </div>
             </div>
 
-            <div class="row text-center" style="margin-bottom: 20px">
-                <div class="col-md-4" th:if="*{canAdopt}">
-                    <form th:action="@{/catalog/details{pet_id}(pet_id=*{id})}"
+            <div class="row text-center" style="margin-bottom: 20px; margin-left: auto; margin-right: auto">
+                <div class="col-md-3" th:if="*{canAdopt}" style="margin-right: auto">
+                    <form th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}"
                           th:method="post">
                         <button type="submit"
-                                class="btn btn-primary ">Adopt
-                        </button>
+                                class="thebuttons btn btn-primary">Adopt</button>
                     </form>
                 </div>
-                <div class="col-md-4"  th:if="*{viewerIsOwner}">
-                    <form th:action="@{/catalog/details{pet_id}(pet_id=*{id})}"
+                <div class="col-md-3"  th:if="*{viewerIsOwner}" style="margin-right: auto">
+                    <form th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}"
                           th:method="post">
                         <button type="submit"
-                                class="btn btn-primary ">Edit
-                        </button>
+                                class="thebuttons btn btn-primary">Edit</button>
                     </form>
                 </div>
-                <div class="col-md-4" th:if="*{viewerIsOwner}">
-                    <form th:method="delete"
-                          th:action="@{/catalog/details{pet_id}(pet_id=*{id})}">
-                        <button class="btn btn-primary "
+                <div class="col-md-3" th:if="*{viewerIsOwner}" style="margin-right: auto">
+                    <form th:method="post"
+                          th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}">
+<!--                        <input type="hidden" name="_method" value="delete" />-->
+<!--                        <input type="submit"-->
+<!--                               value="Delete"-->
+<!--                               class="thebuttons btn btn-primary"/>-->
+                        <button class="thebuttons btn btn-primary"
                                 type="submit">
-                            Detele
+                            Delete
                         </button>
                     </form>
                 </div>

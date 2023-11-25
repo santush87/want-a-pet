@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -125,6 +124,13 @@ public class PetService {
                 viewerEntity.getId());
     }
 
+    public boolean isOwner(Long id, String username) {
+        return isOwner(
+                this.petRepository.findById(id).orElse(null),
+                username
+        );
+    }
+
     private boolean canAdopt(PetEntity pet, String username) {
         if (pet == null || username == null) {
             // anonymous users own no pets
@@ -147,5 +153,12 @@ public class PetService {
             }
         }
         return myPets;
+    }
+
+    public void deletePet(Long id, UserDetails user) {
+        boolean owner = isOwner(id, user.getUsername());
+        if (owner) {
+            this.petRepository.deleteById(id);
+        }
     }
 }
