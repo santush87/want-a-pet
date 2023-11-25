@@ -12,10 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -87,14 +84,14 @@ public class CatalogController {
         return modelAndView;
     }
 
-//    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
-    @DeleteMapping("/details/{id}")
+    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
+    @PostMapping("/details/{id}")
     public ModelAndView delete(@PathVariable("id") Long id,
                          @AuthenticationPrincipal UserDetails principal) {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/catalog/cats-and-dogs");
 
-        this.petService.deletePet(id, principal);
+        this.petService.deletePet(id);
 
         return modelAndView;
     }

@@ -155,10 +155,7 @@ public class PetService {
         return myPets;
     }
 
-    public void deletePet(Long id, UserDetails user) {
-        boolean owner = isOwner(id, user.getUsername());
-        if (owner) {
-            this.petRepository.deleteById(id);
-        }
+    public void deletePet(Long id) {
+        this.petRepository.deleteById(id);
     }
 }
