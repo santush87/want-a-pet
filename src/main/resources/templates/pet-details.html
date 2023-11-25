@@ -15,88 +15,86 @@
         <!--    EO: Image   -->
 
         <!--    TEXT   -->
-        <div class="card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
+        <div class="card col-sm-2 col-md-3  col-lg-4 m-1 p-0 medium">
             <h5 class="card-title text-center"
                 style="font-size: x-large; margin-top: 15px; margin-bottom: 20px"
                 th:text="*{name}"/>
 
             <div class="row moveright">
                 <div class="col-md-4">
-                    <h4 class="card-title" style="font-size: medium">Breed: </h4>
+                    <h4 class="card-title">Breed: </h4>
                 </div>
 
-                <div class="col-md-4" style="font-size: medium">
-                    <th:block th:text="*{breed}" class="text-center"></th:block>
+                <div class="col-md-8">
+                    <th:block th:text="*{breed}"></th:block>
                 </div>
             </div>
             <div class="row moveright">
                 <div class="col-md-4">
-                    <h4 class="card-title" style="font-size: medium">Type: </h4>
+                    <h4 class="card-title">Type: </h4>
                 </div>
 
-                <div class="col-md-4" style="font-size: medium">
-                    <th:block th:text="*{type}" class="text-center"></th:block>
+                <div class="col-md-8">
+                    <th:block th:text="*{type}"></th:block>
                 </div>
             </div>
             <div class="row moveright">
                 <div class="col-md-4">
-                    <h4 class="card-title" style="font-size: medium">Gender: </h4>
+                    <h4 class="card-title">Gender: </h4>
                 </div>
 
-                <div class="col-md-4" style="font-size: medium">
-                    <th:block th:text="*{gender}" class="text-center"></th:block>
+                <div class="col-md-8">
+                    <th:block th:text="*{gender}"></th:block>
                 </div>
             </div>
             <div class="row moveright">
                 <div class="col-md-4">
-                    <h4 class="card-title" style="font-size: medium">Age: </h4>
+                    <h4 class="card-title">Age: </h4>
                 </div>
 
-                <div class="col-md-4" style="font-size: medium">
-                    <th:block th:text="*{age}" class="text-center"></th:block>
+                <div class="col-md-8">
+                    <th:block th:text="*{age}"></th:block>
                 </div>
             </div>
             <div class="row moveright">
                 <div class="col-md-4">
-                    <h4 class="card-title" style="font-size: medium">Weight: </h4>
+                    <h4 class="card-title">Weight: </h4>
                 </div>
 
-                <div class="col-md-8" style="font-size: medium">
-                    <th:block th:text="*{weight}" class="text-center"></th:block>
+                <div class="col-md-8">
+                    <th:block th:text="*{weight}"></th:block>
                 </div>
             </div>
             <div class="row moveright" style="margin-bottom: auto">
                 <div class="col-md-4">
-                    <h4 class="card-title" style="font-size: medium">Description: </h4>
+                    <h4 class="card-title">Description: </h4>
                 </div>
 
-                <div class="col-md-8" style="font-size: medium">
-                    <th:block th:text="*{description}" class="text-center"></th:block>
+                <div class="col-md-8">
+                    <th:block th:text="*{description}"></th:block>
                 </div>
             </div>
 
-            <div class="row text-center" style="margin-bottom: 20px; margin-left: auto; margin-right: auto">
-                <div class="col-md-3" th:if="*{canAdopt}" style="margin-right: auto">
+            <div class="row text-center margin-right-auto margin-left-auto"
+                 style="margin-bottom: 20px">
+                <div class="col-md-3 margin-right-auto"
+                     th:if="*{canAdopt}">
                     <form th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}"
                           th:method="post">
                         <button type="submit"
                                 class="thebuttons btn btn-primary">Adopt</button>
                     </form>
                 </div>
-                <div class="col-md-3"  th:if="*{viewerIsOwner}" style="margin-right: auto">
+                <div class="col-md-3 margin-right-auto"  th:if="*{viewerIsOwner}">
                     <form th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}"
                           th:method="post">
                         <button type="submit"
                                 class="thebuttons btn btn-primary">Edit</button>
                     </form>
                 </div>
-                <div class="col-md-3" th:if="*{viewerIsOwner}" style="margin-right: auto">
+                <div class="col-md-3 margin-right-auto" th:if="*{viewerIsOwner}">
                     <form th:method="post"
                           th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}">
-<!--                        <input type="hidden" name="_method" value="delete" />-->
-<!--                        <input type="submit"-->
-<!--                               value="Delete"-->
-<!--                               class="thebuttons btn btn-primary"/>-->
                         <button class="thebuttons btn btn-primary"
                                 type="submit">
                             Delete
