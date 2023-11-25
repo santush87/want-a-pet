@@ -1,12 +1,16 @@
-<div th:fragment="catalog-view"
-     class="products-container">
-    <div th:each="pet : ${pets}">
-        <div class="product">
-            <a th:href="@{/catalog/details/{pets_id}(pets_id=*{pet.id})}">
-                <h3 th:text="${pet.type.toString()}"></h3>
-                <img th:src="${pet.image}" alt="">
-                <h3 th:text="${pet.name} + ' - ' + ${pet.age} + 'y.o.'"></h3>
-            </a>
+<div th:fragment="catalog-view">
+    <div th:if="${pets.size() == 0}">
+        <h3 class="thetitle">No Pets Here!</h3>
+    </div>
+    <div class="products-container">
+        <div th:each="pet : ${pets}">
+            <div class="product">
+                <a th:href="@{/catalog/details/{pets_id}(pets_id=*{pet.id})}">
+                    <h3 th:text="${pet.type.toString()}"></h3>
+                    <img th:src="${pet.image}" alt="">
+                    <h3 th:text="${pet.name} + ' - ' + ${pet.age} + 'y.o.'"></h3>
+                </a>
+            </div>
         </div>
     </div>
 </div>
