@@ -34,7 +34,7 @@ public class SecurityConfiguration {
                         // Allow anyone to see the home page, the registration page and the login form
                         .requestMatchers("/","/login", "/register", "/login-error").permitAll()
                         .requestMatchers("/catalog", "/catalog/dogs", "/catalog/cats", "/catalog/cats-and-dogs").permitAll()
-                        .requestMatchers("/catalog/my-pets", "/catalog/edit/*").authenticated()
+                        .requestMatchers("/catalog/my-pets", "/catalog/edit/**").authenticated()
                         .requestMatchers("/add/cat", "/add/dog").authenticated()
                         .requestMatchers("/all-users").hasRole(RoleEnum.ADMIN.name())
                         // all other requests are authenticated.

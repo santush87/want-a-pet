@@ -1,19 +1,19 @@
 package com.martinaleksandrov.wantapet.web;
 
+import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
 import com.martinaleksandrov.wantapet.models.dtos.PetDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.PetViewModelDto;
 import com.martinaleksandrov.wantapet.services.PetService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.ObjectNotFoundException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class CatalogController {
         return modelAndView;
     }
 
-// For Pagination -  @PageableDefault(size = 3) Pageable pageable
+    // For Pagination -  @PageableDefault(size = 3) Pageable pageable
     @GetMapping("/cats-and-dogs")
     public ModelAndView catAndDogcatalog() {
         ModelAndView modelAndView = new ModelAndView("catalog-dogs-cats");
@@ -74,7 +74,7 @@ public class CatalogController {
 
     @GetMapping("/details/{id}")
     public ModelAndView details(@PathVariable("id") Long id,
-                                @AuthenticationPrincipal UserDetails viewer){
+                                @AuthenticationPrincipal UserDetails viewer) {
         ModelAndView modelAndView = new ModelAndView("pet-details");
 
         PetDetailsDto petDetails = this.petService.getPetDetails(id, viewer);
@@ -87,7 +87,7 @@ public class CatalogController {
     @PreAuthorize("@petService.isOwner(#id, #principal.username)")
     @PostMapping("/details/{id}")
     public ModelAndView delete(@PathVariable("id") Long id,
-                         @AuthenticationPrincipal UserDetails principal) {
+                               @AuthenticationPrincipal UserDetails principal) {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/catalog/cats-and-dogs");
 
@@ -106,15 +106,25 @@ public class CatalogController {
         return modelAndView;
     }
 
-//    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
-//    @PostMapping("/details/{id}")
-//    public ModelAndView editPet(@PathVariable("id") Long id,
-//                               @AuthenticationPrincipal UserDetails principal) {
-//
-//        ModelAndView modelAndView = new ModelAndView("redirect:/catalog/details/id");
-//
-//        this.petService.editPet(id);
-//
-//        return modelAndView;
-//    }
+    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
+    @PostMapping("/edit/{id}")
+    public ModelAndView editPet(@Valid PetCreatingDto petCreatingDto,
+                                BindingResult bindingResult,
+                                RedirectAttributes redirectAttributes,
+                                @PathVariable("id") Long id,
+                                @AuthenticationPrincipal UserDetails principal) {
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/catalog/details/id");
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("petDetails", petCreatingDto);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.petCreatingDto", bindingResult);
+
+            return new ModelAndView("redirect:/catalog/edit/" + id);
+        }
+
+        this.petService.editPet(id, petCreatingDto);
+
+        return modelAndView;
+    }
 }

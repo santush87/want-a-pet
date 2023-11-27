@@ -5,7 +5,9 @@ import com.martinaleksandrov.wantapet.models.dtos.PetDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.PetViewModelDto;
 import com.martinaleksandrov.wantapet.models.entities.PetEntity;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
+import com.martinaleksandrov.wantapet.models.enums.GenderEnum;
 import com.martinaleksandrov.wantapet.models.enums.PetType;
+import com.martinaleksandrov.wantapet.models.enums.WeightRange;
 import com.martinaleksandrov.wantapet.reporitories.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -159,7 +161,20 @@ public class PetService {
         this.petRepository.deleteById(id);
     }
 
-    public void editPet(Long id) {
+    public void editPet(Long id, PetCreatingDto petCreatingDto) {
+        Optional<PetEntity> optionalPet = this.petRepository.findById(id);
+        if (optionalPet.isPresent()) {
+            PetEntity pet = optionalPet.get();
+            pet.setName(petCreatingDto.getName())
+                    .setBreed(petCreatingDto.getBreed())
+                    .setImage(petCreatingDto.getImage())
+                    .setGender(GenderEnum.valueOf(petCreatingDto.getGender()))
+                    .setAge(Integer.parseInt(petCreatingDto.getAge()))
+                    .setWeight(WeightRange.valueOf(petCreatingDto.getWeight()))
+                    .setDescription(petCreatingDto.getDescription());
 
+            this.petRepository.save(pet);
+        }
+        throw new NoSuchElementException("There is no pet with id: " + id);
     }
 }
