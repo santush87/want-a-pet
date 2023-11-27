@@ -95,4 +95,26 @@ public class CatalogController {
 
         return modelAndView;
     }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editPage(@PathVariable("id") Long id,
+                                 @AuthenticationPrincipal UserDetails viewer) {
+        ModelAndView modelAndView = new ModelAndView("edit-pet");
+        PetDetailsDto petDetails = this.petService.getPetDetails(id, viewer);
+        modelAndView.addObject("petDetails", petDetails);
+
+        return modelAndView;
+    }
+
+//    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
+//    @PostMapping("/details/{id}")
+//    public ModelAndView editPet(@PathVariable("id") Long id,
+//                               @AuthenticationPrincipal UserDetails principal) {
+//
+//        ModelAndView modelAndView = new ModelAndView("redirect:/catalog/details/id");
+//
+//        this.petService.editPet(id);
+//
+//        return modelAndView;
+//    }
 }

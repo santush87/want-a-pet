@@ -158,4 +158,8 @@ public class PetService {
     public void deletePet(Long id) {
         this.petRepository.deleteById(id);
     }
+
+    public void editPet(Long id) {
+
+    }
 }

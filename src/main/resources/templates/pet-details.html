@@ -4,7 +4,7 @@
 <body class="thebody">
 <nav th:replace="~{fragments/commons::nav}"></nav>
 
-<div class="container-fluid">
+<div class="container-fluid moveup">
     <h2 class="thetitle">Details</h2>
     <div th:object="${petDetails}"
          class="offers row mx-auto d-flex flex-row justify-content-center">
@@ -82,15 +82,14 @@
                     <form th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}"
                           th:method="post">
                         <button type="submit"
-                                class="thebuttons btn btn-primary">Adopt</button>
+                                class="thebuttons btn btn-primary">Adopt
+                        </button>
                     </form>
                 </div>
-                <div class="col-md-3 margin-right-auto"  th:if="*{viewerIsOwner}">
-                    <form th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}"
-                          th:method="post">
-                        <button type="submit"
-                                class="thebuttons btn btn-primary">Edit</button>
-                    </form>
+                <div class="col-md-3 margin-right-auto" th:if="*{viewerIsOwner}">
+                    <a th:href="@{/catalog/edit/{pet_id}(pet_id=*{id})}">
+                        <button class="thebuttons btn btn-primary">Edit</button>
+                    </a>
                 </div>
                 <div class="col-md-3 margin-right-auto" th:if="*{viewerIsOwner}">
                     <form th:method="post"

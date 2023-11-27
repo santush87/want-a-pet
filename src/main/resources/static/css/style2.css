@@ -43,7 +43,9 @@ body {
 .moveright {
     margin-left: 10px;
 }
-
+.moveup {
+    margin-bottom: 120px;
+}
 .thetitle {
     font-size: 3.5rem;
     color: #444;

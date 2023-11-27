@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/head}"></head>
+
 <header>
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
         <a th:href="@{/}" class="navbar-brand ms-lg-5">
@@ -39,7 +40,7 @@
                     <form th:action="@{/logout}"
                           th:method="post">
                         <button type="submit"
-                            class="nav-item">LOGOUT
+                                class="nav-item">LOGOUT
                         </button>
                     </form>
                 </a>
@@ -57,8 +58,8 @@
                 <!--                        <a href="detail.html" class="dropdown-item active">Blog Detail</a>-->
                 <!--                    </div>-->
             </div>
-<!--            <a href="contact.html" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Contact <i-->
-<!--                    class="bi bi-arrow-right"></i></a>-->
+            <!--            <a href="contact.html" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Contact <i-->
+            <!--                    class="bi bi-arrow-right"></i></a>-->
         </div>
         </div>
     </nav>
@@ -86,5 +87,4 @@
         </div>
     </div>
 </footer>
-</body>
 </html>
