@@ -27,6 +27,10 @@
                    th:href="@{/catalog/my-pets}">My Pets</a>
 
                 <a class="nav-item nav-link"
+                   sec:authorize="isAuthenticated()"
+                   th:href="@{/users/my-account}">My Account</a>
+
+                <a class="nav-item nav-link"
                    sec:authorize="!isAuthenticated()"
                    th:href="@{/login}">Login</a>
 

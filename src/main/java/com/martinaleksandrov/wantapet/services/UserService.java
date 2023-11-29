@@ -1,5 +1,6 @@
 package com.martinaleksandrov.wantapet.services;
 
+import com.martinaleksandrov.wantapet.models.dtos.UserDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
 import com.martinaleksandrov.wantapet.models.entities.UserAddress;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -39,7 +41,7 @@ public class UserService {
         UserEntity user = this.modelMapper.map(userRegisterDto, UserEntity.class);
         user.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
         user.getRoles().add(this.userRoleRepository.findByRole(RoleEnum.USER));
-        if (this.userRepository.count() == 0){
+        if (this.userRepository.count() == 0) {
             user.getRoles().add(this.userRoleRepository.findByRole(RoleEnum.ADMIN));
         }
 
@@ -73,7 +75,7 @@ public class UserService {
         return usersToShow;
     }
 
-    public boolean isAdmin(UserEntity userEntity){
+    public boolean isAdmin(UserEntity userEntity) {
         return userEntity
                 .getRoles()
                 .stream()
@@ -81,11 +83,30 @@ public class UserService {
                 .anyMatch(role -> RoleEnum.ADMIN == role);
     }
 
-    public Optional<UserEntity> findById(String id){
+    public Optional<UserEntity> findById(String id) {
         return this.userRepository.findById(id);
     }
 
-    public Optional<UserEntity> findByEmail(String email){
+    public Optional<UserEntity> findByEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+
+    public UserDetailsDto getUserDetails(String username) {
+        Optional<UserEntity> optionalUser = this.userRepository.findByEmail(username);
+        if (optionalUser.isEmpty()) {
+            throw new NoSuchElementException("User with email: " + username + " not exists!");
+        }
+
+        UserAddress address = optionalUser.get().getAddress();
+
+        UserDetailsDto userDetails = this.modelMapper.map(optionalUser.get(), UserDetailsDto.class);
+
+        userDetails.setCountry(address.getCountryEnum().toString())
+                .setCity(address.getCity())
+                .setStreet(address.getStreet())
+                .setStreetNumber(address.getStreetNumber())
+                .setJoinedOn(optionalUser.get().getCreatedOn().toString());
+
+        return userDetails;
     }
 }
