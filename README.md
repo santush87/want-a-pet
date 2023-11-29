@@ -31,11 +31,12 @@
 
 * can add a pets - dogs and cats
 * can adopt a pet
-* can view a page - My Pets (their own pets)
+* can view the page - My Pets (their own pets)
+* can edit the information for his pets
+* can delete his pets
+* can view the page - My Account (their own pets)
+* can edit the user information 
 
-<i> 2. Moderator </i>
-
-*
 <i> 3. ADMIN </i>
 
 *
