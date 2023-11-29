@@ -114,7 +114,6 @@ public class CatalogController {
                                 @PathVariable("id") Long id,
                                 @AuthenticationPrincipal UserDetails principal) {
 
-        ModelAndView modelAndView = new ModelAndView("redirect:/catalog/details/id");
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("petDetails", petCreatingDto);
@@ -125,6 +124,6 @@ public class CatalogController {
 
         this.petService.editPet(id, petCreatingDto);
 
-        return modelAndView;
+        return new ModelAndView("redirect:/catalog/details/" + id);
     }
 }

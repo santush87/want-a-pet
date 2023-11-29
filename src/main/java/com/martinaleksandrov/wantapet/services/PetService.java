@@ -175,6 +175,5 @@ public class PetService {
 
             this.petRepository.save(pet);
         }
-        throw new NoSuchElementException("There is no pet with id: " + id);
     }
 }
