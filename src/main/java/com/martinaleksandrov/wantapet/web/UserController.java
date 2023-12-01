@@ -1,7 +1,5 @@
 package com.martinaleksandrov.wantapet.web;
 
-import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
-import com.martinaleksandrov.wantapet.models.dtos.PetDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserEditDto;
 import com.martinaleksandrov.wantapet.services.UserService;
