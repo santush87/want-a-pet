@@ -5,14 +5,10 @@
 
 <body class="thebody">
 <header th:replace="~{fragments/commons::nav}"></header>
-<div class="container mt-4 mb-4 p-3 justify-content-center" style="width: 520px">
-    <div class="card-5 fa-2x moveup">
+<div class="container mt-4 mb-4 p-3 justify-content-center" style="width: 650px">
+    <div class="card-5 fa-2x moveup" >
         <div class=" image d-flex flex-column justify-content-center align-items-center">
-
-            <!--            <button class="btn btn-secondary">-->
-            <!--            <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100"/>-->
             <img src="/images/user.jpg" height="100" width="100"/>
-            <!--            </button>-->
         </div>
         <form th:method="post"
               th:action="@{/users/my-account/edit/{user_id}(user_id=${id})}"
@@ -49,11 +45,7 @@
                     <h4 class="card-title">Email: </h4>
                 </div>
 
-                <div class="col-md-8">
-                     <span class="number"
-                           th:text="*{email}">john@gmail.com
-                </span>
-                </div>
+                <div class="col-md-8 number" th:text="*{email}"/>
             </div>
             <!--    USER TYPE   -->
             <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">

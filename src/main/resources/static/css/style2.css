@@ -51,7 +51,8 @@ body {
 }
 .thetitle {
     font-size: 3.5rem;
-    color: #444;
+    color: #9c9c9c;
+    /*color: #444;*/
     margin-bottom: 3rem;
     text-transform: uppercase;
     text-align: center;
