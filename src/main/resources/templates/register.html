@@ -34,7 +34,7 @@
                                             />
                                             <small th:if="${#fields.hasErrors('firstName')}"
                                                    th:errors="*{firstName}"
-                                                   class="text-danger fa-2x">Username error message</small>
+                                                   class="text-danger fa-2x">First name error message</small>
                                         </div>
                                     </div>
                                     <!-- LAST NAME -->
@@ -49,7 +49,7 @@
                                             />
                                             <small th:if="${#fields.hasErrors('lastName')}"
                                                    th:errors="*{lastName}"
-                                                   class="text-danger fa-2x">Username error message</small>
+                                                   class="text-danger fa-2x">Last name error message</small>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                     />
                                     <small th:if="${#fields.hasErrors('email')}"
                                            th:errors="*{email}"
-                                           class="text-danger fa-2x">Username error message</small>
+                                           class="text-danger fa-2x">Email error message</small>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                                             />
                                             <small th:if="${#fields.hasErrors('password')}"
                                                    th:errors="*{password}"
-                                                   class="text-danger fa-2x">Username error message</small>
+                                                   class="text-danger fa-2x">Password error message</small>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -105,7 +105,7 @@
                                             />
                                             <small th:if="${#fields.hasErrors('confirmPassword')}"
                                                    th:errors="*{confirmPassword}"
-                                                   class="text-danger fa-2x">Username error message</small>
+                                                   class="text-danger fa-2x">Confirm password error message</small>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                                     />
                                     <small th:if="${#fields.hasErrors('phoneNumber')}"
                                            th:errors="*{phoneNumber}"
-                                           class="text-danger fa-2x">Username error message</small>
+                                           class="text-danger fa-2x">Phone number error message</small>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                                                 <div class="select-dropdown"></div>
                                                 <small th:if="${#fields.hasErrors('country')}"
                                                        th:errors="*{country}"
-                                                       class="text-danger fa-2x">Language error message</small>
+                                                       class="text-danger fa-2x">Country error message</small>
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +171,7 @@
                                             />
                                             <small th:if="${#fields.hasErrors('city')}"
                                                    th:errors="*{city}"
-                                                   class="text-danger fa-2x">Username error message</small>
+                                                   class="text-danger fa-2x">City error message</small>
                                         </div>
                                     </div>
                                 </div>
@@ -186,23 +186,21 @@
                                     <!-- STREET -->
                                     <div class="col-9">
                                         <div class="input-group-desc">
-                                            <input
-                                                    class="input--style-5"
-                                                    type="text"
-                                                    placeholder="Street"
-                                                    th:field="*{street}"
-                                                    th:errorclass="'is-invalid alert-danger'"
+                                            <input class="input--style-5"
+                                                   type="text"
+                                                   placeholder="Street"
+                                                   th:field="*{street}"
+                                                   th:errorclass="'is-invalid alert-danger'"
                                             />
                                             <small th:if="${#fields.hasErrors('street')}"
                                                    th:errors="*{street}"
-                                                   class="text-danger fa-2x">Username error message</small>
+                                                   class="text-danger fa-2x">Street error message</small>
                                         </div>
                                     </div>
                                     <!-- NUMBER -->
                                     <div class="col-3">
                                         <div class="input-group-desc">
-                                            <input
-                                                    class="input--style-5"
+                                            <input  class="input--style-5"
                                                     type="text"
                                                     placeholder="Number"
                                                     th:field="*{streetNumber}"
@@ -210,7 +208,7 @@
                                             />
                                             <small th:if="${#fields.hasErrors('streetNumber')}"
                                                    th:errors="*{streetNumber}"
-                                                   class="text-danger fa-2x">Username error message</small>
+                                                   class="text-danger fa-2x">Street number error message</small>
                                         </div>
                                     </div>
                                 </div>
@@ -224,7 +222,7 @@
                                 <div class="row row-space">
                                     <div class="col-9">
                                         <div class="input-group">
-                                            <div class="rs-select2 js-select-simple select--no-search" >
+                                            <div class="rs-select2 js-select-simple select--no-search">
                                                 <select class="input--style-5"
                                                         style="height: 50px; width: 205px"
                                                         th:field="*{userType}"
@@ -238,7 +236,7 @@
                                                 <div class="select-dropdown"></div>
                                                 <small th:if="${#fields.hasErrors('userType')}"
                                                        th:errors="*{userType}"
-                                                       class="text-danger fa-2x">Language error message</small>
+                                                       class="text-danger fa-2x">User type error message</small>
                                             </div>
                                         </div>
                                     </div>

@@ -5,6 +5,8 @@ import lombok.Getter;
 @Getter
 public class UserDetailsDto {
 
+    private String id;
+
     private String email;
 
     private String firstName;
@@ -27,6 +29,11 @@ public class UserDetailsDto {
     private String streetNumber;
 
     private String joinedOn;
+
+    public UserDetailsDto setId(String id) {
+        this.id = id;
+        return this;
+    }
 
     public UserDetailsDto setEmail(String email) {
         this.email = email;

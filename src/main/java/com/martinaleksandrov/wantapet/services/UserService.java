@@ -1,12 +1,14 @@
 package com.martinaleksandrov.wantapet.services;
 
 import com.martinaleksandrov.wantapet.models.dtos.UserDetailsDto;
+import com.martinaleksandrov.wantapet.models.dtos.UserEditDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
 import com.martinaleksandrov.wantapet.models.entities.UserAddress;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
 import com.martinaleksandrov.wantapet.models.entities.UserRoleEntity;
 import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
+import com.martinaleksandrov.wantapet.models.enums.TypeOfUser;
 import com.martinaleksandrov.wantapet.reporitories.UserAddressRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRoleRepository;
@@ -108,5 +110,31 @@ public class UserService {
                 .setJoinedOn(optionalUser.get().getCreatedOn().toString());
 
         return userDetails;
+    }
+
+    public boolean editUser(String id, UserEditDto userEditDto) {
+        Optional<UserEntity> optUser = this.userRepository.findById(id);
+        if (optUser.isPresent()) {
+            UserEntity user = optUser.get();
+
+            UserAddress address = user.getAddress();
+
+            address .setCountryEnum(CountryEnum.valueOf(userEditDto.getCountry()))
+                    .setCity(userEditDto.getCity())
+                    .setStreet(userEditDto.getStreet())
+                    .setStreetNumber(userEditDto.getStreetNumber());
+
+            this.addressRepository.save(address);
+
+            user.setFirstName(userEditDto.getFirstName())
+                    .setLastName(userEditDto.getLastName())
+                    .setUserType(TypeOfUser.valueOf(userEditDto.getUserType()))
+                    .setPhoneNumber(userEditDto.getPhoneNumber())
+                    .setAddress(address);
+
+            this.userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 }
