@@ -19,62 +19,44 @@
             <h5 class="card-title text-center"
                 style="font-size: x-large; margin-top: 15px; margin-bottom: 20px"
                 th:text="*{name}"/>
-
+            <!--    BREED   -->
             <div class="row moveright">
-                <div class="col-md-4">
-                    <h4 class="card-title">Breed: </h4>
-                </div>
+                <h4 class="col-md-4 card-title">Breed: </h4>
 
-                <div class="col-md-8">
-                    <th:block th:text="*{breed}"></th:block>
-                </div>
+                <div class="col-md-8"
+                     th:text="*{breed}"/>
             </div>
+            <!--    TYPE   -->
             <div class="row moveright">
-                <div class="col-md-4">
-                    <h4 class="card-title">Type: </h4>
-                </div>
-
-                <div class="col-md-8">
-                    <th:block th:text="*{type}"></th:block>
-                </div>
+                <h4 class="col-md-4 card-title">Type: </h4>
+                <div class="col-md-8"
+                     th:text="*{type}"/>
             </div>
+            <!--    GENDER   -->
             <div class="row moveright">
-                <div class="col-md-4">
-                    <h4 class="card-title">Gender: </h4>
-                </div>
+                <h4 class="col-md-4 card-title">Gender: </h4>
 
-                <div class="col-md-8">
-                    <th:block th:text="*{gender}"></th:block>
-                </div>
+                <div class="col-md-8" th:text="*{gender}"/>
             </div>
+            <!--    AGE   -->
             <div class="row moveright">
-                <div class="col-md-4">
-                    <h4 class="card-title">Age: </h4>
-                </div>
+                <h4 class="col-md-4 card-title">Age: </h4>
 
-                <div class="col-md-8">
-                    <th:block th:text="*{age}"></th:block>
-                </div>
+                <div class="col-md-8" th:text="*{age}"/>
             </div>
+            <!--    WEIGHT   -->
             <div class="row moveright">
-                <div class="col-md-4">
-                    <h4 class="card-title">Weight: </h4>
-                </div>
+                <h4 class="col-md-4 card-title">Weight: </h4>
 
-                <div class="col-md-8">
-                    <th:block th:text="*{weight}"></th:block>
-                </div>
+                <div class="col-md-8" th:text="*{weight}"/>
             </div>
+            <!--    DESCRIPTION   -->
             <div class="row moveright" style="margin-bottom: auto">
-                <div class="col-md-4">
-                    <h4 class="card-title">Description: </h4>
-                </div>
+                <h4 class="col-md-4 card-title">Description: </h4>
 
-                <div class="col-md-8">
-                    <th:block th:text="*{description}"></th:block>
-                </div>
+                <div class="col-md-8" th:text="*{description}"/>
             </div>
-
+            <!--    BUTTONS   -->
             <div class="row text-center margin-right-auto margin-left-auto"
                  style="margin-bottom: 20px">
                 <div class="col-md-3 margin-right-auto"
