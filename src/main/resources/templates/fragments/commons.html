@@ -15,6 +15,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
 
+                <div class="welcome"
+                     sec:authorize="isAuthenticated()">
+                    Welcome,
+                    <th:block sec:authentication="name"></th:block>
+                    !
+                </div>
+
                 <a class="nav-item nav-link"
                    th:href="@{/catalog}">Catalog</a>
 
