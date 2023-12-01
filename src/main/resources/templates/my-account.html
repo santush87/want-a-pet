@@ -5,104 +5,75 @@
 
 <body class="thebody">
 <header th:replace="~{fragments/commons::nav}"></header>
-<div class="container mt-4 mb-4 p-3 justify-content-center" style="width: 520px"
-     th:object="${userDetails}">
-    <div class="card-5 fa-2x moveup">
-        <div class=" image d-flex flex-column justify-content-center align-items-center">
 
-            <!--            <button class="btn btn-secondary">-->
-            <!--            <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100"/>-->
+<div class="container p-3 d-flex justify-content-center"
+     th:object="${userDetails}">
+    <div class="card-5 fa-2x moveup" style="min-width: 650px">
+        <!--    IMAGE   -->
+        <div class="d-flex flex-column justify-content-center align-items-center">
             <img src="/images/user.jpg" height="100" width="100"/>
-            <!--            </button>-->
         </div>
+        <!--    NAME   -->
         <h5 class="card-title text-center"
             style="font-size: x-large; margin-top: 15px; margin-bottom: 20px"
             th:text="*{name}"/>
-
+        <!--    EMAIL   -->
         <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4 class="card-title">Email: </h4>
             </div>
 
-            <div class="col-md-6">
-                    <span class="number"
-                          th:text="*{email}">john@gmail.com
-                </span>
-            </div>
+            <div class="col-md-8 number" th:text="*{email}"/>
         </div>
-
+        <!--    USER TYPE   -->
         <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4 class="card-title">User Type: </h4>
             </div>
 
-            <div class="col-md-6">
-                    <span class="number"
-                          th:text="*{userType}">user type
-                </span>
-            </div>
+            <div class="col-md-8 number" th:text="*{userType}"/>
         </div>
-
+        <!--    PHONE NUMBER   -->
         <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4 class="card-title">Phone number: </h4>
             </div>
 
-            <div class="col-md-6">
-                    <span class="number"
-                          th:text="*{phoneNumber}">087887878
-                </span>
-            </div>
+            <div class="col-md-8 number" th:text="*{phoneNumber}"/>
         </div>
-
+        <!--    COUNTRY   -->
         <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4 class="card-title">Country: </h4>
             </div>
 
-            <div class="col-md-6">
-                    <span class="number"
-                          th:text="*{country}">Bulgaria
-                </span>
-            </div>
+            <div class="col-md-8 number" th:text="*{country}"/>
         </div>
-
+        <!--    CITY   -->
         <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4 class="card-title">City: </h4>
             </div>
 
-            <div class="col-md-6">
-                    <span class="number"
-                          th:text="*{city}">Sofia
-                </span>
-            </div>
+            <div class="col-md-8 number" th:text="*{city}"/>
         </div>
-
+        <!--    STREET   -->
         <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4 class="card-title">Street: </h4>
             </div>
 
-            <div class="col-md-6">
-                    <span class="number"
-                          th:text="*{street}">Ivan Vazov
-                </span>
-            </div>
+            <div class="col-md-8 number" th:text="*{street}"/>
         </div>
-
+        <!--    STREET NUMBER   -->
         <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4 class="card-title">Street number: </h4>
             </div>
 
-            <div class="col-md-6">
-                    <span class="number"
-                          th:text="*{streetNumber}">10
-                </span>
-            </div>
+            <div class="col-md-8 number" th:text="*{streetNumber}"/>
         </div>
-
+        <!--    BUTTON   -->
         <div class=" d-flex mt-2 d-flex flex-column justify-content-center align-items-center">
             <a th:href="@{/users/my-account/edit/{user_id}(user_id=*{id})}">
                 <button class="btn btn-primary py-xxl-4 px-xxl-5"
@@ -111,7 +82,7 @@
                 </button>
             </a>
         </div>
-
+        <!--    DATE   -->
         <div class=" px-2 rounded mt-4 date d-flex flex-column justify-content-center align-items-center">
             <span class="join ">Joined on <th:block th:text="*{joinedOn}"></th:block></span>
         </div>
