@@ -30,6 +30,8 @@ public class UserDetailsDto {
 
     private String joinedOn;
 
+    private String user;
+
     public UserDetailsDto setId(String id) {
         this.id = id;
         return this;
@@ -92,5 +94,10 @@ public class UserDetailsDto {
 
     public String getName() {
         return firstName + " " + lastName;
+    }
+
+    public UserDetailsDto setUser(String user) {
+        this.user = user;
+        return this;
     }
 }

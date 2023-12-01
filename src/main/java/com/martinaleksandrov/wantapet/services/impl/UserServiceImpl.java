@@ -107,12 +107,14 @@ public class UserServiceImpl implements UserService {
         UserAddress address = optionalUser.get().getAddress();
 
         UserDetailsDto userDetails = this.modelMapper.map(optionalUser.get(), UserDetailsDto.class);
+        String userType = isAdmin(optionalUser.get()) ? "Admin" : "User";
 
         userDetails.setCountry(address.getCountryEnum().toString())
                 .setCity(address.getCity())
                 .setStreet(address.getStreet())
                 .setStreetNumber(address.getStreetNumber())
-                .setJoinedOn(optionalUser.get().getCreatedOn().toString());
+                .setJoinedOn(optionalUser.get().getCreatedOn().toString())
+                .setUser(userType);
 
         return userDetails;
     }
