@@ -1,4 +1,4 @@
-package com.martinaleksandrov.wantapet.services;
+package com.martinaleksandrov.wantapet.services.impl;
 
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
 import com.martinaleksandrov.wantapet.models.entities.UserRoleEntity;

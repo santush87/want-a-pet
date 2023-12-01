@@ -2,7 +2,7 @@ package com.martinaleksandrov.wantapet.config;
 
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.reporitories.UserRepository;
-import com.martinaleksandrov.wantapet.services.WantAPetUserDetailsService;
+import com.martinaleksandrov.wantapet.services.impl.WantAPetUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

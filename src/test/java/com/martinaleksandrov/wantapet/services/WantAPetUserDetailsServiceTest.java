@@ -6,6 +6,7 @@ import com.martinaleksandrov.wantapet.models.entities.UserRoleEntity;
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.models.enums.TypeOfUser;
 import com.martinaleksandrov.wantapet.reporitories.UserRepository;
+import com.martinaleksandrov.wantapet.services.impl.WantAPetUserDetailsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
