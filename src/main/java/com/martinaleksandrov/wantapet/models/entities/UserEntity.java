@@ -55,9 +55,7 @@ public class UserEntity extends BaseEntity {
     private List<UserRoleEntity> roles = new ArrayList<>();
 
     public UserEntity() {
-//        this.pets = new ArrayList<>();
         this.createdOn = LocalDate.now();
-//        this.roles = new ArrayList<>().add(UserRoleEntity.);
     }
 
     public UserEntity setEmail(String email) {

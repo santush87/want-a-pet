@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,6 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.format.annotation.NumberFormat;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @PasswordMatch
 public class UserRegisterDto extends BaseRegistrationDetails{
@@ -27,4 +27,19 @@ public class UserRegisterDto extends BaseRegistrationDetails{
 
 //    @PasswordMatch
     private String confirmPassword;
+
+    public UserRegisterDto setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public UserRegisterDto setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public UserRegisterDto setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+        return this;
+    }
 }
