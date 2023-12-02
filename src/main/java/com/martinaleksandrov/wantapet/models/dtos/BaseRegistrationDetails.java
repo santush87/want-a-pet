@@ -1,14 +1,11 @@
 package com.martinaleksandrov.wantapet.models.dtos;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
-public abstract class BaseRegistrationDetails {
+public class BaseRegistrationDetails {
 
     //    @NotBlank
     @Size(min = 2, max = 20, message = "First name must be between 2 and 20 characters!")
@@ -36,4 +33,44 @@ public abstract class BaseRegistrationDetails {
     private String street;
 
     private String streetNumber;
+
+    public BaseRegistrationDetails setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public BaseRegistrationDetails setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public BaseRegistrationDetails setUserType(String userType) {
+        this.userType = userType;
+        return this;
+    }
+
+    public BaseRegistrationDetails setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public BaseRegistrationDetails setCountry(String country) {
+        this.country = country;
+        return this;
+    }
+
+    public BaseRegistrationDetails setCity(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public BaseRegistrationDetails setStreet(String street) {
+        this.street = street;
+        return this;
+    }
+
+    public BaseRegistrationDetails setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+        return this;
+    }
 }

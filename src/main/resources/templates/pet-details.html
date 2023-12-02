@@ -59,6 +59,7 @@
             <!--    BUTTONS   -->
             <div class="row text-center margin-right-auto margin-left-auto"
                  style="margin-bottom: 20px">
+                <!--    ADOPT    -->
                 <div class="col-md-3 margin-right-auto"
                      th:if="*{canAdopt}">
                     <form th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}"
@@ -68,11 +69,13 @@
                         </button>
                     </form>
                 </div>
+                <!--    EDIT    -->
                 <div class="col-md-3 margin-right-auto" th:if="*{viewerIsOwner}">
                     <a th:href="@{/catalog/edit/{pet_id}(pet_id=*{id})}">
                         <button class="thebuttons btn btn-primary">Edit</button>
                     </a>
                 </div>
+                <!--    DELETE    -->
                 <div class="col-md-3 margin-right-auto" th:if="*{viewerIsOwner}">
                     <form th:method="post"
                           th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}">
