@@ -25,7 +25,7 @@ public interface PetService {
 
     List<PetViewModelDto> getAllMyPets(UserDetails viewer);
 
-    void deletePet(Long id, UserDetails userDetails);
+    void deletePet(Long id, String viewersUsername);
 
     void editPet(Long id, PetCreatingDto petCreatingDto);
 }

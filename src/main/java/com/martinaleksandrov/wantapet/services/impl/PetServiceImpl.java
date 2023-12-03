@@ -168,8 +168,8 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public void deletePet(Long id, UserDetails userDetails) {
-        boolean owner = isOwner(id, userDetails.getUsername());
+    public void deletePet(Long id, String viewersUsername) {
+        boolean owner = isOwner(id, viewersUsername);
         if (owner) {
             this.petRepository.deleteById(id);
         }

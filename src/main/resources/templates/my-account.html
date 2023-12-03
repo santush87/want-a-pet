@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/commons::head}"></head>
+<head th:replace="~{/fragments/commons::head}"></head>
 
 <body class="thebody">
-<header th:replace="~{fragments/commons::nav}"></header>
+<header th:replace="~{/fragments/commons::nav}"></header>
 
 <div class="container p-3 d-flex justify-content-center"
      th:object="${userDetails}">
@@ -96,6 +96,6 @@
     </div>
 </div>
 
-<footer th:replace="~{fragments/commons::footer}"></footer>
+<footer th:replace="~{/fragments/commons::footer}"></footer>
 </body>
 </html>

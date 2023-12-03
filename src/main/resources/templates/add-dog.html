@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/head}"></head>
+<head th:replace="~{/fragments/commons::head}"></head>
 
 <body style="background-image: url(/images/5-dogs.jpg)">
 
-<header th:replace="~{fragments/commons::nav}"></header>
+<header th:replace="~{/fragments/commons::nav}"></header>
 
 <div class="page-wrapper bg-transparent p-t-45 p-b-50" style="background: url(/images/3-dogs.jpg) center">
     <div class="wrapper wrapper--w790">
@@ -19,13 +19,13 @@
                       th:action="@{/add/dog}"
                       th:object="${petCreatingDto}">
 
-                    <div th:replace="/fragments/addingPetForm"/>
+                    <div th:replace="~{/fragments/addingPetForm}"/>
 
                 </form>
             </div>
         </div>
     </div>
 </div>
-<footer th:replace="~{fragments/commons::footer}"></footer>
+<footer th:replace="~{/fragments/commons::footer}"></footer>
 </body>
 </html>

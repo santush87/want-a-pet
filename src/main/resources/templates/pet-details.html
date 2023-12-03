@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="~{fragments/commons::head}"></head>
+<head th:replace="~{/fragments/commons::head}"></head>
 <body class="thebody">
-<nav th:replace="~{fragments/commons::nav}"></nav>
+<nav th:replace="~{/fragments/commons::nav}"></nav>
 
 <div class="container-fluid moveup">
     <h2 class="thetitle">Details</h2>
@@ -70,13 +70,15 @@
                     </form>
                 </div>
                 <!--    EDIT    -->
-                <div class="col-md-3 margin-right-auto" th:if="*{viewerIsOwner}">
+                <div class="col-md-3 margin-right-auto"
+                     th:if="*{viewerIsOwner}">
                     <a th:href="@{/catalog/edit/{pet_id}(pet_id=*{id})}">
                         <button class="thebuttons btn btn-primary">Edit</button>
                     </a>
                 </div>
                 <!--    DELETE    -->
-                <div class="col-md-3 margin-right-auto" th:if="*{viewerIsOwner}">
+                <div class="col-md-3 margin-right-auto"
+                     th:if="*{viewerIsOwner}">
                     <form th:method="post"
                           th:action="@{/catalog/details/{pet_id}(pet_id=*{id})}">
                         <button class="thebuttons btn btn-primary"
@@ -90,6 +92,6 @@
         <!--    EO: TEXT   -->
     </div>
 </div>
-<footer th:replace="~{fragments/commons::footer}"></footer>
+<footer th:replace="~{/fragments/commons::footer}"></footer>
 </body>
 </html>

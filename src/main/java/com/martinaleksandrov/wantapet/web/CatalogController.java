@@ -84,14 +84,13 @@ public class CatalogController {
         return modelAndView;
     }
 
-//    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
     @PostMapping("/details/{id}")
     public ModelAndView delete(@PathVariable("id") Long id,
                                @AuthenticationPrincipal UserDetails principal) {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/catalog/cats-and-dogs");
 
-        this.petService.deletePet(id, principal);
+        this.petService.deletePet(id, principal.getUsername());
 
         return modelAndView;
     }
@@ -106,13 +105,12 @@ public class CatalogController {
         return modelAndView;
     }
 
-    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
+//    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
     @PostMapping("/edit/{id}")
     public ModelAndView editPet(@Valid PetCreatingDto petCreatingDto,
                                 BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes,
-                                @PathVariable("id") Long id,
-                                @AuthenticationPrincipal UserDetails principal) {
+                                @PathVariable("id") Long id) {
 
 
         if (bindingResult.hasErrors()) {

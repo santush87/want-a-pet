@@ -51,7 +51,7 @@ public class AddController {
             return new ModelAndView("redirect:/add/dog");
         }
 
-        this.petService.addDog(petCreatingDto, owner);
+        this.petService.addDog(petCreatingDto, owner.getUsername());
         return new ModelAndView("redirect:/catalog");
     }
 
@@ -74,7 +74,7 @@ public class AddController {
             return new ModelAndView("redirect:/add/cat");
         }
 
-        this.petService.addCat(petCreatingDto, owner);
+        this.petService.addCat(petCreatingDto, owner.getUsername());
         return new ModelAndView("redirect:/catalog");
     }
 }
