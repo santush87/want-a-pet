@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface PetService {
 
-    void addDog(PetCreatingDto petCreatingDto, UserDetails owner);
+    void addDog(PetCreatingDto petCreatingDto, String owner);
 
-    void addCat(PetCreatingDto petCreatingDto, UserDetails owner);
+    void addCat(PetCreatingDto petCreatingDto, String owner);
 
     List<PetViewModelDto> getAllPets();
 
@@ -19,13 +19,13 @@ public interface PetService {
 
     List<PetViewModelDto> getAllCats();
 
-    PetDetailsDto getPetDetails(Long id, UserDetails viewer);
+    PetDetailsDto getPetDetails(Long id, String viewer);
 
     boolean isOwner(Long id, String username);
 
     List<PetViewModelDto> getAllMyPets(UserDetails viewer);
 
-    void deletePet(Long id);
+    void deletePet(Long id, UserDetails userDetails);
 
     void editPet(Long id, PetCreatingDto petCreatingDto);
 }

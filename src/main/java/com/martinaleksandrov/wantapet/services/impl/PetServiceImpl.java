@@ -28,20 +28,20 @@ public class PetServiceImpl implements PetService {
     private final UserService userService;
 
     @Override
-    public void addDog(PetCreatingDto petCreatingDto, UserDetails owner) {
+    public void addDog(PetCreatingDto petCreatingDto, String owner) {
         addPet(petCreatingDto, PetType.DOG, owner);
     }
 
     @Override
-    public void addCat(PetCreatingDto petCreatingDto, UserDetails owner) {
+    public void addCat(PetCreatingDto petCreatingDto, String owner) {
         addPet(petCreatingDto, PetType.CAT, owner);
     }
 
-    private void addPet(PetCreatingDto petCreatingDto, PetType petType, UserDetails owner) {
+    public void addPet(PetCreatingDto petCreatingDto, PetType petType, String owner) {
 
-        UserEntity theOwner = this.userService.findByEmail(owner.getUsername())
+        UserEntity theOwner = this.userService.findByEmail(owner)
                 .orElseThrow(() -> new UsernameNotFoundException("User with email "
-                        + owner.getUsername() + " not found!"));
+                        + owner + " not found!"));
 
         PetEntity pet = this.modelMapper.map(petCreatingDto, PetEntity.class);
 
@@ -93,7 +93,7 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public PetDetailsDto getPetDetails(Long id, UserDetails viewer) {
+    public PetDetailsDto getPetDetails(Long id, String viewer) {
         Optional<PetEntity> optionalPet = this.petRepository.findById(id);
 
         if (optionalPet.isEmpty()) {
@@ -107,8 +107,8 @@ public class PetServiceImpl implements PetService {
 
         pet.setOwnersEmail(user.get().getEmail());
 
-        boolean isOwner = isOwner(optionalPet.get(), viewer.getUsername());
-        pet.setCanAdopt(canAdopt(optionalPet.get(), viewer.getUsername()));
+        boolean isOwner = isOwner(optionalPet.get(), viewer);
+        pet.setCanAdopt(canAdopt(optionalPet.get(), viewer));
         pet.setViewerIsOwner(isOwner);
 
         return pet;
@@ -168,8 +168,11 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public void deletePet(Long id) {
-        this.petRepository.deleteById(id);
+    public void deletePet(Long id, UserDetails userDetails) {
+        boolean owner = isOwner(id, userDetails.getUsername());
+        if (owner) {
+            this.petRepository.deleteById(id);
+        }
     }
 
     @Override

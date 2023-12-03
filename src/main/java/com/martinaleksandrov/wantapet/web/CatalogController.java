@@ -77,21 +77,21 @@ public class CatalogController {
                                 @AuthenticationPrincipal UserDetails viewer) {
         ModelAndView modelAndView = new ModelAndView("pet-details");
 
-        PetDetailsDto petDetails = this.petService.getPetDetails(id, viewer);
+        PetDetailsDto petDetails = this.petService.getPetDetails(id, viewer.getUsername());
 
         modelAndView.addObject("petDetails", petDetails);
 
         return modelAndView;
     }
 
-    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
+//    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
     @PostMapping("/details/{id}")
     public ModelAndView delete(@PathVariable("id") Long id,
                                @AuthenticationPrincipal UserDetails principal) {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/catalog/cats-and-dogs");
 
-        this.petService.deletePet(id);
+        this.petService.deletePet(id, principal);
 
         return modelAndView;
     }
@@ -100,7 +100,7 @@ public class CatalogController {
     public ModelAndView editPage(@PathVariable("id") Long id,
                                  @AuthenticationPrincipal UserDetails viewer) {
         ModelAndView modelAndView = new ModelAndView("edit-pet");
-        PetDetailsDto petDetails = this.petService.getPetDetails(id, viewer);
+        PetDetailsDto petDetails = this.petService.getPetDetails(id, viewer.getUsername());
         modelAndView.addObject("petDetails", petDetails);
 
         return modelAndView;
