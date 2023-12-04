@@ -19,7 +19,7 @@ spring:
       ddl-auto: update
   sql:
     init:
-      mode: never
+      mode: always
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect

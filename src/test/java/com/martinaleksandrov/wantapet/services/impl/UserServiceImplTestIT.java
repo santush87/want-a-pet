@@ -44,7 +44,6 @@ class UserServiceImplTestIT {
                 .setConfirmPassword("test1234");
 
         this.userService.register(userDto);
-
     }
 
     @AfterEach
