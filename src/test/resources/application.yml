@@ -3,6 +3,9 @@ spring:
     hibernate:
       ddl-auto: create-drop
     defer-datasource-initialization: true
+    show-sql: true
+  datasource:
+    url: jdbc:hsqldb:mem:testdb;sql.syntax_mys=true
   sql:
     init:
       mode: never
@@ -10,7 +13,11 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
 
-  wantapet:
-    default.admin.pass: topsecret
-    remember.me.key: topsecret
+wantapet:
+  default.admin.pass: parola
+  remember.me.key: parola
