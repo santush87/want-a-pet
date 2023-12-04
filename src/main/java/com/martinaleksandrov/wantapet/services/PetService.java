@@ -23,7 +23,7 @@ public interface PetService {
 
     boolean isOwner(Long id, String username);
 
-    List<PetViewModelDto> getAllMyPets(UserDetails viewer);
+    List<PetViewModelDto> getAllMyPets(String viewer);
 
     void deletePet(Long id, String viewersUsername);
 

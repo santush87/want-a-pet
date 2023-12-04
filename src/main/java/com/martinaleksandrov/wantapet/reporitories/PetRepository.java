@@ -12,4 +12,5 @@ public interface PetRepository extends JpaRepository<PetEntity, Long> {
 
     List<PetEntity> findAllByType(PetType petType);
 
+    PetEntity findByName(String name);
 }

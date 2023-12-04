@@ -155,12 +155,12 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public List<PetViewModelDto> getAllMyPets(UserDetails viewer) {
+    public List<PetViewModelDto> getAllMyPets(String viewer) {
         List<PetEntity> all = this.petRepository.findAll();
         List<PetViewModelDto> pets = getPets(all);
         List<PetViewModelDto> myPets = new ArrayList<>();
         for (PetViewModelDto pet : pets) {
-            if (pet.getOwner().equals(viewer.getUsername())) {
+            if (pet.getOwner().equals(viewer)) {
                 myPets.add(pet);
             }
         }

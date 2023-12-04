@@ -66,7 +66,7 @@ public class CatalogController {
     public ModelAndView myPets(@AuthenticationPrincipal UserDetails viewer) {
         ModelAndView modelAndView = new ModelAndView("catalog-my-pets");
 
-        List<PetViewModelDto> pets = this.petService.getAllMyPets(viewer);
+        List<PetViewModelDto> pets = this.petService.getAllMyPets(viewer.getUsername());
         modelAndView.addObject("pets", pets);
 
         return modelAndView;
