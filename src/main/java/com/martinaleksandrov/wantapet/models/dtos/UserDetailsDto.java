@@ -15,7 +15,6 @@ public class UserDetailsDto {
 
     private String password;
 
-
     private String userType;
 
     private String phoneNumber;
@@ -31,6 +30,10 @@ public class UserDetailsDto {
     private String joinedOn;
 
     private String user;
+
+    private int uploadedPets;
+
+    private int adoptedPets;
 
     public UserDetailsDto setId(String id) {
         this.id = id;
@@ -98,6 +101,16 @@ public class UserDetailsDto {
 
     public UserDetailsDto setUser(String user) {
         this.user = user;
+        return this;
+    }
+
+    public UserDetailsDto setUploadedPets(int uploadedPets) {
+        this.uploadedPets = uploadedPets;
+        return this;
+    }
+
+    public UserDetailsDto setAdoptedPets(int adoptedPets) {
+        this.adoptedPets = adoptedPets;
         return this;
     }
 }

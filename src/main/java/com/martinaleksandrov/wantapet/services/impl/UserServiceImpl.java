@@ -4,15 +4,17 @@ package com.martinaleksandrov.wantapet.services.impl;
 import com.martinaleksandrov.wantapet.models.dtos.UserDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserEditDto;
 import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
-import com.martinaleksandrov.wantapet.models.entities.UserAddress;
-import com.martinaleksandrov.wantapet.models.entities.UserEntity;
-import com.martinaleksandrov.wantapet.models.entities.UserRoleEntity;
+import com.martinaleksandrov.wantapet.models.entities.*;
 import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.models.enums.TypeOfUser;
+import com.martinaleksandrov.wantapet.reporitories.AdoptionRepository;
+import com.martinaleksandrov.wantapet.reporitories.PetRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRoleRepository;
 import com.martinaleksandrov.wantapet.services.AddressService;
+import com.martinaleksandrov.wantapet.services.AdoptedPetsService;
+import com.martinaleksandrov.wantapet.services.PetService;
 import com.martinaleksandrov.wantapet.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -30,6 +32,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
+    private final AdoptionRepository adoptionRepository;
+    private final PetRepository petRepository;
     private final AddressService addressService;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
@@ -108,14 +112,22 @@ public class UserServiceImpl implements UserService {
 
         UserDetailsDto userDetails = this.modelMapper.map(optionalUser.get(), UserDetailsDto.class);
         String userType = isAdmin(optionalUser.get()) ? "Admin" : "User";
+        String id = optionalUser.get().getId();
+        List<AdoptedPetsEntity> allByNewOwnerId = this.adoptionRepository.findAllByNewOwnerId(id);
+        int newUserAdoptedPets = allByNewOwnerId.size();
+
+        List<PetEntity> allByOwnerId = this.petRepository.findAllByOwnerId(id);
+        int allUploadedPets = allByOwnerId.size();
+//        this.adoptionRepository.findAllByPrevOwnerId()
 
         userDetails.setCountry(address.getCountryEnum().toString())
                 .setCity(address.getCity())
                 .setStreet(address.getStreet())
                 .setStreetNumber(address.getStreetNumber())
                 .setJoinedOn(optionalUser.get().getCreatedOn().toString())
-                .setUser(userType);
-
+                .setUser(userType)
+                .setAdoptedPets(newUserAdoptedPets)
+                .setUploadedPets(allUploadedPets);
         return userDetails;
     }
 
@@ -144,5 +156,18 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+//    @Override
+//    public int getAdoptedPetsCount(String username) {
+//        Optional<UserEntity> user = findByEmail(username);
+//        List<AdoptedPetsEntity> allByNewOwnerId =
+//                this.adoptionRepository.findAllByNewOwnerId(user.get().getEmail());
+//        return allByNewOwnerId.size();
+//    }
+//
+//    @Override
+//    public int getUploadedPetsCount(String username) {
+//        return this.petService.getAllMyPets(username).size();
+//    }
 }
 
