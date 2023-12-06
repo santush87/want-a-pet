@@ -7,12 +7,14 @@ import com.martinaleksandrov.wantapet.services.AdoptedPetsService;
 import com.martinaleksandrov.wantapet.services.PetService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -51,14 +53,11 @@ public class CatalogController {
         return modelAndView;
     }
 
-    // For Pagination -  @PageableDefault(size = 3) Pageable pageable
     @GetMapping("/cats-and-dogs")
     public ModelAndView catAndDogcatalog() {
         ModelAndView modelAndView = new ModelAndView("catalog-dogs-cats");
 
         List<PetViewModelDto> pets = this.petService.getAllPets();
-//        Page<PetViewModelDto> pets = this.petService.getAllPets(pageable);
-//        System.out.println(pets.getTotalPages());
         modelAndView.addObject("pets", pets);
 
         return modelAndView;
@@ -107,7 +106,6 @@ public class CatalogController {
         return modelAndView;
     }
 
-//    @PreAuthorize("@petService.isOwner(#id, #principal.username)")
     @PostMapping("/edit/{id}")
     public ModelAndView editPet(@Valid PetCreatingDto petCreatingDto,
                                 BindingResult bindingResult,
@@ -133,6 +131,6 @@ public class CatalogController {
 
         this.adoptedPetsService.adoptPet(id, viewer.getUsername());
 
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/catalog/cats-and-dogs");
     }
 }
