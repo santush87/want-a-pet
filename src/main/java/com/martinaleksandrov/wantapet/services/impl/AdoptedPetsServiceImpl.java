@@ -31,6 +31,7 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
         adoptedPetsEntity.setPetsName(petForAdoption.getName());
         adoptedPetsEntity.setPetsBreed(petForAdoption.getBreed());
         adoptedPetsEntity.setPetsImage(petForAdoption.getImage());
+        adoptedPetsEntity.setAge(petForAdoption.getAge());
         adoptedPetsEntity.setNewOwner(newOwner.get());
         adoptedPetsEntity.setPrevOwner(prevOwner);
 
