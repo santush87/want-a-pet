@@ -4,10 +4,14 @@ import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Table(name = "roles")
 @Entity
 @Getter
+@Setter
+@SuperBuilder
 @NoArgsConstructor
 public class UserRoleEntity{
 
@@ -20,15 +24,5 @@ public class UserRoleEntity{
 
     public UserRoleEntity(RoleEnum role) {
         this.role = role;
-    }
-
-    public UserRoleEntity setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public UserRoleEntity setRole(RoleEnum role) {
-        this.role = role;
-        return this;
     }
 }

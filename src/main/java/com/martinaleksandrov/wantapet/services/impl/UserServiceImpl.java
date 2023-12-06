@@ -13,8 +13,6 @@ import com.martinaleksandrov.wantapet.reporitories.PetRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRoleRepository;
 import com.martinaleksandrov.wantapet.services.AddressService;
-import com.martinaleksandrov.wantapet.services.AdoptedPetsService;
-import com.martinaleksandrov.wantapet.services.PetService;
 import com.martinaleksandrov.wantapet.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -78,11 +76,9 @@ public class UserServiceImpl implements UserService {
 
         List<UserEntity> allUsers = this.userRepository.findAll();
 
-        List<UserRegisterDto> usersToShow = allUsers.stream()
+        return allUsers.stream()
                 .map(userEntity -> this.modelMapper.map(userEntity, UserRegisterDto.class))
                 .collect(Collectors.toList());
-
-        return usersToShow;
     }
 
     @Override
@@ -156,18 +152,5 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
-
-//    @Override
-//    public int getAdoptedPetsCount(String username) {
-//        Optional<UserEntity> user = findByEmail(username);
-//        List<AdoptedPetsEntity> allByNewOwnerId =
-//                this.adoptionRepository.findAllByNewOwnerId(user.get().getEmail());
-//        return allByNewOwnerId.size();
-//    }
-//
-//    @Override
-//    public int getUploadedPetsCount(String username) {
-//        return this.petService.getAllMyPets(username).size();
-//    }
 }
 

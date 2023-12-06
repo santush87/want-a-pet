@@ -13,7 +13,6 @@ import com.martinaleksandrov.wantapet.services.PetService;
 import com.martinaleksandrov.wantapet.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -50,20 +49,6 @@ public class PetServiceImpl implements PetService {
         this.petRepository.save(pet);
     }
 
-    /***    PETS IN PAGES    ***/
-//    public Page<PetViewModelDto> getAllPets(Pageable pageable) {
-//
-//        return this.petRepository.findAll(pageable)
-//                .map(pet -> this.modelMapper.map(pet, PetViewModelDto.class));
-//    }
-
-//    public Page<PetViewModelDto> getAllDogs(Pageable pageable) {
-////        List<PetEntity> allDogs = this.petRepository.findAllByType(PetType.DOG);
-//        return this.petRepository.findAllByTypeDog()
-//                .map(pet -> this.modelMapper.map(pet, PetViewModelDto.class));
-//    }
-
-    /***    PETS IN LIST    ***/
     @Override
     public List<PetViewModelDto> getAllPets() {
         List<PetEntity> all = this.petRepository.findAll();
@@ -94,21 +79,20 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public PetDetailsDto getPetDetails(Long id, String viewer) {
-        Optional<PetEntity> optionalPet = this.petRepository.findById(id);
+        PetEntity petEntity = this.petRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Pet with id " + id + " not found!"));
 
-        if (optionalPet.isEmpty()) {
-            throw new NoSuchElementException("Pet with id " + id + " not found!");
-        }
 
-        PetDetailsDto pet = this.modelMapper.map(optionalPet, PetDetailsDto.class);
-        pet.setWeight(optionalPet.get().getWeight().name.toString());
+        PetDetailsDto pet = this.modelMapper.map(petEntity, PetDetailsDto.class);
+        pet.setWeight(petEntity.getWeight().name);
 
-        Optional<UserEntity> user = this.userService.findById(optionalPet.get().getOwner().getId());
+        UserEntity user = this.userService.findById(petEntity.getOwner().getId())
+                .orElseThrow(() -> new UsernameNotFoundException("User with id: " + petEntity.getOwner().getId() + " not found!"));
 
-        pet.setOwnersEmail(user.get().getEmail());
+        pet.setOwnersEmail(user.getEmail());
 
-        boolean isOwner = isOwner(optionalPet.get(), viewer);
-        pet.setCanAdopt(canAdopt(optionalPet.get(), viewer));
+        boolean isOwner = isOwner(petEntity, viewer);
+        pet.setCanAdopt(canAdopt(petEntity, viewer));
         pet.setViewerIsOwner(isOwner);
 
         return pet;
@@ -148,10 +132,7 @@ public class PetServiceImpl implements PetService {
             // missing pets are meaningless
             return false;
         }
-        if (!pet.getOwner().getEmail().equals(username)) {
-            return true;
-        }
-        return false;
+        return !pet.getOwner().getEmail().equals(username);
     }
 
     @Override
@@ -179,14 +160,16 @@ public class PetServiceImpl implements PetService {
     public void editPet(Long id, PetCreatingDto petCreatingDto) {
         Optional<PetEntity> optionalPet = this.petRepository.findById(id);
         if (optionalPet.isPresent()) {
-            PetEntity pet = optionalPet.get();
-            pet.setName(petCreatingDto.getName())
-                    .setBreed(petCreatingDto.getBreed())
-                    .setImage(petCreatingDto.getImage())
-                    .setGender(GenderEnum.valueOf(petCreatingDto.getGender()))
-                    .setAge(Integer.parseInt(petCreatingDto.getAge()))
-                    .setWeight(WeightRange.valueOf(petCreatingDto.getWeight()))
-                    .setDescription(petCreatingDto.getDescription());
+
+            PetEntity pet = PetEntity.builder()
+                    .name(petCreatingDto.getName())
+                    .breed(petCreatingDto.getBreed())
+                    .image(petCreatingDto.getImage())
+                    .gender(GenderEnum.valueOf(petCreatingDto.getGender()))
+                    .age(Integer.parseInt(petCreatingDto.getAge()))
+                    .weight(WeightRange.valueOf(petCreatingDto.getWeight()))
+                    .description(petCreatingDto.getDescription())
+                    .build();
 
             this.petRepository.save(pet);
         }

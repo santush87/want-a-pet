@@ -61,6 +61,7 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
                     .owner(owner.getName())
                     .petsBreed(pet.getPetsBreed())
                     .petsImage(pet.getPetsImage())
+                    .age(pet.getAge())
                     .petsName(pet.getPetsName())
                     .adoptionDate(pet.getAdoptionDate().toString())
                     .build();

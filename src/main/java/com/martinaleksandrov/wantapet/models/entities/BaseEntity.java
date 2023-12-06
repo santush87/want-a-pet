@@ -4,11 +4,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 @MappedSuperclass
 @Getter
-public class BaseEntity {
+@Setter
+public class BaseEntity{
 
     @Id
     @GeneratedValue(generator = "uuid-string")
@@ -16,8 +18,4 @@ public class BaseEntity {
             strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    public BaseEntity setId(String id) {
-        this.id = id;
-        return this;
-    }
 }

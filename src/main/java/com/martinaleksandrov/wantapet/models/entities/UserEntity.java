@@ -44,9 +44,6 @@ public class UserEntity extends BaseEntity {
     @CurrentTimestamp
     private LocalDate createdOn;
 
-//    @OneToMany()
-//    private List<PetEntity> pets;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
