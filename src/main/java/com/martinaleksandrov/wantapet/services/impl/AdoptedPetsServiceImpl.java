@@ -10,7 +10,7 @@ import com.martinaleksandrov.wantapet.services.AdoptedPetsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -22,31 +22,21 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
 
     @Override
     public void adoptPet(Long id, String ownerToBe) {
-        AdoptedPetsEntity adoptedPetsEntity = new AdoptedPetsEntity();
 
-        PetEntity petForAdoption = this.petRepository.findById(id).get();
-        Optional<UserEntity> newOwner = this.userRepository.findByEmail(ownerToBe);
+        PetEntity petForAdoption = this.petRepository.findById(id).orElseThrow();
+        UserEntity newOwner = this.userRepository.findByEmail(ownerToBe).orElseThrow();
         UserEntity prevOwner = petForAdoption.getOwner();
 
-        adoptedPetsEntity.setPetsName(petForAdoption.getName());
-        adoptedPetsEntity.setPetsBreed(petForAdoption.getBreed());
-        adoptedPetsEntity.setPetsImage(petForAdoption.getImage());
-        adoptedPetsEntity.setAge(petForAdoption.getAge());
-        adoptedPetsEntity.setNewOwner(newOwner.get());
-        adoptedPetsEntity.setPrevOwner(prevOwner);
+        AdoptedPetsEntity adoptedPetsEntity = AdoptedPetsEntity.builder()
+                .petsName(petForAdoption.getName())
+                .age(petForAdoption.getAge())
+                .petsBreed(petForAdoption.getBreed())
+                .petsImage(petForAdoption.getImage())
+                .newOwner(newOwner)
+                .prevOwner(prevOwner)
+                .adoptionDate(LocalDate.now())
+                .build();
 
         this.adoptionRepository.save(adoptedPetsEntity);
     }
-
-//    @Override
-//    public int getAdoptedPetsCount(String username) {
-//        Optional<UserEntity> user = this.userService.findByEmail(username);
-//        List<AdoptedPetsEntity> allByNewOwnerId = this.adoptionRepository.findAllByNewOwnerId(user.get().getEmail());
-//        return allByNewOwnerId.size();
-//    }
-//
-//    @Override
-//    public int getUploadedPetsCount(String username) {
-//        return this.petService.getAllMyPets(username).size();
-//    }
 }

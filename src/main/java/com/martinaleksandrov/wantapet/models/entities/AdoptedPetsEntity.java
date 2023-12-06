@@ -3,7 +3,9 @@ package com.martinaleksandrov.wantapet.models.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
@@ -11,6 +13,8 @@ import java.time.LocalDate;
 @Table(name = "adopted_pets")
 @Getter
 @Setter
+@NoArgsConstructor
+@SuperBuilder
 public class AdoptedPetsEntity {
 
     @Id
@@ -38,8 +42,4 @@ public class AdoptedPetsEntity {
 
     @Column
     private LocalDate adoptionDate;
-
-    public AdoptedPetsEntity() {
-        this.adoptionDate = LocalDate.now();
-    }
 }
