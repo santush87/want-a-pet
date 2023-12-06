@@ -38,5 +38,6 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
                 .build();
 
         this.adoptionRepository.save(adoptedPetsEntity);
+        this.petRepository.deleteById(id);
     }
 }
