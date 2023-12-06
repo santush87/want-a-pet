@@ -102,4 +102,8 @@ public class UserEntity extends BaseEntity {
         this.roles = roles;
         return this;
     }
+
+    public String getName(){
+        return this.firstName + " " + this.lastName;
+    }
 }
