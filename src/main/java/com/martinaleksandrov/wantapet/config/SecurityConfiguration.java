@@ -1,6 +1,5 @@
 package com.martinaleksandrov.wantapet.config;
 
-import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
 import com.martinaleksandrov.wantapet.reporitories.UserRepository;
 import com.martinaleksandrov.wantapet.services.impl.WantAPetUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -34,11 +33,9 @@ public class SecurityConfiguration {
                         // Allow anyone to see the home page, the registration page and the login form
                         .requestMatchers("/","/login", "/register", "/login-error").permitAll()
                         .requestMatchers("/catalog", "/catalog/dogs", "/catalog/cats", "/catalog/cats-and-dogs").permitAll()
-                        .requestMatchers("/catalog/my-pets", "/catalog/edit/**").authenticated()
-                        .requestMatchers("/catalog/**").authenticated()
+                        .requestMatchers("/catalog/my-pets", "/catalog/edit/**", "/catalog/my-adopted-pets").authenticated()
                         .requestMatchers("/users/my-account", "/users/my-account/edit/**").authenticated()
                         .requestMatchers("/add/cat", "/add/dog").authenticated()
-                        .requestMatchers("/all-users").hasRole(RoleEnum.ADMIN.name())
                         // all other requests are authenticated.
                         .anyRequest().authenticated()
         ).formLogin(
