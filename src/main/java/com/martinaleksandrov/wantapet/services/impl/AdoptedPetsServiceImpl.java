@@ -9,7 +9,6 @@ import com.martinaleksandrov.wantapet.reporitories.PetRepository;
 import com.martinaleksandrov.wantapet.reporitories.UserRepository;
 import com.martinaleksandrov.wantapet.services.AdoptedPetsService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +23,6 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
     private final UserRepository userRepository;
     private final PetRepository petRepository;
     private final AdoptionRepository adoptionRepository;
-    private final ModelMapper modelMapper;
 
     @Override
     public void adoptPet(Long id, String ownerToBe) {
@@ -66,9 +64,6 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
                     .petsName(pet.getPetsName())
                     .adoptionDate(pet.getAdoptionDate().toString())
                     .build();
-//                    this.modelMapper.map(pet, AdoptedPetsViewDto.class);
-
-//            petsViewDto.setOwner(owner.getName());
 
             UserEntity prevUser =
                     this.userRepository.findByEmail(pet.getPrevOwner().getEmail())
