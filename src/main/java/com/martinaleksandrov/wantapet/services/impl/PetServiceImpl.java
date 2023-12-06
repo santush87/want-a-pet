@@ -191,5 +191,11 @@ public class PetServiceImpl implements PetService {
             this.petRepository.save(pet);
         }
     }
+
+    @Override
+    public PetEntity getPet(Long id) {
+        return this.petRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("No pet with id: " + id + " found!"));
+    }
 }
 

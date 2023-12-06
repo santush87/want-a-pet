@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/users/my-account/edit/{id}")
-    public ModelAndView editPage(@PathVariable("id") String id,
+    public ModelAndView getEditPage(@PathVariable("id") String id,
                                  @AuthenticationPrincipal UserDetails viewer) {
 
         ModelAndView modelAndView = new ModelAndView("edit-user");

@@ -17,4 +17,6 @@ public interface UserService {
     Optional<UserEntity> findByEmail(String email);
     UserDetailsDto getUserDetails(String username);
     boolean editUser(String id, UserEditDto userEditDto);
+//    int getAdoptedPetsCount(String username);
+//    int getUploadedPetsCount(String username);
 }

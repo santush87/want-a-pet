@@ -3,6 +3,7 @@ package com.martinaleksandrov.wantapet.web;
 import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
 import com.martinaleksandrov.wantapet.models.dtos.PetDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.PetViewModelDto;
+import com.martinaleksandrov.wantapet.services.AdoptedPetsService;
 import com.martinaleksandrov.wantapet.services.PetService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.List;
 public class CatalogController {
 
     private final PetService petService;
+    private final AdoptedPetsService adoptedPetsService;
 
     @GetMapping
     public ModelAndView catalog() {
@@ -123,5 +125,14 @@ public class CatalogController {
         this.petService.editPet(id, petCreatingDto);
 
         return new ModelAndView("redirect:/catalog/details/" + id);
+    }
+
+    @PostMapping("/adopt/{id}")
+    public ModelAndView adoptPet(@PathVariable("id") Long id,
+                                 @AuthenticationPrincipal UserDetails viewer){
+
+        this.adoptedPetsService.adoptPet(id, viewer.getUsername());
+
+        return new ModelAndView("redirect:/");
     }
 }

@@ -158,6 +158,22 @@
                            class="text-danger fa-2x">Street number error message</small>
                 </div>
             </div>
+            <!--    My Uploaded Pets    -->
+            <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
+                <div class="col-md-4">
+                    <h4 class="card-title">My Uploaded Pets: </h4>
+                </div>
+
+                <div class="col-md-8 number" th:text="*{uploadedPets}"/>
+            </div>
+            <!--    My Adopted Pets    -->
+            <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
+                <div class="col-md-4">
+                    <h4 class="card-title">My Adopted Pets: </h4>
+                </div>
+
+                <div class="col-md-8 number" th:text="*{adoptedPets}"/>
+            </div>
             <!--    BUTTONS   -->
             <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
                 <div class="col-auto">

@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/","/login", "/register", "/login-error").permitAll()
                         .requestMatchers("/catalog", "/catalog/dogs", "/catalog/cats", "/catalog/cats-and-dogs").permitAll()
                         .requestMatchers("/catalog/my-pets", "/catalog/edit/**").authenticated()
+                        .requestMatchers("/catalog/**").authenticated()
                         .requestMatchers("/users/my-account", "/users/my-account/edit/**").authenticated()
                         .requestMatchers("/add/cat", "/add/dog").authenticated()
                         .requestMatchers("/all-users").hasRole(RoleEnum.ADMIN.name())

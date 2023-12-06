@@ -44,6 +44,12 @@ body {
     margin-left: 10px;
 }
 
+.thename{
+    font-size: x-large;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
 .welcome {
     font-family: 'Roboto', sans-serif;
     position: relative;

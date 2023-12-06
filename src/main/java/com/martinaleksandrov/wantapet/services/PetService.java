@@ -3,6 +3,7 @@ package com.martinaleksandrov.wantapet.services;
 import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
 import com.martinaleksandrov.wantapet.models.dtos.PetDetailsDto;
 import com.martinaleksandrov.wantapet.models.dtos.PetViewModelDto;
+import com.martinaleksandrov.wantapet.models.entities.PetEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
@@ -28,4 +29,6 @@ public interface PetService {
     void deletePet(Long id, String viewersUsername);
 
     void editPet(Long id, PetCreatingDto petCreatingDto);
+
+    PetEntity getPet(Long id);
 }

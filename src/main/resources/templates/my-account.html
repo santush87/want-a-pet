@@ -8,14 +8,15 @@
 
 <div class="container p-3 d-flex justify-content-center"
      th:object="${userDetails}">
-    <div class="card-5 fa-2x moveup" style="min-width: 650px">
+    <div id="my-account"
+
+         class="card-5 fa-2x moveup" style="min-width: 650px">
         <!--    IMAGE   -->
         <div class="d-flex flex-column justify-content-center align-items-center">
             <img src="/images/user.jpg" height="100" width="100"/>
         </div>
         <!--    NAME   -->
-        <h5 class="card-title text-center"
-            style="font-size: x-large; margin-top: 15px; margin-bottom: 20px"
+        <h5 class="card-title text-center thename"
             th:text="*{name}"/>
         <!--    EMAIL   -->
         <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
@@ -27,9 +28,9 @@
         </div>
         <!--    USER   -->
         <div class="row moveright d-flex flex-row justify-content-center align-items-center mt-3 margin-right-auto">
-            <div class="col-md-4">
-                <h4 class="card-title">User: </h4>
-            </div>
+<!--            <div class="col-md-4">-->
+                <h4 class="col-md-4 card-title">User: </h4>
+<!--            </div>-->
 
             <div class="col-md-8 number" th:text="*{user}"/>
         </div>
@@ -111,7 +112,7 @@
         </div>
     </div>
 </div>
-
 <footer th:replace="~{/fragments/commons::footer}"></footer>
+<!--<script src="/js/my-account.js"></script>-->
 </body>
 </html>
