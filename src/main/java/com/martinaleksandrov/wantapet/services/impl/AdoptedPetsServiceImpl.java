@@ -72,4 +72,16 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
         }
         return adoptedPets;
     }
+
+    @Override
+    public List<String> findAllAdoptedPets() {
+
+        List<String> allAdoptedPets = new ArrayList<>();
+        List<AdoptedPetsEntity> all = this.adoptionRepository.findAllBy();
+
+        for (AdoptedPetsEntity pet : all) {
+            allAdoptedPets.add(pet.toString());
+        }
+        return allAdoptedPets;
+    }
 }

@@ -7,4 +7,6 @@ import java.util.List;
 public interface AdoptedPetsService {
     void adoptPet(Long id, String newOwner);
     List<AdoptedPetsViewDto> getAllMyAdoptedPets(String viewer);
+
+    List<String> findAllAdoptedPets();
 }

@@ -42,4 +42,12 @@ public class AdoptedPetsEntity {
 
     @Column
     private LocalDate adoptionDate;
+
+    @Override
+    public String toString() {
+        return "Pet's name is '" + petsName + '\'' +
+                ", breed - '" + petsBreed + '\'' +
+                ", age - " + age +
+                ", adopted on " + adoptionDate.toString();
+    }
 }
