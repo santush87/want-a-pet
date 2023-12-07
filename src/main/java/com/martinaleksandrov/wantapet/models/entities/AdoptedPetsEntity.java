@@ -37,8 +37,8 @@ public class AdoptedPetsEntity {
     @ManyToOne
     private UserEntity newOwner;
 
-    @ManyToOne
-    private UserEntity prevOwner;
+//    @ManyToOne
+    private String prevOwner;
 
     @Column
     private LocalDate adoptionDate;

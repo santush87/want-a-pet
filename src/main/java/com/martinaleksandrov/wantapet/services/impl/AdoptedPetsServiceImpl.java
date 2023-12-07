@@ -29,7 +29,7 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
 
         PetEntity petForAdoption = this.petRepository.findById(id).orElseThrow();
         UserEntity newOwner = this.userRepository.findByEmail(ownerToBe).orElseThrow();
-        UserEntity prevOwner = petForAdoption.getOwner();
+        String prevOwner = petForAdoption.getOwner().getName();
 
         AdoptedPetsEntity adoptedPetsEntity = AdoptedPetsEntity.builder()
                 .petsName(petForAdoption.getName())
@@ -66,10 +66,10 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
                     .adoptionDate(pet.getAdoptionDate().toString())
                     .build();
 
-            UserEntity prevUser =
-                    this.userRepository.findByEmail(pet.getPrevOwner().getEmail())
-                            .orElseThrow(() -> new UsernameNotFoundException("The previous user of the pet is not found!"));
-            petsViewDto.setPrevOwner(prevUser.getName());
+//            UserEntity prevUser =
+//                    this.userRepository.findByEmail(pet.getPrevOwner().getEmail())
+//                            .orElseThrow(() -> new UsernameNotFoundException("The previous user of the pet is not found!"));
+            petsViewDto.setPrevOwner(pet.getPrevOwner());
 
             adoptedPets.add(petsViewDto);
         }
