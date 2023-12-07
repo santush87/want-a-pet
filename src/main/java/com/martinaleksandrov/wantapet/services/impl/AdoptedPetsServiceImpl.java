@@ -66,9 +66,6 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
                     .adoptionDate(pet.getAdoptionDate().toString())
                     .build();
 
-//            UserEntity prevUser =
-//                    this.userRepository.findByEmail(pet.getPrevOwner().getEmail())
-//                            .orElseThrow(() -> new UsernameNotFoundException("The previous user of the pet is not found!"));
             petsViewDto.setPrevOwner(pet.getPrevOwner());
 
             adoptedPets.add(petsViewDto);
