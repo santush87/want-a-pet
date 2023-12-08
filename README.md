@@ -1,5 +1,3 @@
-### In Progress... Its not complete yet! Soon will be!
-
 # Want A Pet
 
 ## The idea behind this website is to helps dogs and cat to find a new home and to be happy!
@@ -52,28 +50,49 @@
 
 ### Functionality
 
-#### <u> Guests:</u>
+#### <u> For Guests:</u>
 
-* can view the catalog
-* can make a registration
-* can login
-* can see the Home Page
-
+* see the Home Page
+* view the catalog
+* registration
+* login
+![homePage.jpg](..%2F..%2Fimages%2FhomePage.jpg)
+![catalogNotLog.jpg](..%2F..%2Fimages%2FcatalogNotLog.jpg)
+![register.jpg](..%2F..%2Fimages%2Fregister.jpg)
+![registerFail.jpg](..%2F..%2Fimages%2FregisterFail.jpg)
+![login.jpg](..%2F..%2Fimages%2Flogin.jpg)
 #### <u> Registered user</u>
 
 <i> 1. Regular User </i>
 
-* can add a pets - dogs and cats
-* can adopt a pet
-* can view the page - My Pets (their own pets)
-* can edit the information for his pets
-* can delete his pets
-* can view the page - My Account (their own pets)
-* can edit the user information
+* add a pets - dogs and cats
+![add.jpg](..%2F..%2Fimages%2Fadd.jpg)
+![addDog.jpg](..%2F..%2Fimages%2FaddDog.jpg)
+* adopt a pet
+![NotMy.jpg](..%2F..%2Fimages%2FNotMy.jpg)
+* view the page - My Pets (their own pets)
+![myPets.jpg](..%2F..%2Fimages%2FmyPets.jpg)
+* view the page - My Adopted Pets (pets they have adopted)
+<br> No Pets in "Adopted Pets" page
+![adoptNo.jpg](..%2F..%2Fimages%2FadoptNo.jpg)
+<br> There are Pets in "Adopted Pets" page
+![adoptYes.jpg](..%2F..%2Fimages%2FadoptYes.jpg)
+* edit the information for their pets
+<br> ![details.jpg](..%2F..%2Fimages%2Fdetails.jpg)
+* delete their pets
+* view the page - My Account
+![MyAcc.jpg](..%2F..%2Fimages%2FMyAcc.jpg)
+* edit the user information
+![homeForLoggedUser.jpg](..%2F..%2Fimages%2FhomeForLoggedUser.jpg)
+* Edit MyAccount
+![MyAccEdit.jpg](..%2F..%2Fimages%2FMyAccEdit.jpg)
+
 
 <i> 3. ADMIN </i>
 
-*
+* All that Regular User can plus:
+* can edit and delete everyone's pets
+![admin.jpg](..%2F..%2Fimages%2Fadmin.jpg)
 
 ### Find a bug?
 
