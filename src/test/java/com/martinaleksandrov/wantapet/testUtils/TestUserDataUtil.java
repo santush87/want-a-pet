@@ -32,7 +32,7 @@ public class TestUserDataUtil {
     }
 
     public UserEntity createTestAdmin(String email) {
-        return createUser(email, List.of(RoleEnum.ADMIN), createAddress("Ivan Vazov"));
+        return createUser(email, List.of(RoleEnum.ADMIN, RoleEnum.USER), createAddress("Ivan Vazov"));
     }
 
     private UserEntity createUser(String email, List<RoleEnum> roles, UserAddress address) {
