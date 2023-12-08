@@ -47,6 +47,7 @@ public class TestUserDataUtil {
                 .setUserType(TypeOfUser.ORGANIZATION)
                 .setCreatedOn(LocalDate.now())
                 .setPhoneNumber("0123456789")
+                .setPassword("asdasdasd")
                 .setAddress(address);
 
         return userRepository.save(newUser);
