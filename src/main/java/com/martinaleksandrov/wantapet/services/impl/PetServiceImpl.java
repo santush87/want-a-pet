@@ -11,6 +11,7 @@ import com.martinaleksandrov.wantapet.models.enums.WeightRange;
 import com.martinaleksandrov.wantapet.reporitories.PetRepository;
 import com.martinaleksandrov.wantapet.services.PetService;
 import com.martinaleksandrov.wantapet.services.UserService;
+import com.martinaleksandrov.wantapet.services.aop.WarnIfExecutionExceeds;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -49,18 +50,27 @@ public class PetServiceImpl implements PetService {
         this.petRepository.save(pet);
     }
 
+    @WarnIfExecutionExceeds(
+            timeInMillis = 1000L
+    )
     @Override
     public List<PetViewModelDto> getAllPets() {
         List<PetEntity> all = this.petRepository.findAll();
         return getPets(all);
     }
 
+    @WarnIfExecutionExceeds(
+            timeInMillis = 1000L
+    )
     @Override
     public List<PetViewModelDto> getAllDogs() {
         List<PetEntity> allDogs = this.petRepository.findAllByType(PetType.DOG);
         return getPets(allDogs);
     }
 
+    @WarnIfExecutionExceeds(
+            timeInMillis = 1000L
+    )
     @Override
     public List<PetViewModelDto> getAllCats() {
         List<PetEntity> allCats = this.petRepository.findAllByType(PetType.CAT);
