@@ -1,21 +1,17 @@
-package com.martinaleksandrov.wantapet.models.dtos;
+package com.martinaleksandrov.wantapet.models.dtos.binding;
 
 import com.martinaleksandrov.wantapet.annotation.PasswordMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
-import org.springframework.format.annotation.NumberFormat;
 
 @Getter
 @NoArgsConstructor
 @PasswordMatch
-public class UserRegisterDto extends BaseRegistrationDetails{
+public class UserRegisterDto extends BaseRegistrationDetails {
 
     @Email
     @NotBlank(message = "Email cannot be empty!")
@@ -25,7 +21,7 @@ public class UserRegisterDto extends BaseRegistrationDetails{
     @Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters!")
     private String password;
 
-//    @PasswordMatch
+    @NotNull(message = "Confirm password could not be null!")
     private String confirmPassword;
 
     public UserRegisterDto setEmail(String email) {

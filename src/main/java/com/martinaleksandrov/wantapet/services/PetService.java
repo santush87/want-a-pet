@@ -1,10 +1,9 @@
 package com.martinaleksandrov.wantapet.services;
 
-import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
-import com.martinaleksandrov.wantapet.models.dtos.PetDetailsDto;
-import com.martinaleksandrov.wantapet.models.dtos.PetViewModelDto;
+import com.martinaleksandrov.wantapet.models.dtos.binding.PetCreatingDto;
+import com.martinaleksandrov.wantapet.models.dtos.view.PetDetailsDto;
+import com.martinaleksandrov.wantapet.models.dtos.view.PetViewModelDto;
 import com.martinaleksandrov.wantapet.models.entities.PetEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.martinaleksandrov.wantapet.web;
 
-import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
+import com.martinaleksandrov.wantapet.models.dtos.binding.UserRegisterDto;
 import com.martinaleksandrov.wantapet.services.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

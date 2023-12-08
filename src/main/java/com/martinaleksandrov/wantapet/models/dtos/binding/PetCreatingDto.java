@@ -1,9 +1,6 @@
-package com.martinaleksandrov.wantapet.models.dtos;
+package com.martinaleksandrov.wantapet.models.dtos.binding;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +26,8 @@ public class PetCreatingDto {
     @NotNull(message = "Please enter a image url!")
     private String image;
 
-    @PositiveOrZero(message = "Enter a valid age!")
-    @Max(30)
+    @Min(0)
+    @Max(value = 30, message = "Age must be between 0 and 30!")
     private String age;
 
     @Size(max = 200, message = "Description cannot be more than 200 characters!")

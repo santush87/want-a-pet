@@ -20,7 +20,7 @@ public class RolesInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //        boolean hasRoles = this.userRoleRepository.count() > 0;
-//
+
 //        if (!hasRoles) {
 //            Set<UserRoleEntity> userRoles = new HashSet<>();
 //

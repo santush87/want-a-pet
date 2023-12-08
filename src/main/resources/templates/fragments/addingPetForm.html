@@ -43,12 +43,11 @@
         <div class="name">ImageURL</div>
         <div class="value">
             <div class="input-group-desc">
-                <input
-                        class="input--style-5"
+                <input class="input--style-5"
                         type="text"
+                        placeholder="Enter the imageUrl:"
                         th:field="*{image}"
                         th:errorclass="'is-invalid alert-danger'"
-                        placeholder="Enter the imageUrl:"
                 />
                 <small th:if="${#fields.hasErrors('image')}"
                        th:errors="*{image}"
@@ -74,11 +73,11 @@
                                 </option>
                                 <option value="FEMALE">Female</option>
                                 <option value="MALE">Male</option>
-                                <small th:if="${#fields.hasErrors('gender')}"
-                                       th:errors="*{gender}"
-                                       class="text-danger medium">Gender error message</small>
                             </select>
                             <div class="select-dropdown"></div>
+                            <small th:if="${#fields.hasErrors('gender')}"
+                                   th:errors="*{gender}"
+                                   class="text-danger" >Gender error message</small>
                         </div>
                     </div>
                 </div>
@@ -95,7 +94,7 @@
                         />
                         <small th:if="${#fields.hasErrors('age')}"
                                th:errors="*{age}"
-                               class="text-danger medium">Age error message</small>
+                               class="text-danger" style="font-size: 16px">Age error message</small>
                     </div>
                 </div>
             </div>

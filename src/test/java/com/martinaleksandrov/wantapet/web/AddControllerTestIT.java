@@ -21,36 +21,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class AddControllerTestIT {
 
-//    private static final String TEST_USER_EMAIL = "user@example.com";
-//    private static final String TEST_ADMIN_EMAIL = "admin@example.com";
-//
-//
-//    @Autowired
-//    private TestPetDataUtil testPetDataUtil;
-//
-//    @Autowired
-//    private TestUserDataUtil testUserDataUtil;
+    private static final String TEST_USER_EMAIL = "user@example.com";
+    private static final String TEST_ADMIN_EMAIL = "admin@example.com";
+
+
+    @Autowired
+    private TestPetDataUtil testPetDataUtil;
+
+    @Autowired
+    private TestUserDataUtil testUserDataUtil;
 
     @Autowired
     private MockMvc mockMvc;
 
-//    @BeforeEach
-//    void setUp() {
-//        testPetDataUtil.cleanUp();
-//        testUserDataUtil.cleanUp();
-//    }
-//
-//    @AfterEach
-//    void tearDown() {
-//        testPetDataUtil.cleanUp();
-//        testUserDataUtil.cleanUp();
-//    }
+    @BeforeEach
+    void setUp() {
+        testPetDataUtil.cleanUp();
+        testUserDataUtil.cleanUp();
+    }
+
+    @AfterEach
+    void tearDown() {
+        testPetDataUtil.cleanUp();
+        testUserDataUtil.cleanUp();
+    }
 
     @Test
-//    @WithMockUser(username = TEST_USER_EMAIL)
     void testAddDog() throws Exception {
-//        UserEntity testUser = testUserDataUtil.createTestUser(TEST_USER_EMAIL);
-//        PetEntity dog = testPetDataUtil.createDog("Ares", testUser);
+        UserEntity testUser = testUserDataUtil.createTestUser(TEST_USER_EMAIL);
+        PetEntity dog = testPetDataUtil.createDog("Ares", testUser);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/add/dog")

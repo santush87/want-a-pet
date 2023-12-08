@@ -1,6 +1,6 @@
 package com.martinaleksandrov.wantapet.web;
 
-import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
+import com.martinaleksandrov.wantapet.models.dtos.binding.PetCreatingDto;
 import com.martinaleksandrov.wantapet.services.PetService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

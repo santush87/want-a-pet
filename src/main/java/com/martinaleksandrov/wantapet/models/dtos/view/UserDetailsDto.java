@@ -1,4 +1,4 @@
-package com.martinaleksandrov.wantapet.models.dtos;
+package com.martinaleksandrov.wantapet.models.dtos.view;
 
 import lombok.Getter;
 

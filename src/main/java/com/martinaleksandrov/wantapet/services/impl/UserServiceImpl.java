@@ -1,9 +1,10 @@
 package com.martinaleksandrov.wantapet.services.impl;
 
 
-import com.martinaleksandrov.wantapet.models.dtos.UserDetailsDto;
-import com.martinaleksandrov.wantapet.models.dtos.UserEditDto;
-import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
+import com.martinaleksandrov.wantapet.exceptions.UserNotFoundException;
+import com.martinaleksandrov.wantapet.models.dtos.view.UserDetailsDto;
+import com.martinaleksandrov.wantapet.models.dtos.view.UserEditDto;
+import com.martinaleksandrov.wantapet.models.dtos.binding.UserRegisterDto;
 import com.martinaleksandrov.wantapet.models.entities.*;
 import com.martinaleksandrov.wantapet.models.enums.CountryEnum;
 import com.martinaleksandrov.wantapet.models.enums.RoleEnum;
@@ -20,7 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -89,6 +89,7 @@ public class UserServiceImpl implements UserService {
                 .map(UserRoleEntity::getRole)
                 .anyMatch(role -> RoleEnum.ADMIN == role);
     }
+
     @Override
     public Optional<UserEntity> findById(String id) {
         return this.userRepository.findById(id);
@@ -99,32 +100,31 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserDetailsDto getUserDetails(String username) {
-        Optional<UserEntity> optionalUser = this.userRepository.findByEmail(username);
-        if (optionalUser.isEmpty()) {
-            throw new NoSuchElementException("User with email: " + username + " not exists!");
-        }
+        UserEntity user = this.userRepository.findByEmail(username)
+                .orElseThrow(() -> new UserNotFoundException("User with email: " + username + " not exists!"));
 
-        UserAddress address = optionalUser.get().getAddress();
+        UserAddress address = user.getAddress();
 
-        UserDetailsDto userDetails = this.modelMapper.map(optionalUser.get(), UserDetailsDto.class);
-        String userType = isAdmin(optionalUser.get()) ? "Admin" : "User";
-        String id = optionalUser.get().getId();
+        UserDetailsDto userDetails = this.modelMapper.map(user, UserDetailsDto.class);
+
+        String userType = isAdmin(user) ? "Admin" : "User";
+
+        String id = user.getId();
+
         List<AdoptedPetsEntity> allByNewOwnerId = this.adoptionRepository.findAllByNewOwnerId(id);
+
         int newUserAdoptedPets = allByNewOwnerId.size();
 
         List<PetEntity> allByOwnerId = this.petRepository.findAllByOwnerId(id);
-        int allUploadedPets = allByOwnerId.size();
-//        this.adoptionRepository.findAllByPrevOwnerId()
 
-        userDetails.setCountry(address.getCountryEnum().toString())
+        return userDetails.setCountry(address.getCountryEnum().toString())
                 .setCity(address.getCity())
                 .setStreet(address.getStreet())
                 .setStreetNumber(address.getStreetNumber())
-                .setJoinedOn(optionalUser.get().getCreatedOn().toString())
+                .setJoinedOn(user.getCreatedOn().toString())
                 .setUser(userType)
                 .setAdoptedPets(newUserAdoptedPets)
-                .setUploadedPets(allUploadedPets);
-        return userDetails;
+                .setUploadedPets(allByOwnerId.size());
     }
 
     public boolean editUser(String id, UserEditDto userEditDto) {
@@ -134,7 +134,7 @@ public class UserServiceImpl implements UserService {
 
             UserAddress address = user.getAddress();
 
-            address .setCountryEnum(CountryEnum.valueOf(userEditDto.getCountry()))
+            address.setCountryEnum(CountryEnum.valueOf(userEditDto.getCountry()))
                     .setCity(userEditDto.getCity())
                     .setStreet(userEditDto.getStreet())
                     .setStreetNumber(userEditDto.getStreetNumber());

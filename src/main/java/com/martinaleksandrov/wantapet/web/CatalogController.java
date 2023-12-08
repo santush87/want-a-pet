@@ -1,8 +1,8 @@
 package com.martinaleksandrov.wantapet.web;
 
-import com.martinaleksandrov.wantapet.models.dtos.PetCreatingDto;
-import com.martinaleksandrov.wantapet.models.dtos.PetDetailsDto;
-import com.martinaleksandrov.wantapet.models.dtos.PetViewModelDto;
+import com.martinaleksandrov.wantapet.models.dtos.binding.PetCreatingDto;
+import com.martinaleksandrov.wantapet.models.dtos.view.PetDetailsDto;
+import com.martinaleksandrov.wantapet.models.dtos.view.PetViewModelDto;
 import com.martinaleksandrov.wantapet.services.AdoptedPetsService;
 import com.martinaleksandrov.wantapet.services.PetService;
 import jakarta.validation.Valid;

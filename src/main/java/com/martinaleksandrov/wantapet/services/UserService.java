@@ -1,8 +1,8 @@
 package com.martinaleksandrov.wantapet.services;
 
-import com.martinaleksandrov.wantapet.models.dtos.UserDetailsDto;
-import com.martinaleksandrov.wantapet.models.dtos.UserEditDto;
-import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
+import com.martinaleksandrov.wantapet.models.dtos.view.UserDetailsDto;
+import com.martinaleksandrov.wantapet.models.dtos.view.UserEditDto;
+import com.martinaleksandrov.wantapet.models.dtos.binding.UserRegisterDto;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
 
 import java.util.List;

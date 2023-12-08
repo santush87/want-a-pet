@@ -1,4 +1,4 @@
-package com.martinaleksandrov.wantapet.models.dtos;
+package com.martinaleksandrov.wantapet.models.dtos.binding;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

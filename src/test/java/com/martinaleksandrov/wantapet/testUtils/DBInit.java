@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class DBInit implements CommandLineRunner {
@@ -17,11 +20,14 @@ public class DBInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (userRoleRepository.count() == 0) {
-            userRoleRepository.saveAll(List.of(
-                    new UserRoleEntity().setRole(RoleEnum.USER),
-                    new UserRoleEntity().setRole(RoleEnum.ADMIN)
-            ));
-        }
+        Set<UserRoleEntity> userRoles = new HashSet<>();
+
+        Arrays.stream(RoleEnum.values())
+                .forEach(role -> {
+                    UserRoleEntity userRole = new UserRoleEntity(role);
+
+                    userRoles.add(userRole);
+                });
+        this.userRoleRepository.saveAll(userRoles);
     }
 }

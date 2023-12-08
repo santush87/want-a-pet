@@ -1,7 +1,7 @@
 package com.martinaleksandrov.wantapet.validation;
 
 import com.martinaleksandrov.wantapet.annotation.PasswordMatch;
-import com.martinaleksandrov.wantapet.models.dtos.UserRegisterDto;
+import com.martinaleksandrov.wantapet.models.dtos.binding.UserRegisterDto;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.hibernate.validator.constraintvalidation.HibernateConstraintValidatorContext;
