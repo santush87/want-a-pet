@@ -56,7 +56,9 @@ public class PetServiceImpl implements PetService {
     @Override
     public List<PetViewModelDto> getAllPets() {
         List<PetEntity> all = this.petRepository.findAll();
-        return getPets(all);
+        return getPets(all.stream()
+                .filter(pet -> pet.isAdopted() == false)
+                .toList());
     }
 
     @WarnIfExecutionExceeds(
@@ -65,7 +67,10 @@ public class PetServiceImpl implements PetService {
     @Override
     public List<PetViewModelDto> getAllDogs() {
         List<PetEntity> allDogs = this.petRepository.findAllByType(PetType.DOG);
-        return getPets(allDogs);
+
+        return getPets(allDogs.stream()
+                .filter(pet -> pet.isAdopted() == false)
+                .toList());
     }
 
     @WarnIfExecutionExceeds(
@@ -74,7 +79,9 @@ public class PetServiceImpl implements PetService {
     @Override
     public List<PetViewModelDto> getAllCats() {
         List<PetEntity> allCats = this.petRepository.findAllByType(PetType.CAT);
-        return getPets(allCats);
+        return getPets(allCats.stream()
+                .filter(pet -> pet.isAdopted() == false)
+                .toList());
     }
 
     private List<PetViewModelDto> getPets(List<PetEntity> pets) {

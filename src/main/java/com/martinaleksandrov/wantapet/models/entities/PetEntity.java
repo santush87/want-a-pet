@@ -49,6 +49,9 @@ public class PetEntity{
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column
+    private boolean isAdopted = false;
+
     @ManyToOne
     private UserEntity owner;
 }

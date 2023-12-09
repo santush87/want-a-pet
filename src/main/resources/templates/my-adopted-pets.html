@@ -16,9 +16,12 @@
             <div class="product">
 <!--                <a th:href="@{/catalog/details/{pets_id}(pets_id=*{pet.id})}">-->
                     <h3 th:text="${pet.petsName} + ' - ' + ${pet.age} + ' years old'"></h3>
+                    <h3 th:text="'Adopted on: ' + ${pet.adoptionDate}"></h3>
                     <img th:src="${pet.petsImage}" alt="">
                     <h3 th:text="'Previous owner - ' + ${pet.prevOwner}"></h3>
-                    <h3 th:text="'Adopted on: ' + ${pet.adoptionDate}"></h3>
+
+                    <h3 th:if="${!pet.isSend()}">Waiting to be send!</h3>
+                    <h3 th:if="${pet.isSend()}">Is already send!</h3>
 <!--                </a>-->
             </div>
         </div>

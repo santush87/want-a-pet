@@ -3,7 +3,6 @@ package com.martinaleksandrov.wantapet.models.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -13,7 +12,6 @@ import java.time.LocalDate;
 @Table(name = "adopted_pets")
 @Getter
 @Setter
-@NoArgsConstructor
 @SuperBuilder
 public class AdoptedPetsEntity {
 
@@ -37,11 +35,14 @@ public class AdoptedPetsEntity {
     @ManyToOne
     private UserEntity newOwner;
 
-    @Column
-    private String prevOwner;
+    @ManyToOne
+    private UserEntity prevOwner;
 
     @Column
     private LocalDate adoptionDate;
+
+    @Column
+    private boolean completeAdoption;
 
     @Override
     public String toString() {
@@ -49,5 +50,9 @@ public class AdoptedPetsEntity {
                 ", breed - '" + petsBreed + '\'' +
                 ", age - " + age +
                 ", adopted on " + adoptionDate.toString();
+    }
+
+    public AdoptedPetsEntity() {
+        this.completeAdoption = false;
     }
 }

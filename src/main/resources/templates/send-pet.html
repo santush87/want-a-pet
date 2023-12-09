@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments/commons::head}"></head>
+
+<body class="thebody">
+<header th:replace="~{/fragments/commons::nav}"></header>
+
+<main class="container" style="margin-bottom: 120px"
+      th:object="${pets}">
+    <h3 class="thetitle"> Pets to send</h3>
+    <div th:if="${pets.size() == 0}">
+        <h3 class="thetitle">No Pets Here!</h3>
+    </div>
+    <div class="products-container">
+        <div th:each="pet : ${pets}">
+            <div class="product">
+                <!--                <a th:href="@{/catalog/adopt-details/{pets_id}(pets_id=*{pet.id})}">-->
+                <h3 th:text="${pet.petsName} + ' - ' + ${pet.age} + ' years old'"></h3>
+                <h3 th:text="'Adopted on: ' + ${pet.adoptionDate}"></h3>
+                <img th:src="${pet.petsImage}" alt="">
+                <h3 th:text="'Adopted by: ' + ${pet.ownerName}"></h3>
+                <h3 th:text="'Phone number: ' + ${pet.ownerPhone}"></h3>
+                <h3 th:text="'Email: ' + ${pet.ownerEmail}"></h3>
+                <h3 th:text="'Address: ' + ${pet.ownerAddress}"></h3>
+                <div th:if="${!pet.isSend}">
+                    <form th:action="@{/catalog/pets-to-send/{pet_id}(pet_id=${pet.id})}"
+                          th:method="post">
+                        <button type="submit"
+                                class="thebuttons btn btn-primary margin-right-auto margin-left-auto">
+                            Send
+                        </button>
+                    </form>
+                </div>
+                <h3 th:if="${pet.isSend}">Sending complete!!!</h3>
+
+            </div>
+            <!--                </a>-->
+        </div>
+    </div>
+</main>
+<footer th:replace="~{/fragments/commons::footer}"></footer>
+</body>
+</html>

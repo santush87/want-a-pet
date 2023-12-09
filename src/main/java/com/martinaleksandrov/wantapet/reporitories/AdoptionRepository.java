@@ -10,6 +10,7 @@ import java.util.List;
 public interface AdoptionRepository extends JpaRepository<AdoptedPetsEntity, Long> {
 
     List<AdoptedPetsEntity> findAllByNewOwnerId(String id);
+    List<AdoptedPetsEntity> findAllByPrevOwnerId(String id);
 
     List<AdoptedPetsEntity> findAllBy();
 }

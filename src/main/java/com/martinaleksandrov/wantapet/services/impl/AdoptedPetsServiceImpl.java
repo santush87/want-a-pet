@@ -1,6 +1,8 @@
 package com.martinaleksandrov.wantapet.services.impl;
 
+import com.martinaleksandrov.wantapet.exceptions.UserNotFoundException;
 import com.martinaleksandrov.wantapet.models.dtos.view.AdoptedPetsViewDto;
+import com.martinaleksandrov.wantapet.models.dtos.view.PetsToSendDto;
 import com.martinaleksandrov.wantapet.models.entities.AdoptedPetsEntity;
 import com.martinaleksandrov.wantapet.models.entities.PetEntity;
 import com.martinaleksandrov.wantapet.models.entities.UserEntity;
@@ -13,9 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -28,9 +28,15 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
     @Override
     public void adoptPet(Long id, String ownerToBe) {
 
-        PetEntity petForAdoption = this.petRepository.findById(id).orElseThrow();
-        UserEntity newOwner = this.userRepository.findByEmail(ownerToBe).orElseThrow();
-        String prevOwner = petForAdoption.getOwner().getName();
+        PetEntity petForAdoption = this.petRepository.findById(id)
+                .orElseThrow(NoSuchElementException::new);
+        petForAdoption.setAdopted(true);
+
+        UserEntity newOwner = this.userRepository.findByEmail(ownerToBe)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        UserEntity prevOwner = this.userRepository.findById(petForAdoption.getOwner().getId())
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         AdoptedPetsEntity adoptedPetsEntity = AdoptedPetsEntity.builder()
                 .petsName(petForAdoption.getName())
@@ -43,7 +49,6 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
                 .build();
 
         this.adoptionRepository.save(adoptedPetsEntity);
-        this.petRepository.deleteById(id);
     }
 
     @Override
@@ -56,7 +61,8 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
         List<AdoptedPetsEntity> allByNewOwnerId =
                 this.adoptionRepository.findAllByNewOwnerId(owner.getId());
 
-        List<AdoptedPetsEntity> petsSortByDate = allByNewOwnerId.stream().sorted(Comparator.comparing(AdoptedPetsEntity::getAdoptionDate)
+        List<AdoptedPetsEntity> petsSortByDate = allByNewOwnerId.stream()
+                .sorted(Comparator.comparing(AdoptedPetsEntity::getAdoptionDate)
                         .reversed())
                 .toList();
 
@@ -67,11 +73,12 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
                     .petsBreed(pet.getPetsBreed())
                     .petsImage(pet.getPetsImage())
                     .age(pet.getAge())
+                    .isSend(pet.isCompleteAdoption())
                     .petsName(pet.getPetsName())
                     .adoptionDate(pet.getAdoptionDate().toString())
                     .build();
 
-            petsViewDto.setPrevOwner(pet.getPrevOwner());
+            petsViewDto.setPrevOwner(pet.getPrevOwner().getName());
 
             adoptedPets.add(petsViewDto);
         }
@@ -89,5 +96,47 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
             allAdoptedPets.add(pet.toString());
         }
         return allAdoptedPets;
+    }
+
+    @Override
+    public List<PetsToSendDto> getPetsToSend(String username) {
+        UserEntity owner = this.userRepository.findByEmail(username)
+                .orElseThrow(() -> new UserNotFoundException("User not found!"));
+
+        List<AdoptedPetsEntity> allPets =
+                this.adoptionRepository.findAllByPrevOwnerId(owner.getId());
+
+        List<PetsToSendDto> petsToSend = new ArrayList<>();
+
+        for (AdoptedPetsEntity pet : allPets) {
+            UserEntity newOwner = pet.getNewOwner();
+            PetsToSendDto pets = PetsToSendDto.builder()
+                    .id(pet.getId())
+                    .age(pet.getAge())
+                    .petsName(pet.getPetsName())
+                    .petsBreed(pet.getPetsBreed())
+                    .petsImage(pet.getPetsImage())
+                    .adoptionDate(pet.getAdoptionDate().toString())
+                    .ownerName(newOwner.getName())
+                    .ownerEmail(newOwner.getEmail())
+                    .ownerPhone(newOwner.getPhoneNumber())
+                    .ownerAddress(newOwner.getAddress().toString())
+                    .isSend(pet.isCompleteAdoption())
+                    .build();
+
+            petsToSend.add(pets);
+        }
+
+        return petsToSend;
+    }
+
+    @Override
+    public void sendPet(Long id, String username) {
+        Optional<AdoptedPetsEntity> optPet = this.adoptionRepository.findById(id);
+        if (optPet.isPresent()) {
+            AdoptedPetsEntity pet = optPet.get();
+            pet.setCompleteAdoption(true);
+            this.adoptionRepository.save(pet);
+        }
     }
 }
