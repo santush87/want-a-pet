@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -55,7 +56,11 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
         List<AdoptedPetsEntity> allByNewOwnerId =
                 this.adoptionRepository.findAllByNewOwnerId(owner.getId());
 
-        for (AdoptedPetsEntity pet : allByNewOwnerId) {
+        List<AdoptedPetsEntity> petsSortByDate = allByNewOwnerId.stream().sorted(Comparator.comparing(AdoptedPetsEntity::getAdoptionDate)
+                        .reversed())
+                .toList();
+
+        for (AdoptedPetsEntity pet : petsSortByDate) {
 
             AdoptedPetsViewDto petsViewDto = AdoptedPetsViewDto.builder()
                     .owner(owner.getName())
@@ -79,6 +84,7 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
         List<String> allAdoptedPets = new ArrayList<>();
         List<AdoptedPetsEntity> all = this.adoptionRepository.findAllBy();
 
+        System.out.println();
         for (AdoptedPetsEntity pet : all) {
             allAdoptedPets.add(pet.toString());
         }
