@@ -13,5 +13,5 @@ public interface AdoptedPetsService {
 
     List<PetsToSendDto> getPetsToSend(String username);
 
-    void sendPet(Long id, String username);
+    void sendPet(Long id);
 }

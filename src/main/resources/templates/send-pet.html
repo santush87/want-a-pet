@@ -14,7 +14,6 @@
     <div class="products-container">
         <div th:each="pet : ${pets}">
             <div class="product">
-                <!--                <a th:href="@{/catalog/adopt-details/{pets_id}(pets_id=*{pet.id})}">-->
                 <h3 th:text="${pet.petsName} + ' - ' + ${pet.age} + ' years old'"></h3>
                 <h3 th:text="'Adopted on: ' + ${pet.adoptionDate}"></h3>
                 <img th:src="${pet.petsImage}" alt="">
@@ -32,9 +31,7 @@
                     </form>
                 </div>
                 <h3 th:if="${pet.isSend}">Sending complete!!!</h3>
-
             </div>
-            <!--                </a>-->
         </div>
     </div>
 </main>

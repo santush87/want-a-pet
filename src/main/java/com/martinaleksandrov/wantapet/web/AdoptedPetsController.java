@@ -43,12 +43,11 @@ public class AdoptedPetsController {
     }
 
     @PostMapping("/pets-to-send/{id}")
-    public ModelAndView sendPet(@PathVariable("id") Long id,
-                                @AuthenticationPrincipal UserDetails viewer) {
+    public ModelAndView sendPet(@PathVariable("id") Long id) {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/catalog/pets-to-send");
 
-        this.adoptedPetsService.sendPet(id, viewer.getUsername());
+        this.adoptedPetsService.sendPet(id);
         return modelAndView;
     }
 

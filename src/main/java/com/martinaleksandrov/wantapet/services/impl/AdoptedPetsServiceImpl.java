@@ -131,7 +131,7 @@ public class AdoptedPetsServiceImpl implements AdoptedPetsService {
     }
 
     @Override
-    public void sendPet(Long id, String username) {
+    public void sendPet(Long id) {
         Optional<AdoptedPetsEntity> optPet = this.adoptionRepository.findById(id);
         if (optPet.isPresent()) {
             AdoptedPetsEntity pet = optPet.get();
