@@ -100,6 +100,10 @@
 * can edit and delete everyone's pets
 ![admin](https://github.com/santush87/want-a-pet/assets/73018624/7ae1c75b-e6f2-4e72-9d23-2d0ca1e1e7aa)
 
+## The Test Coverage
+![tests](https://github.com/santush87/want-a-pet/assets/73018624/5d2bcb2c-2c6a-4238-abaf-86fabf4f1e51)
+
+
 ### Find a bug?
 
 If you find an issue or would like to submit an improvement to this project, please submit an issue using the issues tab
