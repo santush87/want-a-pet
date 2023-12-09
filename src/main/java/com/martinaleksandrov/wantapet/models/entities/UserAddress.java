@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "addresses")
 @Getter
 @NoArgsConstructor
-public class UserAddress extends BaseEntity{
+public class UserAddress extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -41,5 +41,13 @@ public class UserAddress extends BaseEntity{
     public UserAddress setStreetNumber(String streetNumber) {
         this.streetNumber = streetNumber;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return countryEnum +
+                ", " + city + '\'' +
+                ", street: '" + street + '\'' +
+                ", " + streetNumber;
     }
 }

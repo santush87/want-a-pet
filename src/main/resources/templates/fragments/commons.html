@@ -38,6 +38,10 @@
                    th:href="@{/catalog/my-adopted-pets}">Adopted Pets</a>
 
                 <a class="nav-item nav-link"
+                sec:authorize="isAuthenticated()"
+                th:href="@{/catalog/pets-to-send}">Pets to Send</a>
+
+                <a class="nav-item nav-link"
                    sec:authorize="isAuthenticated()"
                    th:href="@{/users/my-account}">My Account</a>
 
