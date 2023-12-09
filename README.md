@@ -50,7 +50,7 @@
 
 ### Functionality
 
-#### <u> For Guests:</u>
+### <u> For Guests:</u>
 
 * see the Home Page
 ![homePage](https://github.com/santush87/want-a-pet/assets/73018624/edd2034b-a1aa-4ad2-98a5-78da2dbbb513)
@@ -62,9 +62,9 @@
 * login
 ![login](https://github.com/santush87/want-a-pet/assets/73018624/261a8d1b-030b-424a-bc74-4d5fb0860aba)
 
-#### <u> Registered user</u>
+## <u> Registered user</u>
 
-<i> 1. Regular User </i>
+### <i> 1. Regular User </i>
 
 * add a pets - dogs and cats
 ![add](https://github.com/santush87/want-a-pet/assets/73018624/bed43c3a-559d-45f7-b447-c5107970e426)
@@ -81,7 +81,7 @@
 <br> No Pets in "Adopted Pets" page
 ![adoptNo](https://github.com/santush87/want-a-pet/assets/73018624/a5418853-a945-405f-86aa-9ed3b6c9f01f)
 
-<br> There are Pets in "Adopted Pets" page
+<br> There are Pets in "Adopted Pets" page 
 ![adoptYes](https://github.com/santush87/want-a-pet/assets/73018624/c395f59c-273e-4c13-9b82-3575799636a8)
 
 * edit the information for their pets
@@ -94,7 +94,7 @@
 ![MyAccEdit](https://github.com/santush87/want-a-pet/assets/73018624/29f2651e-7a97-4e0d-960e-781725d788aa)
 
 
-<i> 3. ADMIN </i>
+### <i> 3. ADMIN </i>
 
 * All that Regular User can plus:
 * can edit and delete everyone's pets
@@ -102,6 +102,7 @@
 
 ## The Test Coverage
 ![tests](https://github.com/santush87/want-a-pet/assets/73018624/5d2bcb2c-2c6a-4238-abaf-86fabf4f1e51)
+
 
 
 ### Find a bug?
