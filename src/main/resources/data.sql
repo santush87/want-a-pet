@@ -9,14 +9,14 @@ VALUES ('ecf63e3a-198b-4587-aa6a-8f6c6d95e2c9', 'Berlin', 'GERMANY', 'Sparrstr.'
 
 INSERT INTO `want-a-pet`.`users` (`id`, `created_on`, `email`, `first_name`, `last_name`, `password`, `phone_number`,
                                   `user_type`, `address_id`)
-VALUES ('b2bf098b-b1e2-42b7-9e7c-75c0fe9faa74', '2023-09-25', 'admin@email.com', 'Martin', 'Aleksandrov',
-        '$2y$10$2zdpup1vdwCFcdguypG/teUOYOr9kWm9LlKJJajRpudlRKLP.PDH.', '0899878524', 'PRIVATE',
+VALUES ('b2bf098b-b1e2-42b7-9e7c-75c0fe9faa74', '2023-09-25', 'admin@email.com', 'Ivan', 'Ivanov',
+        '$2a$12$xUBHu0zowPuTD5yyQHOSu.D/wkKBO9fIA5rMwp9hOu.mvLXUsLELO', '0899878524', 'PRIVATE',
         'ecf63e3a-198b-4587-aa6a-8f6c6d95e2c9'),
-       ('d543361b-6742-4a65-bbc6-63ec194a5f5e', '2023-10-24', 'user1@email.com', 'Cvetoslav', 'Mitev',
-        '$2y$10$2zdpup1vdwCFcdguypG/teUOYOr9kWm9LlKJJajRpudlRKLP.PDH.', '0891378524', 'PRIVATE',
+       ('d543361b-6742-4a65-bbc6-63ec194a5f5e', '2023-10-24', 'user@email.com', 'Peter', 'Petrov',
+        '$2a$12$mZa3s5B91GxSHScFIuZeU.4P7MTzeYqX.BoL0wQAoWKpMKqFA4NMC', '0891378524', 'PRIVATE',
         '2c7a03db-0e56-4257-82d5-65e3fbaf429a'),
-       ('f590e77a-8e26-4d78-b688-f5333bd9b576', '2023-11-15', 'user2@email.com', 'Plamen', 'Botev',
-        '$2y$10$2zdpup1vdwCFcdguypG/teUOYOr9kWm9LlKJJajRpudlRKLP.PDH.', '0899874754', 'PRIVATE',
+       ('f590e77a-8e26-4d78-b688-f5333bd9b576', '2023-11-15', 'user2@email.com', 'Georgi', 'Georgiev',
+        '$2a$12$p4Gu.OYvE9/exOY1LABPLe8yg2u76XOOap4tLND.26f2jUiQ7t9Va', '0899874754', 'PRIVATE',
         '8a0a8a7c-e889-4d9c-8ff9-d9fba8306bd9');
 
 INSERT INTO users_roles(`user_id`, `role_id`)
